@@ -1,0 +1,948 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Colorado Ballet Society Nutcracker Charm Fundraiser | Colorado Springs, CO</title>
+  <meta name="description" content="Order your dancer's official Nutcracker charm and support Colorado Ballet Society. Campaign ends October 31, 2026." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Lora:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    /* ══════════════════════════════════════
+       NUTCRACKER JEWELRY — Brand Tokens
+       Identical to NutcrackerJewelry_Website.html
+       Keep these values in sync across all platforms.
+    ══════════════════════════════════════ */
+    :root {
+      /* Colors */
+      --velvet:     #9B1528;  /* Deep Velvet Red — theater curtain, CTAs */
+      --gold:       #C9A96E;  /* Warm Stage Gold — headings, accents */
+      --gold-light: #D4B896;  /* Gold highlight — hover states */
+      --silver:     #C0C0C0;  /* Stage Silver — the jewelry itself */
+      --dark:       #1E1A1D;  /* Midnight Backstage — hero backgrounds */
+      --parchment:  #F0E8D8;  /* Soft Ballet Pink — light page backgrounds */
+      --cream:      #E8E0D0;  /* Deeper cream — card surfaces, dividers */
+      --footer:     #1A1A1A;  /* Deep footer */
+      --text:       #2C2C2C;  /* Body text */
+      --white:      #FFFFFF;  /* Pure white — product cards */
+
+      /* Typography */
+      --ff-head: 'Playfair Display', Georgia, 'Times New Roman', serif;
+      --ff-body: 'Lora', Georgia, serif;
+    }
+
+    body {
+      font-family: var(--ff-body);
+      background: var(--parchment);
+      color: var(--text);
+      font-size: 16px;
+      line-height: 1.6;
+    }
+
+    img { display: block; max-width: 100%; }
+    a   { color: inherit; text-decoration: none; }
+
+    .container {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    /* ── HEADER ── */
+    .header {
+      background: var(--dark);
+      padding: 52px 0 44px;
+      text-align: center;
+      border-bottom: 3px solid var(--gold);
+    }
+    .header__powered {
+      font-size: 0.7rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: rgba(201,169,110,0.6);
+      margin-bottom: 22px;
+    }
+    .header__powered a { color: var(--gold); text-decoration: underline; text-underline-offset: 3px; }
+    .header__school {
+      font-family: var(--ff-head);
+      font-size: clamp(2.2rem, 5vw, 3.4rem);
+      font-weight: 700;
+      color: #fff;
+      line-height: 1.1;
+    }
+    .header__location {
+      font-size: 0.82rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: #888;
+      margin-top: 8px;
+    }
+    .header__tagline {
+      font-family: var(--ff-head);
+      font-style: italic;
+      font-size: 1.1rem;
+      color: var(--gold);
+      margin-top: 16px;
+    }
+
+    /* ── COUNTDOWN ── */
+    .countdown {
+      background: var(--velvet);
+      padding: 32px 0;
+      text-align: center;
+    }
+    .countdown__label {
+      font-size: 0.72rem;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.65);
+      margin-bottom: 14px;
+    }
+    .countdown__units {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+    .countdown__unit { display: flex; flex-direction: column; align-items: center; }
+    .countdown__num {
+      font-family: var(--ff-head);
+      font-size: 2.8rem;
+      font-weight: 700;
+      color: #fff;
+      line-height: 1;
+      min-width: 68px;
+      text-align: center;
+    }
+    .countdown__unit-label {
+      font-size: 0.62rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.55);
+      margin-top: 5px;
+    }
+    .countdown__sep {
+      font-family: var(--ff-head);
+      font-size: 2.2rem;
+      color: rgba(255,255,255,0.3);
+      line-height: 2.8rem;
+    }
+    .countdown__ended {
+      font-family: var(--ff-head);
+      font-size: 1.4rem;
+      color: #fff;
+      font-style: italic;
+    }
+
+    /* ── INTRO ── */
+    .intro {
+      padding: 52px 0 36px;
+      text-align: center;
+      background: var(--parchment);
+    }
+    .intro__eyebrow {
+      font-size: 0.72rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--velvet);
+      margin-bottom: 10px;
+    }
+    .intro__heading {
+      font-family: var(--ff-head);
+      font-size: 2rem;
+      font-weight: 700;
+      margin-bottom: 14px;
+    }
+    .intro__body {
+      max-width: 580px;
+      margin: 0 auto;
+      font-size: 0.95rem;
+      color: #555;
+      line-height: 1.7;
+    }
+    .intro__note {
+      display: inline-block;
+      margin-top: 20px;
+      background: #fff;
+      border-left: 3px solid var(--gold);
+      padding: 12px 20px;
+      border-radius: 0 6px 6px 0;
+      font-size: 0.85rem;
+      color: #555;
+      text-align: left;
+    }
+    .intro__note strong { color: var(--text); }
+
+    /* ── ORDER SECTION ── */
+    .order-section {
+      padding: 56px 0 72px;
+      background: var(--parchment);
+    }
+    .order-section__header {
+      text-align: center;
+      margin-bottom: 40px;
+    }
+    .order-section__eyebrow {
+      font-size: 0.72rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--velvet);
+      margin-bottom: 10px;
+    }
+    .order-section__heading {
+      font-family: var(--ff-head);
+      font-size: 2rem;
+      color: var(--text);
+      margin-bottom: 8px;
+    }
+    .order-section__sub {
+      font-size: 0.88rem;
+      color: #777;
+    }
+
+    /* ── CHARM ORDER GRID ── */
+    .charm-order-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 14px;
+      margin-bottom: 40px;
+    }
+    @media (min-width: 600px) {
+      .charm-order-grid { grid-template-columns: repeat(3, 1fr); }
+    }
+    @media (min-width: 900px) {
+      .charm-order-grid { grid-template-columns: repeat(4, 1fr); }
+    }
+
+    .charm-order-card {
+      background: #fff;
+      border-radius: 10px;
+      overflow: hidden;
+      border: 1px solid #e8e0d0;
+      transition: border-color 0.2s, box-shadow 0.2s;
+      display: flex;
+      flex-direction: column;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+    }
+    .charm-order-card:hover {
+      border-color: var(--gold);
+      box-shadow: 0 4px 16px rgba(0,0,0,0.1);
+    }
+    .charm-order-card.has-qty {
+      border-color: var(--velvet);
+      box-shadow: 0 4px 16px rgba(196,30,58,0.12);
+    }
+    .charm-order-card__img {
+      width: 100%;
+      aspect-ratio: 1;
+      overflow: hidden;
+      background: #f8f5f0;
+      border-bottom: 1px solid #f0e8d8;
+    }
+    .charm-order-card__img img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transform: scale(1.22);
+      transition: transform 0.4s;
+    }
+    .charm-order-card:hover .charm-order-card__img img { transform: scale(1.28); }
+    .charm-order-card__body {
+      padding: 10px 12px 14px;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+    .charm-order-card__name {
+      font-family: var(--ff-head);
+      font-size: 0.8rem;
+      color: var(--text);
+      line-height: 1.3;
+    }
+    .charm-order-card__price {
+      font-size: 0.82rem;
+      color: #888;
+      font-weight: 600;
+    }
+    .charm-order-card.has-qty .charm-order-card__price { color: var(--velvet); }
+    .charm-order-card__counter {
+      display: flex;
+      align-items: center;
+      gap: 0;
+      margin-top: auto;
+      border: 1px solid #e0d8c8;
+      border-radius: 6px;
+      overflow: hidden;
+      background: #faf7f2;
+    }
+    .counter-btn {
+      background: #f0e8d8;
+      border: none;
+      color: var(--text);
+      font-size: 1.2rem;
+      font-weight: 700;
+      width: 36px;
+      height: 36px;
+      cursor: pointer;
+      transition: background 0.15s;
+      flex-shrink: 0;
+      line-height: 1;
+    }
+    .counter-btn:hover { background: #e0d4c0; }
+    .charm-order-card.has-qty .counter-btn { background: var(--velvet); color: #fff; }
+    .charm-order-card.has-qty .counter-btn:hover { background: #a01830; }
+    .counter-num {
+      flex: 1;
+      text-align: center;
+      font-family: var(--ff-head);
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--text);
+      background: transparent;
+      border: none;
+      outline: none;
+      padding: 0;
+      min-width: 0;
+    }
+
+    /* ── ORDER SUMMARY BAR ── */
+    .order-summary-bar {
+      background: #fff;
+      border: 2px solid var(--velvet);
+      border-radius: 10px;
+      padding: 20px 24px;
+      margin-bottom: 32px;
+      display: none;
+      box-shadow: 0 4px 16px rgba(196,30,58,0.08);
+    }
+    .order-summary-bar.visible { display: block; }
+    .order-summary-bar__title {
+      font-family: var(--ff-head);
+      font-size: 1rem;
+      color: var(--velvet);
+      margin-bottom: 12px;
+    }
+    .order-summary-bar__items {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      margin-bottom: 14px;
+    }
+    .order-summary-bar__item {
+      display: flex;
+      justify-content: space-between;
+      font-size: 0.88rem;
+      color: var(--text);
+    }
+    .order-summary-bar__item span:last-child { color: var(--velvet); font-weight: 600; }
+    .order-summary-bar__total {
+      border-top: 1px solid #e8e0d0;
+      padding-top: 12px;
+      display: flex;
+      justify-content: space-between;
+      font-family: var(--ff-head);
+      font-size: 1.1rem;
+      color: var(--text);
+    }
+    .order-summary-bar__total span:last-child { color: var(--velvet); }
+
+    /* ── PARENT INFO FORM ── */
+    .parent-form {
+      background: #fff;
+      border-radius: 10px;
+      padding: 28px;
+      border: 1px solid #e8e0d0;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+    }
+    .parent-form__heading {
+      font-family: var(--ff-head);
+      font-size: 1.3rem;
+      color: var(--text);
+      margin-bottom: 6px;
+    }
+    .parent-form__sub {
+      font-size: 0.85rem;
+      color: #777;
+      margin-bottom: 20px;
+    }
+    .parent-form__fields {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+      margin-bottom: 20px;
+    }
+    @media (max-width: 600px) {
+      .parent-form__fields { grid-template-columns: 1fr; }
+    }
+    .parent-form input, .parent-form textarea {
+      width: 100%;
+      background: #faf7f2;
+      border: 1px solid #e0d8c8;
+      border-radius: 6px;
+      padding: 12px 14px;
+      font-family: var(--ff-body);
+      font-size: 0.9rem;
+      color: var(--text);
+      outline: none;
+      transition: border-color 0.2s;
+    }
+    .parent-form input:focus, .parent-form textarea:focus {
+      border-color: var(--velvet);
+    }
+    .parent-form input::placeholder, .parent-form textarea::placeholder { color: #aaa; }
+    .parent-form textarea { resize: vertical; min-height: 80px; }
+    .parent-form__note {
+      font-size: 0.8rem;
+      color: #777;
+      margin-bottom: 20px;
+      line-height: 1.5;
+    }
+    .btn-place-order {
+      width: 100%;
+      background: var(--velvet);
+      color: #fff;
+      font-family: var(--ff-head);
+      font-size: 1.05rem;
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      padding: 16px 24px;
+      border-radius: 6px;
+      border: none;
+      cursor: pointer;
+      transition: background 0.2s, transform 0.1s;
+    }
+    .btn-place-order:hover { background: #a01830; transform: translateY(-1px); }
+    .btn-place-order:disabled { background: #555; cursor: not-allowed; transform: none; }
+
+    /* ── CONFIRMATION MODAL ── */
+    .modal-overlay {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.75);
+      z-index: 200;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+    }
+    .modal-overlay.open { display: flex; }
+    .modal {
+      background: var(--cream);
+      border-radius: 12px;
+      padding: 40px 36px;
+      max-width: 520px;
+      width: 100%;
+      max-height: 90vh;
+      overflow-y: auto;
+      position: relative;
+    }
+    .modal__icon {
+      font-size: 2.5rem;
+      text-align: center;
+      margin-bottom: 16px;
+    }
+    .modal__heading {
+      font-family: var(--ff-head);
+      font-size: 1.8rem;
+      font-weight: 700;
+      text-align: center;
+      margin-bottom: 6px;
+    }
+    .modal__sub {
+      font-size: 0.88rem;
+      color: #666;
+      text-align: center;
+      margin-bottom: 24px;
+    }
+    .modal__receipt {
+      background: #fff;
+      border-radius: 8px;
+      padding: 20px;
+      margin-bottom: 20px;
+      border: 1px solid #e0d8c8;
+    }
+    .modal__receipt-row {
+      display: flex;
+      justify-content: space-between;
+      font-size: 0.88rem;
+      padding: 5px 0;
+      border-bottom: 1px solid #f0e8d8;
+      color: var(--text);
+    }
+    .modal__receipt-row:last-child { border-bottom: none; }
+    .modal__receipt-total {
+      display: flex;
+      justify-content: space-between;
+      font-family: var(--ff-head);
+      font-size: 1.05rem;
+      font-weight: 700;
+      padding-top: 12px;
+      margin-top: 8px;
+      border-top: 2px solid var(--gold);
+      color: var(--text);
+    }
+    .modal__receipt-total span:last-child { color: var(--velvet); }
+    .modal__instructions {
+      background: #fff8f0;
+      border-left: 3px solid var(--gold);
+      padding: 14px 16px;
+      border-radius: 0 6px 6px 0;
+      font-size: 0.85rem;
+      color: #555;
+      margin-bottom: 24px;
+      line-height: 1.6;
+    }
+    .modal__instructions strong { color: var(--text); }
+    .modal__actions {
+      display: flex;
+      gap: 12px;
+    }
+    .btn-copy {
+      flex: 1;
+      background: #fff;
+      border: 2px solid var(--gold);
+      color: var(--text);
+      font-family: var(--ff-body);
+      font-size: 0.88rem;
+      font-weight: 600;
+      padding: 12px;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: background 0.15s;
+    }
+    .btn-copy:hover { background: #f0e8d8; }
+    .btn-done {
+      flex: 1;
+      background: var(--velvet);
+      border: none;
+      color: #fff;
+      font-family: var(--ff-body);
+      font-size: 0.88rem;
+      font-weight: 600;
+      padding: 12px;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: background 0.15s;
+    }
+    .btn-done:hover { background: #a01830; }
+
+    /* ── SHARE ── */
+    .share {
+      background: var(--dark);
+      padding: 44px 0;
+      text-align: center;
+      border-top: 1px solid rgba(201,169,110,0.15);
+    }
+    .share__heading {
+      font-family: var(--ff-head);
+      font-size: 1.2rem;
+      color: #fff;
+      margin-bottom: 6px;
+    }
+    .share__sub { font-size: 0.85rem; color: #777; margin-bottom: 20px; }
+    .share__link {
+      display: inline-block;
+      background: #2a2527;
+      border: 1px solid rgba(201,169,110,0.3);
+      border-radius: 6px;
+      padding: 11px 22px;
+      font-size: 0.88rem;
+      color: var(--gold);
+      cursor: pointer;
+      transition: border-color 0.2s;
+      word-break: break-all;
+      max-width: 90%;
+    }
+    .share__link:hover { border-color: var(--gold); }
+    .share__copied { font-size: 0.75rem; color: #5cb85c; margin-top: 8px; min-height: 18px; }
+
+    /* ── FOOTER ── */
+    .footer { background: var(--footer); padding: 28px 0; text-align: center; }
+    .footer__text { font-size: 0.78rem; color: #555; }
+    .footer__text a { color: var(--gold); }
+  </style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header class="header">
+  <div class="container">
+    <p class="header__powered">A fundraiser powered by <a href="https://www.nutcrackerjewelry.com" target="_blank">Nutcracker Jewelry</a></p>
+    <h1 class="header__school">Colorado Ballet Society</h1>
+    <p class="header__location">Colorado Springs, CO</p>
+    <p class="header__tagline">Support our Nutcracker production — one charm at a time.</p>
+  </div>
+</header>
+
+<!-- COUNTDOWN -->
+<div class="countdown">
+  <p class="countdown__label">Fundraiser closes October 31, 2026</p>
+  <div class="countdown__units" id="countdown-display">
+    <div class="countdown__unit"><div class="countdown__num" id="cd-days">--</div><div class="countdown__unit-label">Days</div></div>
+    <div class="countdown__sep">:</div>
+    <div class="countdown__unit"><div class="countdown__num" id="cd-hours">--</div><div class="countdown__unit-label">Hours</div></div>
+    <div class="countdown__sep">:</div>
+    <div class="countdown__unit"><div class="countdown__num" id="cd-mins">--</div><div class="countdown__unit-label">Minutes</div></div>
+    <div class="countdown__sep">:</div>
+    <div class="countdown__unit"><div class="countdown__num" id="cd-secs">--</div><div class="countdown__unit-label">Seconds</div></div>
+  </div>
+</div>
+
+<!-- INTRO -->
+<section class="intro">
+  <div class="container">
+    <p class="intro__eyebrow">Colorado Ballet Society Nutcracker Fundraiser · Colorado Springs, CO</p>
+    <h2 class="intro__heading">A charm for every role your dancer earned.</h2>
+    <p class="intro__body">Each sterling silver charm represents a specific character in this year's Nutcracker. Add the charms you'd like below, then bring payment to the studio.</p>
+    <div class="intro__note">
+      <strong>Payment is made to Colorado Ballet Society — not online.</strong> Bring cash or a check made out to Colorado Ballet Society. Every dollar supports our production.
+    </div>
+  </div>
+</section>
+
+<!-- ORDER SECTION -->
+<section class="order-section">
+  <div class="container">
+    <div class="order-section__header">
+      <p class="order-section__eyebrow">Sterling silver · Designed by dancers</p>
+      <h2 class="order-section__heading">Choose your dancer's charms</h2>
+      <p class="order-section__sub">Use the + and − buttons to set quantities. All prices set by Colorado Ballet Society.</p>
+    </div>
+
+    <!-- Charm grid with counters -->
+    <div class="charm-order-grid" id="charm-order-grid"></div>
+
+    <!-- Order summary (shows when qty > 0) -->
+    <div class="order-summary-bar" id="order-summary-bar">
+      <div class="order-summary-bar__title">Your Order So Far</div>
+      <div class="order-summary-bar__items" id="summary-items"></div>
+      <div class="order-summary-bar__total">
+        <span>Total</span>
+        <span id="total-price">$0</span>
+      </div>
+    </div>
+
+    <!-- Parent info + submit -->
+    <div class="parent-form">
+      <h3 class="parent-form__heading">Your information</h3>
+      <p class="parent-form__sub">Fill in your details and click Place Order to submit.</p>
+      <div class="parent-form__fields">
+        <input type="text" id="parent-name" placeholder="Your name (parent / guardian)" />
+        <input type="text" id="dancer-name" placeholder="Dancer's name" />
+      </div>
+      <textarea id="order-notes" placeholder="Any notes? (optional)"></textarea>
+      <p class="parent-form__note" style="margin-top:10px;">
+        After placing your order you'll receive a summary to screenshot or save. Bring payment to the studio by <strong>October 30, 2026</strong>.
+      </p>
+      <button class="btn-place-order" onclick="placeOrder()">Place Order →</button>
+    </div>
+  </div>
+</section>
+
+<!-- SHARE -->
+<section class="share">
+  <div class="container">
+    <h2 class="share__heading">Share this page with Colorado Ballet Society families</h2>
+    <p class="share__sub">Tap the link to copy — paste it in a text, email, or your school Facebook group.</p>
+    <div class="share__link" onclick="copyLink()" id="share-link">Loading…</div>
+    <p class="share__copied" id="copy-msg"></p>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="container">
+    <p class="footer__text">
+      Charms by <a href="https://www.nutcrackerjewelry.com" target="_blank">Nutcracker Jewelry</a> — Designed by dancers, for dancers since 1996. &nbsp;|&nbsp; Incentives Inc., Simpsonville, SC
+    </p>
+  </div>
+</footer>
+
+<!-- ORDER CONFIRMATION MODAL -->
+<div class="modal-overlay" id="modal-overlay">
+  <div class="modal">
+    <div class="modal__icon">✦</div>
+    <h2 class="modal__heading">Order Placed!</h2>
+    <p class="modal__sub" id="modal-sub">Thank you! Here is your order summary.</p>
+    <div class="modal__receipt" id="modal-receipt"></div>
+    <div class="modal__instructions">
+      <strong>Next step:</strong> Bring payment to Colorado Ballet Society by October 30, 2026. Cash or a check made out to <strong>Colorado Ballet Society</strong>. Your charm will be ready for pickup at the studio within two weeks of the campaign close.
+    </div>
+    <div class="modal__actions">
+      <button class="btn-copy" onclick="copyOrder()">📋 Copy Order</button>
+      <button class="btn-done" onclick="closeModal()">Done</button>
+    </div>
+  </div>
+</div>
+
+<script>
+// ════════════════════════════════════════════
+// SCHOOL CONFIGURATION — edit for each school
+// ════════════════════════════════════════════
+const SCHOOL_NAME  = 'Colorado Ballet Society';
+const SCHOOL_CITY  = 'Colorado Springs, CO';
+const CAMPAIGN_END = new Date('2026-10-31T23:59:59');
+const PAYMENT_DUE  = 'October 30, 2026';
+
+// List the product codes this school is selling.
+// Only these will appear on the parent order page.
+// Prices are set per item in the master catalog below (override with price: XX if needed).
+const SCHOOL_SELECTION = [
+  'NS-C101', // Clara
+  'NS-C106', // Girl at the Party
+  'NS-C107', // Boy at the Party
+  'NS-C115', // Small Mouse
+  'NS-C114', // Toy Soldier
+  'NS-C122', // Snowflake
+  'NS-C137', // Flower
+  'NS-C138', // Mother Ginger Girl
+  'NS-C139', // Mother Ginger Boy
+  'NS-C118', // Nutcracker
+  'NS-C133'  // Chinese / Tea
+];
+
+// ════════════════════════════════════════════
+// MASTER CATALOG — all available products
+// Do not edit per school — update here only.
+// null img = image not yet available
+// ════════════════════════════════════════════
+const MASTER_CATALOG = [
+  // ── Nutcracker Charms ──
+  { code:'NS-C101', name:'Clara / Maria',              img:'NS-C101_Clara.png',                  price:32 },
+  { code:'NS-C102', name:'Fritz',                      img:'NS-C102_Fritz.png',                  price:32 },
+  { code:'NS-C103', name:'Lady at Party / Mother',     img:null,                                 price:32 },
+  { code:'NS-C104', name:'Gentleman at Party / Father',img:'NS-C104_Gentleman_At_The_Party.png', price:32 },
+  { code:'NS-C105', name:'Nurse / Maid',               img:'NS-C105_Nurse_Maid.png',             price:32 },
+  { code:'NS-C106', name:'Girl at the Party',          img:'NS-C106_Girl_At_The_Party.png',      price:32 },
+  { code:'NS-C107', name:'Boy at the Party',           img:'NS-C107_Boy_At_The_Party.png',       price:32 },
+  { code:'NS-C108', name:'Drosselmeier',               img:'NS-C108_Drosselmeier.png',           price:32 },
+  { code:'NS-C109', name:'Grandmother',                img:'NS-C109_Grandmother.png',            price:32 },
+  { code:'NS-C110', name:'Grandfather',                img:'NS-C110_Grandfather.png',            price:32 },
+  { code:'NS-C111', name:'Columbine',                  img:'NS-C111_Columbine.png',              price:32 },
+  { code:'NS-C112', name:'Harlequin',                  img:'NS-C112_Harlequin.png',              price:32 },
+  { code:'NS-C113', name:'Toy Rabbit',                 img:'NS-C113_Toy_Rabbit.png',             price:32 },
+  { code:'NS-C114', name:'Toy Soldier',                img:'NS-C114_ToySoldier.png',             price:32 },
+  { code:'NS-C115', name:'Small Mouse',                img:'NS-C115_SmallMouse.png',             price:32 },
+  { code:'NS-C116', name:'Mouse King',                 img:'NS-C116_MouseKing.png',              price:32 },
+  { code:'NS-C117', name:'Soldier',                    img:'NS-C117_Soldier.png',                price:32 },
+  { code:'NS-C118', name:'Nutcracker',                 img:'NS-C118_Nutcracker.png',             price:32 },
+  { code:'NS-C119', name:'Prince / Page',              img:'NS-C119_Prince_Page.png',            price:32 },
+  { code:'NS-C120', name:'Snow Queen',                 img:'NS-C120_SnowQueen.png',              price:32 },
+  { code:'NS-C121', name:'Cavalier / Snow King',       img:'NS-C121_SnowKing.png',               price:32 },
+  { code:'NS-C122', name:'Snowflake',                  img:'NS-C122_Snowflake.png',              price:32 },
+  { code:'NS-C123', name:'Tree / Enchanted Forest',    img:'NS-C123_Tree.png',                   price:32 },
+  { code:'NS-C124', name:'Angel',                      img:'NS-C124_Angel.png',                  price:32 },
+  { code:'NS-C125', name:'Sugar Plum Fairy',           img:'NS-C125_Sugar_Plum_Fairy.png',      price:32 },
+  { code:'NS-C126', name:'Spanish / Hot Chocolate',    img:'NS-C126_Spanish_Hot_Chocolate.png',  price:32 },
+  { code:'NS-C127', name:'Candy Cane',                 img:'NS-C127_Candy_Cane.png',             price:32 },
+  { code:'NS-C128', name:'Russian / Trepak',           img:'NS-C128_Russian_Trepak.png',         price:32 },
+  { code:'NS-C129', name:'Petite Nutcracker',          img:'NS-C129_Petite_Nutcracker.png',      price:32 },
+  { code:'NS-C130', name:'Bird',                       img:'NS-C130_Bird.png',                   price:32 },
+  { code:'NS-C131', name:'Arabian Princess',           img:'NS-C131_Arabian_Princess.png',       price:32 },
+  { code:'NS-C132', name:'Arabian Prince',             img:'NS-C132_Arabian_Prince.png',         price:32 },
+  { code:'NS-C133', name:'Chinese / Tea',              img:'NS-C133_Chinese_Tea.png',            price:32 },
+  { code:'NS-C134', name:'Mirliton',                   img:'NS-C134_Mirliton.png',               price:32 },
+  { code:'NS-C135', name:'Marzipan',                   img:'NS-C135_Marzipan.png',               price:32 },
+  { code:'NS-C136', name:'Dew Drop Fairy',             img:'NS-C136_Dew_Drop_Fairy.png',         price:32 },
+  { code:'NS-C137', name:'Flower',                     img:'NS-C137_Flower.png',                 price:32 },
+  { code:'NS-C138', name:'Mother Ginger Girl',         img:'NS-C138_MotherGingerGirl.png',       price:32 },
+  { code:'NS-C139', name:'Mother Ginger Boy',          img:'NS-C139_MotherGingerBoy.png',        price:32 },
+  { code:'NS-C140', name:'Baker / Cook',               img:'NS-C140_Baker_Cook.png',             price:32 },
+  { code:'NS-C141', name:'Lamb',                       img:'NS-C141_Lamb.png',                   price:32 },
+  { code:'NS-C142', name:'Polinchinelle',              img:'NS-C142_Polinchinelle.png',           price:32 },
+  { code:'NS-C143', name:'Fairy',                      img:'NS-C143_Fairy.png',                  price:32 },
+  { code:'NS-C144', name:'Reindeer',                   img:null,                                 price:32 },
+  // ── Nutcracker Earrings ──
+  { code:'NS-E111', name:'Columbine Earrings',         img:'NS-E111_Columbine_Earrings.png',         price:32 },
+  { code:'NS-E118', name:'Nutcracker Earrings',        img:'NS-E118_Nutcracker_Earrings.png',        price:32 },
+  { code:'NS-E122', name:'Snowflake Earrings',         img:'NS-E122_Snowflake_Earrings.png',         price:32 },
+  { code:'NS-E123', name:'Tree Earrings',              img:'NS-E123_Tree_Earrings.png',              price:32 },
+  { code:'NS-E129', name:'Petite Nutcracker Earrings', img:'NS-E129_Petite_Nutcracker_Earrings.png', price:32 },
+  // ── Dance Jewelry Charms ──
+  { code:'DS-C201', name:'Ballet Slippers',            img:'DS-C201_Ballet_Slippers.png',        price:32 },
+  { code:'DS-C202', name:'Pointe Shoes',               img:'DS-C202_Pointe_Shoes.png',           price:32 },
+  { code:'DS-C203', name:'Tap Dancer',                 img:'DS-C203_Tap_Dancer.png',             price:32 },
+  { code:'DS-C204', name:'Ballerina',                  img:'DS-C204_Ballerina.png',              price:32 },
+  { code:'DS-C205', name:'Contemporary Dancer',        img:'DS-C205_Contemporary_Dancer.png',    price:32 },
+  { code:'DS-C250', name:'Contemporary Attitude (Lg)', img:'DS-C250_Contemporary_Attitude.png',  price:32 },
+  { code:'DS-C251', name:'Contemporary Attitude (Sm)', img:null,                                 price:32 },
+  { code:'DS-C253', name:'Modern Attitude (Large)',    img:'DS-C253_Modern_Attitude.png',        price:32 },
+  { code:'DS-C254', name:'Modern Attitude (Small)',    img:'DS-C254_Modern_Attitude_Tag.png',    price:32 },
+  // ── Dance Jewelry Earrings ──
+  { code:'DS-E201', name:'Ballet Slipper Earrings',    img:'DS-E201_Ballet_Slipper_Earrings.png',        price:32 },
+  { code:'DS-E202', name:'Pointe Shoe Earrings',       img:'DS-E202_Pointe_Shoe_W_Crystal_Earrings.png', price:32 },
+  { code:'DS-E203', name:'Tap Dancer Earrings',        img:'DS-E203_Tap_Dancer_Earrings.png',            price:32 },
+  { code:'DS-E204', name:'Ballerina Earrings',         img:'DS-E204_Ballerina_Earrings.png',             price:32 },
+  { code:'DS-E205', name:'Contemporary Dancer Earrings',img:'DS-E205_Contemporary_Dancer_Earrings.png',  price:32 },
+  { code:'DS-E251', name:'Contemporary Attitude Earrings',img:'DS-E251_Contemporary_Attitude_Tag_Earrings.png', price:32 },
+  { code:'DS-E254', name:'Modern Attitude Earrings',   img:'DS-E254_Modern_Attitude_Tag_Earrings.png',   price:32 },
+  // ── Accessories ──
+  { code:'B301',    name:'Silver 7" Bracelet',         img:null, price:35 },
+  { code:'N310',    name:'Silver 16" Box Chain',       img:null, price:15 },
+  { code:'N312',    name:'Silver 16" Rope Chain',      img:null, price:14 },
+  { code:'BP320',   name:'3-Bragging Pin',             img:null, price:2  },
+  { code:'BP322',   name:'5-Bragging Pin',             img:null, price:3  },
+];
+
+// Filter master catalog to only show this school's selection
+const CHARMS = MASTER_CATALOG.filter(c => SCHOOL_SELECTION.includes(c.code));
+
+// ── Quantities store (keyed by product code) ──
+const qty = {};
+CHARMS.forEach(c => qty[c.code] = 0);
+
+// ── Build charm grid ──
+const grid = document.getElementById('charm-order-grid');
+grid.innerHTML = CHARMS.map(c => {
+  const safeId = c.code.replace(/[^a-zA-Z0-9]/g, '-');
+  const imgHTML = c.img
+    ? `<img src="${c.img}" alt="${c.name}" loading="lazy" />`
+    : `<div style="width:100%;height:100%;display:flex;align-items:center;justify-content:center;font-family:var(--ff-head);font-size:0.75rem;color:#555;text-align:center;padding:8px;">Image<br>Coming Soon</div>`;
+  return `
+  <div class="charm-order-card" id="card-${safeId}">
+    <div class="charm-order-card__img">${imgHTML}</div>
+    <div class="charm-order-card__body">
+      <div class="charm-order-card__name">${c.name}</div>
+      <div class="charm-order-card__price">$${c.price}</div>
+      <div class="charm-order-card__counter">
+        <button class="counter-btn" onclick="change('${c.code}', -1)">−</button>
+        <span class="counter-num" id="qty-${safeId}">0</span>
+        <button class="counter-btn" onclick="change('${c.code}', +1)">+</button>
+      </div>
+    </div>
+  </div>`;
+}).join('');
+
+// ── Counter logic ──
+function change(code, delta) {
+  qty[code] = Math.max(0, (qty[code] || 0) + delta);
+  const safeId = code.replace(/[^a-zA-Z0-9]/g, '-');
+  document.getElementById('qty-' + safeId).textContent = qty[code];
+  const card = document.getElementById('card-' + safeId);
+  card.classList.toggle('has-qty', qty[code] > 0);
+  updateSummary();
+}
+
+function updateSummary() {
+  const items = CHARMS.filter(c => qty[c.code] > 0);
+  const bar = document.getElementById('order-summary-bar');
+  const itemsEl = document.getElementById('summary-items');
+  const totalEl = document.getElementById('total-price');
+
+  if (items.length === 0) {
+    bar.classList.remove('visible');
+    return;
+  }
+
+  bar.classList.add('visible');
+  let total = 0;
+  itemsEl.innerHTML = items.map(c => {
+    const lineTotal = qty[c.code] * c.price;
+    total += lineTotal;
+    return `<div class="order-summary-bar__item">
+      <span>${c.name} × ${qty[c.code]}</span>
+      <span>$${lineTotal}</span>
+    </div>`;
+  }).join('');
+  totalEl.textContent = '$' + total;
+}
+
+// ── Place order ──
+function placeOrder() {
+  const parent = document.getElementById('parent-name').value.trim();
+  const dancer = document.getElementById('dancer-name').value.trim();
+  const notes  = document.getElementById('order-notes').value.trim();
+  const items  = CHARMS.filter(c => qty[c.code] > 0);
+
+  if (!parent) { alert('Please enter your name.'); return; }
+  if (!dancer) { alert('Please enter your dancer\'s name.'); return; }
+  if (items.length === 0) { alert('Please add at least one charm to your order.'); return; }
+
+  let total = 0;
+  let receiptHTML = `
+    <div class="modal__receipt-row"><span>Parent</span><span>${parent}</span></div>
+    <div class="modal__receipt-row"><span>Dancer</span><span>${dancer}</span></div>
+    <div class="modal__receipt-row"><span>School</span><span>${SCHOOL_NAME}, ${SCHOOL_CITY}</span></div>
+    <div style="margin: 10px 0; border-top: 1px solid #f0e8d8;"></div>`;
+
+  items.forEach(c => {
+    const lineTotal = qty[c.code] * c.price;
+    total += lineTotal;
+    receiptHTML += `<div class="modal__receipt-row"><span>${c.name} × ${qty[c.code]}</span><span>$${lineTotal}</span></div>`;
+  });
+
+  if (notes) {
+    receiptHTML += `<div class="modal__receipt-row"><span>Notes</span><span style="text-align:right;max-width:60%;">${notes}</span></div>`;
+  }
+
+  receiptHTML += `<div class="modal__receipt-total"><span>Total Due to Studio</span><span>$${total}</span></div>`;
+
+  document.getElementById('modal-receipt').innerHTML = receiptHTML;
+  document.getElementById('modal-sub').textContent =
+    `Order for ${dancer} · ${items.length} charm type${items.length > 1 ? 's' : ''}`;
+  document.getElementById('modal-overlay').classList.add('open');
+
+  // Store for copy
+  window._lastOrder = { parent, dancer, items, total, notes };
+}
+
+function closeModal() {
+  document.getElementById('modal-overlay').classList.remove('open');
+}
+
+function copyOrder() {
+  const o = window._lastOrder;
+  if (!o) return;
+  let text = `NUTCRACKER CHARM ORDER\n`;
+  text += `School: ${SCHOOL_NAME}, ${SCHOOL_CITY}\n`;
+  text += `Parent: ${o.parent}\n`;
+  text += `Dancer: ${o.dancer}\n\n`;
+  o.items.forEach(c => {
+    text += `${c.name} × ${qty[c.code]} — $${qty[c.code] * c.price}\n`;
+  });
+  if (o.notes) text += `\nNotes: ${o.notes}\n`;
+  text += `\nTotal Due to Studio: $${o.total}\n`;
+  text += `\nBring payment to ${SCHOOL_NAME} by ${PAYMENT_DUE}.`;
+
+  navigator.clipboard.writeText(text).then(() => {
+    const btn = document.querySelector('.btn-copy');
+    btn.textContent = '✓ Copied!';
+    setTimeout(() => btn.textContent = '📋 Copy Order', 2500);
+  });
+}
+
+// ── Countdown ──
+function tick() {
+  const diff = CAMPAIGN_END - new Date();
+  if (diff <= 0) {
+    document.getElementById('countdown-display').innerHTML =
+      '<p class="countdown__ended">This fundraiser has ended. Thank you!</p>';
+    return;
+  }
+  const d = Math.floor(diff / 86400000);
+  const h = Math.floor((diff % 86400000) / 3600000);
+  const m = Math.floor((diff % 3600000)  / 60000);
+  const s = Math.floor((diff % 60000)    / 1000);
+  document.getElementById('cd-days').textContent  = String(d).padStart(2,'0');
+  document.getElementById('cd-hours').textContent = String(h).padStart(2,'0');
+  document.getElementById('cd-mins').textContent  = String(m).padStart(2,'0');
+  document.getElementById('cd-secs').textContent  = String(s).padStart(2,'0');
+}
+tick();
+setInterval(tick, 1000);
+
+// ── Share link ──
+document.getElementById('share-link').textContent = window.location.href;
+function copyLink() {
+  navigator.clipboard.writeText(window.location.href).then(() => {
+    document.getElementById('copy-msg').textContent = '✓ Link copied!';
+    setTimeout(() => document.getElementById('copy-msg').textContent = '', 3000);
+  });
+}
+</script>
+</body>
+</html>
