@@ -11,19 +11,32 @@
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
+    /* ══════════════════════════════════════
+       NUTCRACKER JEWELRY — Brand Tokens
+       Identical to NutcrackerJewelry_Website.html
+       Keep these values in sync across all platforms.
+    ══════════════════════════════════════ */
     :root {
-      --gold:    #C9A96E;
-      --velvet:  #C41E3A;
-      --dark:    #1E1A1D;
-      --cream:   #F0E8D8;
-      --text:    #2C2C2C;
-      --ff-head: 'Playfair Display', Georgia, serif;
+      /* Colors */
+      --velvet:     #9B1528;  /* Deep Velvet Red — theater curtain, CTAs */
+      --gold:       #C9A96E;  /* Warm Stage Gold — headings, accents */
+      --gold-light: #D4B896;  /* Gold highlight — hover states */
+      --silver:     #C0C0C0;  /* Stage Silver — the jewelry itself */
+      --dark:       #1E1A1D;  /* Midnight Backstage — hero backgrounds */
+      --parchment:  #F0E8D8;  /* Soft Ballet Pink — light page backgrounds */
+      --cream:      #E8E0D0;  /* Deeper cream — card surfaces, dividers */
+      --footer:     #1A1A1A;  /* Deep footer */
+      --text:       #2C2C2C;  /* Body text */
+      --white:      #FFFFFF;  /* Pure white — product cards */
+
+      /* Typography */
+      --ff-head: 'Playfair Display', Georgia, 'Times New Roman', serif;
       --ff-body: 'Lora', Georgia, serif;
     }
 
     body {
       font-family: var(--ff-body);
-      background: var(--cream);
+      background: var(--parchment);
       color: var(--text);
       font-size: 16px;
       line-height: 1.6;
@@ -128,6 +141,7 @@
     .intro {
       padding: 52px 0 36px;
       text-align: center;
+      background: var(--parchment);
     }
     .intro__eyebrow {
       font-size: 0.72rem;
@@ -165,7 +179,7 @@
     /* ── ORDER SECTION ── */
     .order-section {
       padding: 56px 0 72px;
-      background: var(--dark);
+      background: var(--parchment);
     }
     .order-section__header {
       text-align: center;
@@ -175,18 +189,18 @@
       font-size: 0.72rem;
       letter-spacing: 0.15em;
       text-transform: uppercase;
-      color: var(--gold);
+      color: var(--velvet);
       margin-bottom: 10px;
     }
     .order-section__heading {
       font-family: var(--ff-head);
       font-size: 2rem;
-      color: #fff;
+      color: var(--text);
       margin-bottom: 8px;
     }
     .order-section__sub {
       font-size: 0.88rem;
-      color: #888;
+      color: #777;
     }
 
     /* ── CHARM ORDER GRID ── */
@@ -204,22 +218,29 @@
     }
 
     .charm-order-card {
-      background: #2a2527;
+      background: #fff;
       border-radius: 10px;
       overflow: hidden;
-      border: 1px solid rgba(201,169,110,0.15);
-      transition: border-color 0.2s;
+      border: 1px solid #e8e0d0;
+      transition: border-color 0.2s, box-shadow 0.2s;
       display: flex;
       flex-direction: column;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+    }
+    .charm-order-card:hover {
+      border-color: var(--gold);
+      box-shadow: 0 4px 16px rgba(0,0,0,0.1);
     }
     .charm-order-card.has-qty {
-      border-color: var(--gold);
+      border-color: var(--velvet);
+      box-shadow: 0 4px 16px rgba(196,30,58,0.12);
     }
     .charm-order-card__img {
       width: 100%;
       aspect-ratio: 1;
       overflow: hidden;
-      background: #222;
+      background: #f8f5f0;
+      border-bottom: 1px solid #f0e8d8;
     }
     .charm-order-card__img img {
       width: 100%;
@@ -239,27 +260,29 @@
     .charm-order-card__name {
       font-family: var(--ff-head);
       font-size: 0.8rem;
-      color: #e8e0d0;
+      color: var(--text);
       line-height: 1.3;
     }
     .charm-order-card__price {
       font-size: 0.82rem;
-      color: var(--gold);
+      color: #888;
       font-weight: 600;
     }
+    .charm-order-card.has-qty .charm-order-card__price { color: var(--velvet); }
     .charm-order-card__counter {
       display: flex;
       align-items: center;
       gap: 0;
       margin-top: auto;
-      border: 1px solid rgba(201,169,110,0.3);
+      border: 1px solid #e0d8c8;
       border-radius: 6px;
       overflow: hidden;
+      background: #faf7f2;
     }
     .counter-btn {
-      background: rgba(201,169,110,0.1);
+      background: #f0e8d8;
       border: none;
-      color: var(--gold);
+      color: var(--text);
       font-size: 1.2rem;
       font-weight: 700;
       width: 36px;
@@ -269,14 +292,16 @@
       flex-shrink: 0;
       line-height: 1;
     }
-    .counter-btn:hover { background: rgba(201,169,110,0.25); }
+    .counter-btn:hover { background: #e0d4c0; }
+    .charm-order-card.has-qty .counter-btn { background: var(--velvet); color: #fff; }
+    .charm-order-card.has-qty .counter-btn:hover { background: #a01830; }
     .counter-num {
       flex: 1;
       text-align: center;
       font-family: var(--ff-head);
       font-size: 1rem;
       font-weight: 700;
-      color: #fff;
+      color: var(--text);
       background: transparent;
       border: none;
       outline: none;
@@ -286,18 +311,19 @@
 
     /* ── ORDER SUMMARY BAR ── */
     .order-summary-bar {
-      background: rgba(201,169,110,0.1);
-      border: 1px solid rgba(201,169,110,0.3);
+      background: #fff;
+      border: 2px solid var(--velvet);
       border-radius: 10px;
       padding: 20px 24px;
       margin-bottom: 32px;
       display: none;
+      box-shadow: 0 4px 16px rgba(196,30,58,0.08);
     }
     .order-summary-bar.visible { display: block; }
     .order-summary-bar__title {
       font-family: var(--ff-head);
       font-size: 1rem;
-      color: var(--gold);
+      color: var(--velvet);
       margin-bottom: 12px;
     }
     .order-summary-bar__items {
@@ -310,36 +336,37 @@
       display: flex;
       justify-content: space-between;
       font-size: 0.88rem;
-      color: #ccc;
+      color: var(--text);
     }
-    .order-summary-bar__item span:last-child { color: var(--gold); }
+    .order-summary-bar__item span:last-child { color: var(--velvet); font-weight: 600; }
     .order-summary-bar__total {
-      border-top: 1px solid rgba(201,169,110,0.2);
+      border-top: 1px solid #e8e0d0;
       padding-top: 12px;
       display: flex;
       justify-content: space-between;
       font-family: var(--ff-head);
       font-size: 1.1rem;
-      color: #fff;
+      color: var(--text);
     }
-    .order-summary-bar__total span:last-child { color: var(--gold); }
+    .order-summary-bar__total span:last-child { color: var(--velvet); }
 
     /* ── PARENT INFO FORM ── */
     .parent-form {
-      background: #2a2527;
+      background: #fff;
       border-radius: 10px;
       padding: 28px;
-      border: 1px solid rgba(201,169,110,0.2);
+      border: 1px solid #e8e0d0;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.06);
     }
     .parent-form__heading {
       font-family: var(--ff-head);
       font-size: 1.3rem;
-      color: #fff;
+      color: var(--text);
       margin-bottom: 6px;
     }
     .parent-form__sub {
       font-size: 0.85rem;
-      color: #888;
+      color: #777;
       margin-bottom: 20px;
     }
     .parent-form__fields {
@@ -353,24 +380,24 @@
     }
     .parent-form input, .parent-form textarea {
       width: 100%;
-      background: #1a1618;
-      border: 1px solid rgba(201,169,110,0.25);
+      background: #faf7f2;
+      border: 1px solid #e0d8c8;
       border-radius: 6px;
       padding: 12px 14px;
       font-family: var(--ff-body);
       font-size: 0.9rem;
-      color: #e8e0d0;
+      color: var(--text);
       outline: none;
       transition: border-color 0.2s;
     }
     .parent-form input:focus, .parent-form textarea:focus {
-      border-color: var(--gold);
+      border-color: var(--velvet);
     }
-    .parent-form input::placeholder, .parent-form textarea::placeholder { color: #555; }
+    .parent-form input::placeholder, .parent-form textarea::placeholder { color: #aaa; }
     .parent-form textarea { resize: vertical; min-height: 80px; }
     .parent-form__note {
       font-size: 0.8rem;
-      color: #666;
+      color: #777;
       margin-bottom: 20px;
       line-height: 1.5;
     }
@@ -534,7 +561,7 @@
     .share__copied { font-size: 0.75rem; color: #5cb85c; margin-top: 8px; min-height: 18px; }
 
     /* ── FOOTER ── */
-    .footer { background: #111; padding: 28px 0; text-align: center; }
+    .footer { background: var(--footer); padding: 28px 0; text-align: center; }
     .footer__text { font-size: 0.78rem; color: #555; }
     .footer__text a { color: var(--gold); }
   </style>
