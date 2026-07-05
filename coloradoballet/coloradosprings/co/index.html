@@ -633,6 +633,8 @@
       <div class="parent-form__fields">
         <input type="text" id="parent-name" placeholder="Your name (parent / guardian)" />
         <input type="text" id="dancer-name" placeholder="Dancer's name" />
+        <input type="tel" id="parent-phone" placeholder="Phone number" />
+        <input type="email" id="parent-email" placeholder="Email address" />
       </div>
       <textarea id="order-notes" placeholder="Any notes? (optional)"></textarea>
       <p class="parent-form__note" style="margin-top:10px;">
@@ -687,6 +689,7 @@ const SCHOOL_NAME  = 'Colorado Ballet Society';
 const SCHOOL_CITY  = 'Colorado Springs, CO';
 const CAMPAIGN_END = new Date('2026-10-31T23:59:59');
 const PAYMENT_DUE  = 'October 30, 2026';
+const BASE_IMG     = '../../../'; // path up to repo root where images live
 
 // List the product codes this school is selling.
 // Only these will appear on the parent order page.
@@ -800,7 +803,7 @@ const grid = document.getElementById('charm-order-grid');
 grid.innerHTML = CHARMS.map(c => {
   const safeId = c.code.replace(/[^a-zA-Z0-9]/g, '-');
   const imgHTML = c.img
-    ? `<img src="${c.img}" alt="${c.name}" loading="lazy" />`
+    ? `<img src="${BASE_IMG}${c.img}" alt="${c.name}" loading="lazy" />`
     : `<div style="width:100%;height:100%;display:flex;align-items:center;justify-content:center;font-family:var(--ff-head);font-size:0.75rem;color:#555;text-align:center;padding:8px;">Image<br>Coming Soon</div>`;
   return `
   <div class="charm-order-card" id="card-${safeId}">
@@ -855,6 +858,8 @@ function updateSummary() {
 function placeOrder() {
   const parent = document.getElementById('parent-name').value.trim();
   const dancer = document.getElementById('dancer-name').value.trim();
+  const phone  = document.getElementById('parent-phone').value.trim();
+  const email  = document.getElementById('parent-email').value.trim();
   const notes  = document.getElementById('order-notes').value.trim();
   const items  = CHARMS.filter(c => qty[c.code] > 0);
 
@@ -866,6 +871,8 @@ function placeOrder() {
   let receiptHTML = `
     <div class="modal__receipt-row"><span>Parent</span><span>${parent}</span></div>
     <div class="modal__receipt-row"><span>Dancer</span><span>${dancer}</span></div>
+    ${phone ? `<div class="modal__receipt-row"><span>Phone</span><span>${phone}</span></div>` : ''}
+    ${email ? `<div class="modal__receipt-row"><span>Email</span><span>${email}</span></div>` : ''}
     <div class="modal__receipt-row"><span>School</span><span>${SCHOOL_NAME}, ${SCHOOL_CITY}</span></div>
     <div style="margin: 10px 0; border-top: 1px solid #f0e8d8;"></div>`;
 
@@ -887,7 +894,7 @@ function placeOrder() {
   document.getElementById('modal-overlay').classList.add('open');
 
   // Store for copy
-  window._lastOrder = { parent, dancer, items, total, notes };
+  window._lastOrder = { parent, dancer, phone, email, items, total, notes };
 }
 
 function closeModal() {
@@ -900,7 +907,10 @@ function copyOrder() {
   let text = `NUTCRACKER CHARM ORDER\n`;
   text += `School: ${SCHOOL_NAME}, ${SCHOOL_CITY}\n`;
   text += `Parent: ${o.parent}\n`;
-  text += `Dancer: ${o.dancer}\n\n`;
+  text += `Dancer: ${o.dancer}\n`;
+  if (o.phone) text += `Phone: ${o.phone}\n`;
+  if (o.email) text += `Email: ${o.email}\n`;
+  text += `\n`;
   o.items.forEach(c => {
     text += `${c.name} × ${qty[c.code]} — $${qty[c.code] * c.price}\n`;
   });
