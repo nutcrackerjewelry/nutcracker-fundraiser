@@ -1,0 +1,1201 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Nutcracker Jewelry — School Setup</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Lora:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --velvet:    #9B1528;
+      --gold:      #C9A96E;
+      --dark:      #1E1A1D;
+      --parchment: #F0E8D8;
+      --cream:     #E8E0D0;
+      --footer:    #1A1A1A;
+      --text:      #2C2C2C;
+      --white:     #FFFFFF;
+      --ff-head: 'Playfair Display', Georgia, serif;
+      --ff-body: 'Lora', Georgia, serif;
+    }
+
+    body { font-family: var(--ff-body); background: var(--parchment); color: var(--text); font-size: 15px; line-height: 1.6; }
+    img  { display: block; max-width: 100%; }
+    a    { color: inherit; text-decoration: none; }
+    button { cursor: pointer; border: none; font-family: inherit; }
+
+    /* ── HEADER ── */
+    .header {
+      background: var(--dark);
+      border-bottom: 3px solid var(--gold);
+      padding: 0 32px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 64px;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+    .header__logo {
+      font-family: var(--ff-head);
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: #fff;
+    }
+    .header__logo span { color: var(--gold); }
+    .header__sub { font-size: 0.6rem; letter-spacing: 0.14em; text-transform: uppercase; color: rgba(201,169,110,0.6); display: block; margin-top: 1px; }
+    .tab-bar { display: flex; gap: 8px; }
+    .tab-btn {
+      padding: 8px 20px;
+      border-radius: 6px;
+      font-size: 0.82rem;
+      font-weight: 600;
+      letter-spacing: 0.05em;
+      transition: background 0.15s, color 0.15s;
+      background: rgba(255,255,255,0.08);
+      color: rgba(255,255,255,0.6);
+    }
+    .tab-btn.active { background: var(--velvet); color: #fff; }
+    .tab-btn:hover:not(.active) { background: rgba(255,255,255,0.15); color: #fff; }
+
+    /* ── CONTAINER ── */
+    .container { max-width: 1100px; margin: 0 auto; padding: 0 24px; }
+
+    /* ── PAGE TITLE ── */
+    .page-title { padding: 40px 0 28px; }
+    .page-title h1 { font-family: var(--ff-head); font-size: 2rem; font-weight: 700; margin-bottom: 6px; }
+    .page-title p  { font-size: 0.9rem; color: #666; }
+
+    /* ── CARD ── */
+    .card {
+      background: var(--white);
+      border-radius: 12px;
+      border: 1px solid var(--cream);
+      padding: 32px;
+      margin-bottom: 28px;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.05);
+    }
+    .card__heading {
+      font-family: var(--ff-head);
+      font-size: 1.2rem;
+      color: var(--velvet);
+      margin-bottom: 24px;
+      padding-bottom: 12px;
+      border-bottom: 1px solid var(--cream);
+    }
+
+    /* ── FORM FIELDS ── */
+    .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; margin-bottom: 18px; }
+    .form-grid.cols-1 { grid-template-columns: 1fr; }
+    @media (max-width: 640px) { .form-grid { grid-template-columns: 1fr; } }
+
+    .field label {
+      display: block;
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: #666;
+      margin-bottom: 7px;
+    }
+    .field input, .field textarea, .field select {
+      width: 100%;
+      background: #faf7f2;
+      border: 1px solid #e0d8c8;
+      border-radius: 6px;
+      padding: 11px 14px;
+      font-family: var(--ff-body);
+      font-size: 0.9rem;
+      color: var(--text);
+      outline: none;
+      transition: border-color 0.2s;
+    }
+    .field input:focus, .field textarea:focus, .field select:focus { border-color: var(--velvet); }
+    .field textarea { resize: vertical; min-height: 90px; }
+
+    /* ── CHARM GRID ── */
+    .charm-toolbar {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 20px;
+      flex-wrap: wrap;
+    }
+    .charm-toolbar input[type="text"] {
+      flex: 1;
+      min-width: 200px;
+      padding: 9px 14px;
+      border: 1px solid #e0d8c8;
+      border-radius: 6px;
+      font-family: var(--ff-body);
+      font-size: 0.88rem;
+      background: #faf7f2;
+      outline: none;
+    }
+    .charm-toolbar input[type="text"]:focus { border-color: var(--velvet); }
+    .btn-sm {
+      padding: 8px 16px;
+      border-radius: 6px;
+      font-size: 0.8rem;
+      font-weight: 600;
+      border: 1px solid #e0d8c8;
+      background: #faf7f2;
+      color: var(--text);
+      transition: background 0.15s;
+    }
+    .btn-sm:hover { background: var(--cream); }
+    .selected-count { font-size: 0.82rem; color: #888; margin-left: auto; white-space: nowrap; }
+
+    .charm-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 10px;
+    }
+    @media (min-width: 540px)  { .charm-grid { grid-template-columns: repeat(3, 1fr); } }
+    @media (min-width: 800px)  { .charm-grid { grid-template-columns: repeat(4, 1fr); } }
+    @media (min-width: 1000px) { .charm-grid { grid-template-columns: repeat(4, 1fr); } }
+
+    .charm-item {
+      border: 1.5px solid #e0d8c8;
+      border-radius: 9px;
+      background: #faf7f2;
+      padding: 10px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      transition: border-color 0.15s, background 0.15s;
+      cursor: pointer;
+    }
+    .charm-item.selected { border-color: var(--velvet); background: #fff8f5; }
+    .charm-item.hidden { display: none; }
+
+    .charm-item__top {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+    }
+    .charm-item__check {
+      width: 18px;
+      height: 18px;
+      border: 2px solid #ccc;
+      border-radius: 4px;
+      flex-shrink: 0;
+      margin-top: 2px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: border-color 0.15s, background 0.15s;
+    }
+    .charm-item.selected .charm-item__check {
+      border-color: var(--velvet);
+      background: var(--velvet);
+    }
+    .charm-item__check::after {
+      content: '';
+      display: none;
+      width: 10px;
+      height: 6px;
+      border-left: 2px solid #fff;
+      border-bottom: 2px solid #fff;
+      transform: rotate(-45deg) translateY(-1px);
+    }
+    .charm-item.selected .charm-item__check::after { display: block; }
+
+    .charm-item__img {
+      width: 52px;
+      height: 52px;
+      border-radius: 6px;
+      overflow: hidden;
+      background: #f0ece4;
+      flex-shrink: 0;
+    }
+    .charm-item__img img { width: 100%; height: 100%; object-fit: cover; transform: scale(1.2); }
+    .charm-item__img .no-img {
+      width: 100%; height: 100%;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 0.6rem; color: #aaa; text-align: center; padding: 4px;
+    }
+
+    .charm-item__info { flex: 1; min-width: 0; }
+    .charm-item__name { font-family: var(--ff-head); font-size: 0.78rem; color: var(--text); line-height: 1.3; }
+    .charm-item__sku  { font-size: 0.65rem; color: #aaa; margin-top: 2px; }
+
+    .charm-item__price {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .charm-item__price label { font-size: 0.72rem; color: #888; white-space: nowrap; }
+    .price-input {
+      width: 70px;
+      padding: 5px 8px;
+      border: 1px solid #e0d8c8;
+      border-radius: 5px;
+      font-family: var(--ff-body);
+      font-size: 0.82rem;
+      background: #fff;
+      color: var(--text);
+      outline: none;
+    }
+    .charm-item.selected .price-input { border-color: var(--velvet); }
+    .price-input:focus { border-color: var(--velvet); }
+
+    /* ── SECTION DIVIDER ── */
+    .section-divider {
+      font-size: 0.65rem;
+      font-weight: 700;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: #aaa;
+      margin: 20px 0 12px;
+      padding-bottom: 6px;
+      border-bottom: 1px solid var(--cream);
+    }
+
+    /* ── ACTION BAR ── */
+    .action-bar {
+      display: flex;
+      gap: 14px;
+      padding: 28px 0 60px;
+      justify-content: flex-end;
+      flex-wrap: wrap;
+    }
+    .btn-preview {
+      padding: 14px 28px;
+      border-radius: 7px;
+      font-family: var(--ff-head);
+      font-size: 0.95rem;
+      font-weight: 600;
+      border: 2px solid var(--gold);
+      background: #fff;
+      color: var(--text);
+      transition: background 0.15s;
+    }
+    .btn-preview:hover { background: var(--parchment); }
+    .btn-generate {
+      padding: 14px 32px;
+      border-radius: 7px;
+      font-family: var(--ff-head);
+      font-size: 0.95rem;
+      font-weight: 600;
+      background: var(--velvet);
+      color: #fff;
+      transition: background 0.15s, transform 0.1s;
+    }
+    .btn-generate:hover { background: #7d0f1f; transform: translateY(-1px); }
+
+    /* ── PREVIEW VIEW ── */
+    #view-preview { display: none; }
+    .preview-bar {
+      background: var(--dark);
+      border-bottom: 2px solid var(--gold);
+      padding: 12px 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .preview-bar p { font-size: 0.82rem; color: rgba(255,255,255,0.6); }
+    .preview-bar strong { color: var(--gold); }
+    .btn-back {
+      padding: 8px 18px;
+      border-radius: 6px;
+      font-size: 0.82rem;
+      font-weight: 600;
+      background: rgba(255,255,255,0.1);
+      color: #fff;
+      border: 1px solid rgba(255,255,255,0.2);
+      transition: background 0.15s;
+    }
+    .btn-back:hover { background: rgba(255,255,255,0.2); }
+    #preview-frame {
+      width: 100%;
+      border: none;
+      min-height: calc(100vh - 120px);
+    }
+
+    /* ── GENERATE MODAL ── */
+    .modal-overlay {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.75);
+      z-index: 300;
+      align-items: flex-start;
+      justify-content: center;
+      padding: 40px 20px;
+      overflow-y: auto;
+    }
+    .modal-overlay.open { display: flex; }
+    .modal {
+      background: var(--white);
+      border-radius: 14px;
+      padding: 40px;
+      max-width: 680px;
+      width: 100%;
+      position: relative;
+    }
+    .modal__heading {
+      font-family: var(--ff-head);
+      font-size: 1.6rem;
+      font-weight: 700;
+      margin-bottom: 6px;
+    }
+    .modal__sub { font-size: 0.88rem; color: #666; margin-bottom: 24px; }
+    .modal__steps {
+      background: var(--parchment);
+      border-radius: 8px;
+      padding: 20px 24px;
+      margin-bottom: 24px;
+    }
+    .modal__steps h3 { font-family: var(--ff-head); font-size: 0.95rem; margin-bottom: 12px; color: var(--velvet); }
+    .modal__steps ol { padding-left: 18px; }
+    .modal__steps li { font-size: 0.85rem; color: #555; margin-bottom: 8px; line-height: 1.5; }
+    .modal__steps code {
+      background: #fff;
+      border: 1px solid #ddd;
+      border-radius: 4px;
+      padding: 2px 6px;
+      font-size: 0.82rem;
+      color: var(--velvet);
+      font-family: monospace;
+    }
+    .modal__path {
+      background: #fff;
+      border: 1px solid #e0d8c8;
+      border-radius: 6px;
+      padding: 10px 14px;
+      font-size: 0.85rem;
+      color: var(--velvet);
+      margin-bottom: 20px;
+      font-family: monospace;
+      word-break: break-all;
+    }
+    .modal__code-area {
+      position: relative;
+      margin-bottom: 20px;
+    }
+    .modal__code-area textarea {
+      width: 100%;
+      height: 180px;
+      background: #1a1a1a;
+      color: #a8d8a8;
+      border: none;
+      border-radius: 8px;
+      padding: 16px;
+      font-family: monospace;
+      font-size: 0.78rem;
+      resize: none;
+      outline: none;
+      line-height: 1.5;
+    }
+    .btn-copy-code {
+      width: 100%;
+      padding: 14px;
+      background: var(--velvet);
+      color: #fff;
+      border: none;
+      border-radius: 7px;
+      font-family: var(--ff-head);
+      font-size: 1rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background 0.15s;
+      margin-bottom: 12px;
+    }
+    .btn-copy-code:hover { background: #7d0f1f; }
+    .btn-close-modal {
+      width: 100%;
+      padding: 12px;
+      background: #fff;
+      border: 1px solid #ddd;
+      border-radius: 7px;
+      font-size: 0.88rem;
+      color: #666;
+      cursor: pointer;
+      transition: background 0.15s;
+    }
+    .btn-close-modal:hover { background: var(--parchment); }
+    .copy-confirm { text-align: center; font-size: 0.82rem; color: #5cb85c; min-height: 20px; margin-top: 8px; }
+
+    /* QR Code */
+    .qr-section {
+      background: var(--parchment);
+      border-radius: 10px;
+      padding: 24px;
+      margin-bottom: 20px;
+      text-align: center;
+    }
+    .qr-section h3 {
+      font-family: var(--ff-head);
+      font-size: 0.95rem;
+      color: var(--velvet);
+      margin-bottom: 6px;
+    }
+    .qr-section p { font-size: 0.8rem; color: #777; margin-bottom: 16px; }
+    .qr-section img {
+      width: 180px;
+      height: 180px;
+      border: 6px solid #fff;
+      border-radius: 8px;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.12);
+      margin: 0 auto 14px;
+    }
+    .qr-url {
+      font-size: 0.72rem;
+      color: #888;
+      word-break: break-all;
+      margin-bottom: 14px;
+      font-family: monospace;
+    }
+    .btn-download-qr {
+      display: inline-block;
+      padding: 9px 20px;
+      background: var(--gold);
+      color: var(--dark);
+      border-radius: 6px;
+      font-size: 0.82rem;
+      font-weight: 700;
+      text-decoration: none;
+      transition: background 0.15s;
+    }
+    .btn-download-qr:hover { background: #b8924a; }
+  </style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header class="header">
+  <div>
+    <div class="header__logo">Nutcracker <span>Jewelry</span></div>
+    <span class="header__sub">Designed by Dancers, for Dancers. Since 1996.</span>
+  </div>
+  <div class="tab-bar">
+    <button class="tab-btn active" onclick="showView('setup')">⚙ School Setup</button>
+    <button class="tab-btn" onclick="previewStorefront()">👁 Parent Storefront</button>
+  </div>
+</header>
+
+<!-- SETUP VIEW -->
+<div id="view-setup">
+  <div class="container">
+    <div class="page-title">
+      <h1>School Campaign Setup</h1>
+      <p>Configure your school's fundraiser page — then preview the parent storefront.</p>
+    </div>
+
+    <!-- Campaign Information -->
+    <div class="card">
+      <div class="card__heading">Campaign Information</div>
+      <div class="form-grid">
+        <div class="field">
+          <label>School / Studio Name</label>
+          <input type="text" id="school-name" placeholder="e.g. City Ballet Academy" />
+        </div>
+        <div class="field">
+          <label>City, State</label>
+          <input type="text" id="school-location" placeholder="e.g. Simpsonville, SC" />
+        </div>
+        <div class="field">
+          <label>Campaign Start Date</label>
+          <input type="date" id="campaign-start" />
+        </div>
+        <div class="field">
+          <label>Order Deadline (Campaign End)</label>
+          <input type="date" id="campaign-end" />
+        </div>
+        <div class="field">
+          <label>Payment Due Date (parents)</label>
+          <input type="date" id="payment-due" />
+        </div>
+        <div class="field">
+          <label>GitHub Folder Path</label>
+          <input type="text" id="github-path" placeholder="e.g. cityballetacademy/simpsonville/sc" />
+        </div>
+      </div>
+    </div>
+
+    <!-- Charm Selection -->
+    <div class="card">
+      <div class="card__heading">Select Charms &amp; Set Prices</div>
+      <div class="charm-toolbar">
+        <button class="btn-sm" onclick="selectAll()">Select All</button>
+        <button class="btn-sm" onclick="clearAll()">Clear All</button>
+        <input type="text" id="charm-search" placeholder="Search by name or SKU…" oninput="filterCharms()" />
+        <span class="selected-count" id="selected-count">0 selected</span>
+      </div>
+
+      <div class="section-divider">Nutcracker Charms</div>
+      <div class="charm-grid" id="grid-ns-charms"></div>
+
+      <div class="section-divider">Nutcracker Earrings</div>
+      <div class="charm-grid" id="grid-ns-earrings"></div>
+
+      <div class="section-divider">Dance Jewelry Charms</div>
+      <div class="charm-grid" id="grid-ds-charms"></div>
+
+      <div class="section-divider">Dance Jewelry Earrings</div>
+      <div class="charm-grid" id="grid-ds-earrings"></div>
+
+      <div class="section-divider">Accessories</div>
+      <div class="charm-grid" id="grid-accessories"></div>
+    </div>
+
+    <div class="action-bar">
+      <button class="btn-preview" onclick="previewStorefront()">👁 Preview Parent Storefront</button>
+      <button class="btn-generate" onclick="generateCode()">✦ Generate Page Code</button>
+    </div>
+  </div>
+</div>
+
+<!-- PREVIEW VIEW -->
+<div id="view-preview">
+  <div class="preview-bar">
+    <p>Previewing: <strong id="preview-label">—</strong></p>
+    <button class="btn-back" onclick="showView('setup')">← Back to Setup</button>
+  </div>
+  <iframe id="preview-frame" title="Parent Storefront Preview"></iframe>
+</div>
+
+<!-- GENERATE CODE MODAL -->
+<div class="modal-overlay" id="modal-generate">
+  <div class="modal">
+    <div class="modal__heading">✦ Your Page is Ready!</div>
+    <p class="modal__sub">Copy the code below and paste it into GitHub to publish your school's fundraiser page.</p>
+
+    <div class="modal__steps">
+      <h3>How to publish on GitHub:</h3>
+      <ol>
+        <li>Go to <strong>github.com/nutcrackerjewelry/nutcracker-fundraiser</strong></li>
+        <li>Click <strong>Add file → Create new file</strong></li>
+        <li>In the filename box, type this path exactly:<br/>
+          <div class="modal__path" id="github-path-display">—</div>
+        </li>
+        <li>Click inside the big text editor and press <strong>⌘V</strong> to paste</li>
+        <li>Click <strong>Commit changes</strong> — done!</li>
+      </ol>
+    </div>
+
+    <!-- QR Code -->
+    <div class="qr-section" id="qr-section" style="display:none">
+      <h3>QR Code for Families</h3>
+      <p>Download and send this to the school — parents scan it to go straight to their order page.</p>
+      <img id="qr-img" src="" alt="QR Code" />
+      <div class="qr-url" id="qr-url-display"></div>
+      <a class="btn-download-qr" id="qr-download" href="" download="NutcrackerJewelry_QR.png" target="_blank">⬇ Download QR Code</a>
+    </div>
+
+    <div class="modal__code-area">
+      <textarea id="generated-code" readonly></textarea>
+    </div>
+    <button class="btn-copy-code" onclick="copyGeneratedCode()">📋 Copy All Code</button>
+    <div class="copy-confirm" id="copy-confirm"></div>
+    <button class="btn-close-modal" onclick="closeModal()">Close</button>
+  </div>
+</div>
+
+<script>
+// ══════════════════════════════════════════════
+// MASTER CATALOG
+// ══════════════════════════════════════════════
+const IMG_BASE = 'https://nutcrackerjewelry.github.io/nutcracker-fundraiser/';
+
+const MASTER_CATALOG = [
+  // Nutcracker Charms
+  { code:'NS-C101', name:'Clara / Maria',               img:'NS-C101_Clara.png',                  price:32, group:'ns-charms' },
+  { code:'NS-C102', name:'Fritz',                       img:'NS-C102_Fritz.png',                  price:32, group:'ns-charms' },
+  { code:'NS-C103', name:'Lady at Party / Mother',      img:null,                                 price:32, group:'ns-charms' },
+  { code:'NS-C104', name:'Gentleman at Party / Father', img:'NS-C104_Gentleman_At_The_Party.png', price:32, group:'ns-charms' },
+  { code:'NS-C105', name:'Nurse / Maid',                img:'NS-C105_Nurse_Maid.png',             price:32, group:'ns-charms' },
+  { code:'NS-C106', name:'Girl at the Party',           img:'NS-C106_Girl_At_The_Party.png',      price:32, group:'ns-charms' },
+  { code:'NS-C107', name:'Boy at the Party',            img:'NS-C107_Boy_At_The_Party.png',       price:32, group:'ns-charms' },
+  { code:'NS-C108', name:'Drosselmeier',                img:'NS-C108_Drosselmeier.png',           price:32, group:'ns-charms' },
+  { code:'NS-C109', name:'Grandmother',                 img:'NS-C109_Grandmother.png',            price:32, group:'ns-charms' },
+  { code:'NS-C110', name:'Grandfather',                 img:'NS-C110_Grandfather.png',            price:32, group:'ns-charms' },
+  { code:'NS-C111', name:'Columbine',                   img:'NS-C111_Columbine.png',              price:32, group:'ns-charms' },
+  { code:'NS-C112', name:'Harlequin',                   img:'NS-C112_Harlequin.png',              price:32, group:'ns-charms' },
+  { code:'NS-C113', name:'Toy Rabbit',                  img:'NS-C113_Toy_Rabbit.png',             price:32, group:'ns-charms' },
+  { code:'NS-C114', name:'Toy Soldier',                 img:'NS-C114_ToySoldier.png',             price:32, group:'ns-charms' },
+  { code:'NS-C115', name:'Small Mouse',                 img:'NS-C115_SmallMouse.png',             price:32, group:'ns-charms' },
+  { code:'NS-C116', name:'Mouse King',                  img:'NS-C116_MouseKing.png',              price:32, group:'ns-charms' },
+  { code:'NS-C117', name:'Soldier',                     img:'NS-C117_Soldier.png',                price:32, group:'ns-charms' },
+  { code:'NS-C118', name:'Nutcracker',                  img:'NS-C118_Nutcracker.png',             price:32, group:'ns-charms' },
+  { code:'NS-C119', name:'Prince / Page',               img:'NS-C119_Prince_Page.png',            price:32, group:'ns-charms' },
+  { code:'NS-C120', name:'Snow Queen',                  img:'NS-C120_SnowQueen.png',              price:32, group:'ns-charms' },
+  { code:'NS-C121', name:'Cavalier / Snow King',        img:'NS-C121_SnowKing.png',               price:32, group:'ns-charms' },
+  { code:'NS-C122', name:'Snowflake',                   img:'NS-C122_Snowflake.png',              price:32, group:'ns-charms' },
+  { code:'NS-C123', name:'Tree / Enchanted Forest',     img:'NS-C123_Tree.png',                   price:32, group:'ns-charms' },
+  { code:'NS-C124', name:'Angel',                       img:'NS-C124_Angel.png',                  price:32, group:'ns-charms' },
+  { code:'NS-C125', name:'Sugar Plum Fairy',            img:'NS-C125_Sugar_Plum_Fairy.png',       price:32, group:'ns-charms' },
+  { code:'NS-C126', name:'Spanish / Hot Chocolate',     img:'NS-C126_Spanish_Hot_Chocolate.png',  price:32, group:'ns-charms' },
+  { code:'NS-C127', name:'Candy Cane',                  img:'NS-C127_Candy_Cane.png',             price:32, group:'ns-charms' },
+  { code:'NS-C128', name:'Russian / Trepak',            img:'NS-C128_Russian_Trepak.png',         price:32, group:'ns-charms' },
+  { code:'NS-C129', name:'Petite Nutcracker',           img:'NS-C129_Petite_Nutcracker.png',      price:32, group:'ns-charms' },
+  { code:'NS-C130', name:'Bird',                        img:'NS-C130_Bird.png',                   price:32, group:'ns-charms' },
+  { code:'NS-C131', name:'Arabian Princess',            img:'NS-C131_Arabian_Princess.png',       price:32, group:'ns-charms' },
+  { code:'NS-C132', name:'Arabian Prince',              img:'NS-C132_Arabian_Prince.png',         price:32, group:'ns-charms' },
+  { code:'NS-C133', name:'Chinese / Tea',               img:'NS-C133_Chinese_Tea.png',            price:32, group:'ns-charms' },
+  { code:'NS-C134', name:'Mirliton',                    img:'NS-C134_Mirliton.png',               price:32, group:'ns-charms' },
+  { code:'NS-C135', name:'Marzipan',                    img:'NS-C135_Marzipan.png',               price:32, group:'ns-charms' },
+  { code:'NS-C136', name:'Dew Drop Fairy',              img:'NS-C136_Dew_Drop_Fairy.png',         price:32, group:'ns-charms' },
+  { code:'NS-C137', name:'Flower',                      img:'NS-C137_Flower.png',                 price:32, group:'ns-charms' },
+  { code:'NS-C138', name:'Mother Ginger Girl',          img:'NS-C138_MotherGingerGirl.png',       price:32, group:'ns-charms' },
+  { code:'NS-C139', name:'Mother Ginger Boy',           img:'NS-C139_MotherGingerBoy.png',        price:32, group:'ns-charms' },
+  { code:'NS-C140', name:'Baker / Cook',                img:'NS-C140_Baker_Cook.png',             price:32, group:'ns-charms' },
+  { code:'NS-C141', name:'Lamb',                        img:'NS-C141_Lamb.png',                   price:32, group:'ns-charms' },
+  { code:'NS-C142', name:'Polinchinelle',               img:'NS-C142_Polinchinelle.png',          price:32, group:'ns-charms' },
+  { code:'NS-C143', name:'Fairy',                       img:'NS-C143_Fairy.png',                  price:32, group:'ns-charms' },
+  { code:'NS-C144', name:'Reindeer',                    img:null,                                 price:32, group:'ns-charms' },
+  // Nutcracker Earrings
+  { code:'NS-E111', name:'Columbine Earrings',          img:'NS-E111_Columbine_Earrings.png',             price:32, group:'ns-earrings' },
+  { code:'NS-E118', name:'Nutcracker Earrings',         img:'NS-E118_Nutcracker_Earrings.png',            price:32, group:'ns-earrings' },
+  { code:'NS-E122', name:'Snowflake Earrings',          img:'NS-E122_Snowflake_Earrings.png',             price:32, group:'ns-earrings' },
+  { code:'NS-E123', name:'Tree Earrings',               img:'NS-E123_Tree_Earrings.png',                  price:32, group:'ns-earrings' },
+  { code:'NS-E129', name:'Petite Nutcracker Earrings',  img:'NS-E129_Petite_Nutcracker_Earrings.png',     price:32, group:'ns-earrings' },
+  // Dance Jewelry Charms
+  { code:'DS-C201', name:'Ballet Slippers',             img:'DS-C201_Ballet_Slippers.png',        price:32, group:'ds-charms' },
+  { code:'DS-C202', name:'Pointe Shoes',                img:'DS-C202_Pointe_Shoes.png',           price:32, group:'ds-charms' },
+  { code:'DS-C203', name:'Tap Dancer',                  img:'DS-C203_Tap_Dancer.png',             price:32, group:'ds-charms' },
+  { code:'DS-C204', name:'Ballerina',                   img:'DS-C204_Ballerina.png',              price:32, group:'ds-charms' },
+  { code:'DS-C205', name:'Contemporary Dancer',         img:'DS-C205_Contemporary_Dancer.png',    price:32, group:'ds-charms' },
+  { code:'DS-C250', name:'Contemporary Attitude (Lg)',  img:'DS-C250_Contemporary_Attitude.png',  price:32, group:'ds-charms' },
+  { code:'DS-C251', name:'Contemporary Attitude (Sm)',  img:null,                                 price:32, group:'ds-charms' },
+  { code:'DS-C253', name:'Modern Attitude (Large)',     img:'DS-C253_Modern_Attitude.png',        price:32, group:'ds-charms' },
+  { code:'DS-C254', name:'Modern Attitude (Small)',     img:'DS-C254_Modern_Attitude_Tag.png',    price:32, group:'ds-charms' },
+  // Dance Jewelry Earrings
+  { code:'DS-E201', name:'Ballet Slipper Earrings',     img:'DS-E201_Ballet_Slipper_Earrings.png',              price:32, group:'ds-earrings' },
+  { code:'DS-E202', name:'Pointe Shoe Earrings',        img:'DS-E202_Pointe_Shoe_W_Crystal_Earrings.png',        price:32, group:'ds-earrings' },
+  { code:'DS-E203', name:'Tap Dancer Earrings',         img:'DS-E203_Tap_Dancer_Earrings.png',                  price:32, group:'ds-earrings' },
+  { code:'DS-E204', name:'Ballerina Earrings',          img:'DS-E204_Ballerina_Earrings.png',                   price:32, group:'ds-earrings' },
+  { code:'DS-E205', name:'Contemporary Dancer Earrings',img:'DS-E205_Contemporary_Dancer_Earrings.png',         price:32, group:'ds-earrings' },
+  { code:'DS-E251', name:'Contemp. Attitude Earrings',  img:'DS-E251_Contemporary_Attitude_Tag_Earrings.png',   price:32, group:'ds-earrings' },
+  { code:'DS-E254', name:'Modern Attitude Earrings',    img:'DS-E254_Modern_Attitude_Tag_Earrings.png',         price:32, group:'ds-earrings' },
+  // Accessories
+  { code:'B301',  name:'Silver 7" Bracelet',   img:null, price:35, group:'accessories' },
+  { code:'N310',  name:'Silver 16" Box Chain', img:null, price:15, group:'accessories' },
+  { code:'N312',  name:'Silver 16" Rope Chain',img:null, price:14, group:'accessories' },
+  { code:'BP320', name:'3-Bragging Pin',        img:null, price:2,  group:'accessories' },
+  { code:'BP322', name:'5-Bragging Pin',        img:null, price:3,  group:'accessories' },
+];
+
+// ── Build charm grid ──
+function buildGrid() {
+  const groups = {
+    'ns-charms':    document.getElementById('grid-ns-charms'),
+    'ns-earrings':  document.getElementById('grid-ns-earrings'),
+    'ds-charms':    document.getElementById('grid-ds-charms'),
+    'ds-earrings':  document.getElementById('grid-ds-earrings'),
+    'accessories':  document.getElementById('grid-accessories'),
+  };
+  MASTER_CATALOG.forEach(c => {
+    const imgTag = c.img
+      ? `<img src="${IMG_BASE}${c.img}" alt="${c.name}" />`
+      : `<div class="no-img">Coming Soon</div>`;
+    const el = document.createElement('div');
+    el.className = 'charm-item';
+    el.dataset.code = c.code;
+    el.dataset.name = c.name.toLowerCase();
+    el.innerHTML = `
+      <div class="charm-item__top">
+        <div class="charm-item__check"></div>
+        <div class="charm-item__img">${imgTag}</div>
+        <div class="charm-item__info">
+          <div class="charm-item__name">${c.name}</div>
+          <div class="charm-item__sku">${c.code}</div>
+        </div>
+      </div>
+      <div class="charm-item__price">
+        <label>Price $</label>
+        <input class="price-input" type="number" value="${c.price}" min="0" step="1"
+               onclick="event.stopPropagation()" data-code="${c.code}" />
+      </div>`;
+    el.addEventListener('click', () => toggleCharm(el));
+    groups[c.group].appendChild(el);
+  });
+  updateCount();
+}
+
+function toggleCharm(el) {
+  el.classList.toggle('selected');
+  updateCount();
+}
+
+function selectAll() {
+  document.querySelectorAll('.charm-item:not(.hidden)').forEach(el => el.classList.add('selected'));
+  updateCount();
+}
+
+function clearAll() {
+  document.querySelectorAll('.charm-item').forEach(el => el.classList.remove('selected'));
+  updateCount();
+}
+
+function filterCharms() {
+  const q = document.getElementById('charm-search').value.toLowerCase();
+  document.querySelectorAll('.charm-item').forEach(el => {
+    const match = el.dataset.name.includes(q) || el.dataset.code.toLowerCase().includes(q);
+    el.classList.toggle('hidden', !match);
+  });
+}
+
+function updateCount() {
+  const n = document.querySelectorAll('.charm-item.selected').length;
+  document.getElementById('selected-count').textContent = n + ' selected';
+}
+
+// ── View switching ──
+function showView(view) {
+  document.getElementById('view-setup').style.display   = view === 'setup'   ? '' : 'none';
+  document.getElementById('view-preview').style.display = view === 'preview' ? '' : 'none';
+  document.querySelectorAll('.tab-btn').forEach((b, i) => {
+    b.classList.toggle('active', (i === 0 && view === 'setup') || (i === 1 && view === 'preview'));
+  });
+}
+
+// ── Get current config ──
+function getConfig() {
+  const schoolName = document.getElementById('school-name').value.trim() || 'Your School';
+  const location   = document.getElementById('school-location').value.trim() || 'Your City, ST';
+  const endDate    = document.getElementById('campaign-end').value || '2026-12-31';
+  const payDue     = document.getElementById('payment-due').value
+    ? new Date(document.getElementById('payment-due').value).toLocaleDateString('en-US', {month:'long', day:'numeric', year:'numeric'})
+    : 'TBD';
+  const endLabel = new Date(endDate).toLocaleDateString('en-US', {month:'long', day:'numeric', year:'numeric'});
+  const githubPath = document.getElementById('github-path').value.trim();
+  const levels = githubPath ? githubPath.split('/').filter(Boolean).length : 3;
+  const baseImg = 'https://nutcrackerjewelry.github.io/nutcracker-fundraiser/';
+
+  const selected = [];
+  document.querySelectorAll('.charm-item.selected').forEach(el => {
+    const code  = el.dataset.code;
+    const price = parseFloat(el.querySelector('.price-input').value) || 32;
+    selected.push({ code, price });
+  });
+
+  return { schoolName, location, endDate, endLabel, payDue, githubPath, baseImg, selected };
+}
+
+// ── Preview ──
+function previewStorefront() {
+  const cfg = getConfig();
+  document.getElementById('preview-label').textContent = cfg.schoolName + ' · ' + cfg.location;
+  const html = buildSchoolHTML(cfg);
+  const blob = new Blob([html], { type: 'text/html' });
+  document.getElementById('preview-frame').src = URL.createObjectURL(blob);
+  showView('preview');
+}
+
+// ── Generate code ──
+function generateCode() {
+  const cfg = getConfig();
+  if (cfg.selected.length === 0) {
+    alert('Please select at least one charm before generating.');
+    return;
+  }
+  const html = buildSchoolHTML(cfg);
+  document.getElementById('generated-code').value = html;
+  const path = cfg.githubPath
+    ? cfg.githubPath.replace(/\/$/, '') + '/index.html'
+    : 'yourschool/yourcity/st/index.html';
+  document.getElementById('github-path-display').textContent = path;
+
+  // Build QR code
+  if (cfg.githubPath) {
+    const liveURL = 'https://nutcrackerjewelry.github.io/nutcracker-fundraiser/' + cfg.githubPath.replace(/\/$/, '');
+    const qrAPI   = 'https://api.qrserver.com/v1/create-qr-code/?size=300x300&margin=10&data=' + encodeURIComponent(liveURL);
+    document.getElementById('qr-img').src = qrAPI;
+    document.getElementById('qr-url-display').textContent = liveURL;
+    document.getElementById('qr-download').href = qrAPI;
+    document.getElementById('qr-download').download = cfg.schoolName.replace(/\s+/g,'-') + '_QR.png';
+    document.getElementById('qr-section').style.display = '';
+  } else {
+    document.getElementById('qr-section').style.display = 'none';
+  }
+
+  document.getElementById('modal-generate').classList.add('open');
+}
+
+function copyGeneratedCode() {
+  const ta = document.getElementById('generated-code');
+  ta.select();
+  navigator.clipboard.writeText(ta.value).then(() => {
+    document.getElementById('copy-confirm').textContent = '✓ Copied! Now paste it into GitHub.';
+    setTimeout(() => document.getElementById('copy-confirm').textContent = '', 4000);
+  });
+}
+
+function closeModal() {
+  document.getElementById('modal-generate').classList.remove('open');
+}
+
+// ══════════════════════════════════════════════
+// PAGE TEMPLATE GENERATOR
+// ══════════════════════════════════════════════
+function buildSchoolHTML(cfg) {
+  const selCodes = cfg.selected.map(s => `'${s.code}'`).join(', ');
+  // Build price overrides map for any non-default prices
+  const priceMap = {};
+  cfg.selected.forEach(s => { if (s.price !== 32) priceMap[s.code] = s.price; });
+
+  // Build catalog with price overrides
+  const catalogJS = MASTER_CATALOG.map(c => {
+    const p = priceMap[c.code] !== undefined ? priceMap[c.code] : c.price;
+    const imgVal = c.img ? `'${c.img}'` : 'null';
+    return `  { code:'${c.code}', name:'${c.name.replace(/'/g,"\\'")}', img:${imgVal}, price:${p} }`;
+  }).join(',\n');
+
+  return `<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>${cfg.schoolName} Nutcracker Charm Fundraiser | ${cfg.location}</title>
+  <meta name="description" content="Order your dancer's official Nutcracker charm and support ${cfg.schoolName}. Campaign ends ${cfg.endLabel}." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Lora:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --velvet:    #9B1528;
+      --gold:      #C9A96E;
+      --gold-light:#D4B896;
+      --silver:    #C0C0C0;
+      --dark:      #1E1A1D;
+      --parchment: #F0E8D8;
+      --cream:     #E8E0D0;
+      --footer:    #1A1A1A;
+      --text:      #2C2C2C;
+      --white:     #FFFFFF;
+      --ff-head: 'Playfair Display', Georgia, 'Times New Roman', serif;
+      --ff-body: 'Lora', Georgia, serif;
+    }
+    body { font-family: var(--ff-body); background: var(--parchment); color: var(--text); font-size: 16px; line-height: 1.6; }
+    img { display: block; max-width: 100%; }
+    a   { color: inherit; text-decoration: none; }
+    .container { max-width: 1100px; margin: 0 auto; padding: 0 24px; }
+    .header { background: var(--dark); padding: 52px 0 44px; text-align: center; border-bottom: 3px solid var(--gold); }
+    .header__powered { font-size: 0.7rem; letter-spacing: 0.14em; text-transform: uppercase; color: rgba(201,169,110,0.6); margin-bottom: 22px; }
+    .header__powered a { color: var(--gold); text-decoration: underline; text-underline-offset: 3px; }
+    .header__school { font-family: var(--ff-head); font-size: clamp(2.2rem,5vw,3.4rem); font-weight: 700; color: #fff; line-height: 1.1; }
+    .header__location { font-size: 0.82rem; letter-spacing: 0.14em; text-transform: uppercase; color: #888; margin-top: 8px; }
+    .header__tagline { font-family: var(--ff-head); font-style: italic; font-size: 1.1rem; color: var(--gold); margin-top: 16px; }
+    .countdown { background: var(--velvet); padding: 32px 0; text-align: center; }
+    .countdown__label { font-size: 0.72rem; letter-spacing: 0.16em; text-transform: uppercase; color: rgba(255,255,255,0.65); margin-bottom: 14px; }
+    .countdown__units { display: flex; justify-content: center; gap: 20px; flex-wrap: wrap; }
+    .countdown__unit { display: flex; flex-direction: column; align-items: center; }
+    .countdown__num { font-family: var(--ff-head); font-size: 2.8rem; font-weight: 700; color: #fff; line-height: 1; min-width: 68px; text-align: center; }
+    .countdown__unit-label { font-size: 0.62rem; letter-spacing: 0.12em; text-transform: uppercase; color: rgba(255,255,255,0.55); margin-top: 5px; }
+    .countdown__sep { font-family: var(--ff-head); font-size: 2.2rem; color: rgba(255,255,255,0.3); line-height: 2.8rem; }
+    .countdown__ended { font-family: var(--ff-head); font-size: 1.4rem; color: #fff; font-style: italic; }
+    .intro { padding: 52px 0 36px; text-align: center; background: var(--parchment); }
+    .intro__eyebrow { font-size: 0.72rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--velvet); margin-bottom: 10px; }
+    .intro__heading { font-family: var(--ff-head); font-size: 2rem; font-weight: 700; margin-bottom: 14px; }
+    .intro__body { max-width: 580px; margin: 0 auto; font-size: 0.95rem; color: #555; line-height: 1.7; }
+    .intro__note { display: inline-block; margin-top: 20px; background: #fff; border-left: 3px solid var(--gold); padding: 12px 20px; border-radius: 0 6px 6px 0; font-size: 0.85rem; color: #555; text-align: left; }
+    .intro__note strong { color: var(--text); }
+    .order-section { padding: 56px 0 72px; background: var(--parchment); }
+    .order-section__header { text-align: center; margin-bottom: 40px; }
+    .order-section__eyebrow { font-size: 0.72rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--velvet); margin-bottom: 10px; }
+    .order-section__heading { font-family: var(--ff-head); font-size: 2rem; color: var(--text); margin-bottom: 8px; }
+    .order-section__sub { font-size: 0.88rem; color: #777; }
+    .charm-order-grid { display: grid; grid-template-columns: repeat(2,1fr); gap: 14px; margin-bottom: 40px; }
+    @media(min-width:600px){ .charm-order-grid { grid-template-columns: repeat(3,1fr); } }
+    @media(min-width:900px){ .charm-order-grid { grid-template-columns: repeat(4,1fr); } }
+    .charm-order-card { background: #fff; border-radius: 10px; overflow: hidden; border: 1px solid #e8e0d0; transition: border-color 0.2s, box-shadow 0.2s; display: flex; flex-direction: column; box-shadow: 0 2px 8px rgba(0,0,0,0.06); }
+    .charm-order-card:hover { border-color: var(--gold); box-shadow: 0 4px 16px rgba(0,0,0,0.1); }
+    .charm-order-card.has-qty { border-color: var(--velvet); box-shadow: 0 4px 16px rgba(155,21,40,0.12); }
+    .charm-order-card__img { width: 100%; aspect-ratio: 1; overflow: hidden; background: #f8f5f0; border-bottom: 1px solid #f0e8d8; }
+    .charm-order-card__img img { width: 100%; height: 100%; object-fit: cover; transform: scale(1.22); transition: transform 0.4s; }
+    .charm-order-card:hover .charm-order-card__img img { transform: scale(1.28); }
+    .charm-order-card__body { padding: 10px 12px 14px; flex: 1; display: flex; flex-direction: column; gap: 8px; }
+    .charm-order-card__name { font-family: var(--ff-head); font-size: 0.8rem; color: var(--text); line-height: 1.3; }
+    .charm-order-card__price { font-size: 0.82rem; color: #888; font-weight: 600; }
+    .charm-order-card.has-qty .charm-order-card__price { color: var(--velvet); }
+    .charm-order-card__counter { display: flex; align-items: center; margin-top: auto; border: 1px solid #e0d8c8; border-radius: 6px; overflow: hidden; background: #faf7f2; }
+    .counter-btn { background: #f0e8d8; border: none; color: var(--text); font-size: 1.2rem; font-weight: 700; width: 36px; height: 36px; cursor: pointer; transition: background 0.15s; flex-shrink: 0; }
+    .counter-btn:hover { background: #e0d4c0; }
+    .charm-order-card.has-qty .counter-btn { background: var(--velvet); color: #fff; }
+    .charm-order-card.has-qty .counter-btn:hover { background: #7d0f1f; }
+    .counter-num { flex: 1; text-align: center; font-family: var(--ff-head); font-size: 1rem; font-weight: 700; color: var(--text); }
+    .order-summary-bar { background: #fff; border: 2px solid var(--velvet); border-radius: 10px; padding: 20px 24px; margin-bottom: 32px; display: none; box-shadow: 0 4px 16px rgba(155,21,40,0.08); }
+    .order-summary-bar.visible { display: block; }
+    .order-summary-bar__title { font-family: var(--ff-head); font-size: 1rem; color: var(--velvet); margin-bottom: 12px; }
+    .order-summary-bar__items { display: flex; flex-direction: column; gap: 6px; margin-bottom: 14px; }
+    .order-summary-bar__item { display: flex; justify-content: space-between; font-size: 0.88rem; }
+    .order-summary-bar__item span:last-child { color: var(--velvet); font-weight: 600; }
+    .order-summary-bar__total { border-top: 1px solid #e8e0d0; padding-top: 12px; display: flex; justify-content: space-between; font-family: var(--ff-head); font-size: 1.1rem; }
+    .order-summary-bar__total span:last-child { color: var(--velvet); }
+    .parent-form { background: #fff; border-radius: 10px; padding: 28px; border: 1px solid #e8e0d0; box-shadow: 0 2px 12px rgba(0,0,0,0.06); }
+    .parent-form__heading { font-family: var(--ff-head); font-size: 1.3rem; margin-bottom: 6px; }
+    .parent-form__sub { font-size: 0.85rem; color: #777; margin-bottom: 20px; }
+    .parent-form__fields { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-bottom: 20px; }
+    @media(max-width:600px){ .parent-form__fields { grid-template-columns: 1fr; } }
+    .parent-form input, .parent-form textarea { width: 100%; background: #faf7f2; border: 1px solid #e0d8c8; border-radius: 6px; padding: 12px 14px; font-family: var(--ff-body); font-size: 0.9rem; color: var(--text); outline: none; transition: border-color 0.2s; }
+    .parent-form input:focus, .parent-form textarea:focus { border-color: var(--velvet); }
+    .parent-form input::placeholder, .parent-form textarea::placeholder { color: #aaa; }
+    .parent-form textarea { resize: vertical; min-height: 80px; }
+    .parent-form__note { font-size: 0.8rem; color: #777; margin-bottom: 20px; line-height: 1.5; }
+    .btn-place-order { width: 100%; background: var(--velvet); color: #fff; font-family: var(--ff-head); font-size: 1.05rem; font-weight: 600; letter-spacing: 0.06em; padding: 16px 24px; border-radius: 6px; border: none; cursor: pointer; transition: background 0.2s, transform 0.1s; }
+    .btn-place-order:hover { background: #7d0f1f; transform: translateY(-1px); }
+    .modal-overlay { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.75); z-index: 200; align-items: center; justify-content: center; padding: 20px; }
+    .modal-overlay.open { display: flex; }
+    .modal { background: var(--cream); border-radius: 12px; padding: 40px 36px; max-width: 520px; width: 100%; max-height: 90vh; overflow-y: auto; }
+    .modal__icon { font-size: 2.5rem; text-align: center; margin-bottom: 16px; }
+    .modal__heading { font-family: var(--ff-head); font-size: 1.8rem; font-weight: 700; text-align: center; margin-bottom: 6px; }
+    .modal__sub { font-size: 0.88rem; color: #666; text-align: center; margin-bottom: 24px; }
+    .modal__receipt { background: #fff; border-radius: 8px; padding: 20px; margin-bottom: 20px; border: 1px solid #e0d8c8; }
+    .modal__receipt-row { display: flex; justify-content: space-between; font-size: 0.88rem; padding: 5px 0; border-bottom: 1px solid #f0e8d8; }
+    .modal__receipt-row:last-child { border-bottom: none; }
+    .modal__receipt-total { display: flex; justify-content: space-between; font-family: var(--ff-head); font-size: 1.05rem; font-weight: 700; padding-top: 12px; margin-top: 8px; border-top: 2px solid var(--gold); }
+    .modal__receipt-total span:last-child { color: var(--velvet); }
+    .modal__instructions { background: #fff8f0; border-left: 3px solid var(--gold); padding: 14px 16px; border-radius: 0 6px 6px 0; font-size: 0.85rem; color: #555; margin-bottom: 24px; line-height: 1.6; }
+    .modal__actions { display: flex; gap: 12px; }
+    .btn-copy { flex: 1; background: #fff; border: 2px solid var(--gold); color: var(--text); font-family: var(--ff-body); font-size: 0.88rem; font-weight: 600; padding: 12px; border-radius: 6px; cursor: pointer; }
+    .btn-copy:hover { background: #f0e8d8; }
+    .btn-done { flex: 1; background: var(--velvet); border: none; color: #fff; font-family: var(--ff-body); font-size: 0.88rem; font-weight: 600; padding: 12px; border-radius: 6px; cursor: pointer; }
+    .btn-done:hover { background: #7d0f1f; }
+    .share { background: var(--dark); padding: 44px 0; text-align: center; border-top: 1px solid rgba(201,169,110,0.15); }
+    .share__heading { font-family: var(--ff-head); font-size: 1.2rem; color: #fff; margin-bottom: 6px; }
+    .share__sub { font-size: 0.85rem; color: #777; margin-bottom: 20px; }
+    .share__link { display: inline-block; background: #2a2527; border: 1px solid rgba(201,169,110,0.3); border-radius: 6px; padding: 11px 22px; font-size: 0.88rem; color: var(--gold); cursor: pointer; word-break: break-all; max-width: 90%; }
+    .share__link:hover { border-color: var(--gold); }
+    .share__copied { font-size: 0.75rem; color: #5cb85c; margin-top: 8px; min-height: 18px; }
+    .footer { background: var(--footer); padding: 28px 0; text-align: center; }
+    .footer__text { font-size: 0.78rem; color: #555; }
+    .footer__text a { color: var(--gold); }
+  </style>
+</head>
+<body>
+
+<header class="header">
+  <div class="container">
+    <p class="header__powered">A fundraiser powered by <a href="https://www.nutcrackerjewelry.com" target="_blank">Nutcracker Jewelry</a></p>
+    <h1 class="header__school">${cfg.schoolName}</h1>
+    <p class="header__location">${cfg.location}</p>
+    <p class="header__tagline">Support our Nutcracker production — one charm at a time.</p>
+  </div>
+</header>
+
+<div class="countdown">
+  <p class="countdown__label">Fundraiser closes ${cfg.endLabel}</p>
+  <div class="countdown__units" id="countdown-display">
+    <div class="countdown__unit"><div class="countdown__num" id="cd-days">--</div><div class="countdown__unit-label">Days</div></div>
+    <div class="countdown__sep">:</div>
+    <div class="countdown__unit"><div class="countdown__num" id="cd-hours">--</div><div class="countdown__unit-label">Hours</div></div>
+    <div class="countdown__sep">:</div>
+    <div class="countdown__unit"><div class="countdown__num" id="cd-mins">--</div><div class="countdown__unit-label">Minutes</div></div>
+    <div class="countdown__sep">:</div>
+    <div class="countdown__unit"><div class="countdown__num" id="cd-secs">--</div><div class="countdown__unit-label">Seconds</div></div>
+  </div>
+</div>
+
+<section class="intro">
+  <div class="container">
+    <p class="intro__eyebrow">${cfg.schoolName} Nutcracker Fundraiser · ${cfg.location}</p>
+    <h2 class="intro__heading">A charm for every role your dancer earned.</h2>
+    <p class="intro__body">Each sterling silver charm represents a specific character in this year's Nutcracker. Add the charms you'd like below, then bring payment to the studio.</p>
+    <div class="intro__note">
+      <strong>Payment is made to ${cfg.schoolName} — not online.</strong> Bring cash or a check made out to ${cfg.schoolName}. Every dollar supports our production.
+    </div>
+  </div>
+</section>
+
+<section class="order-section">
+  <div class="container">
+    <div class="order-section__header">
+      <p class="order-section__eyebrow">Sterling silver · Dance Jewelry Designed by Dancers, for Dancers</p>
+      <h2 class="order-section__heading">Choose your dancer's charms</h2>
+      <p class="order-section__sub">Use the + and − buttons to set quantities. All prices set by ${cfg.schoolName}.</p>
+    </div>
+    <div class="charm-order-grid" id="charm-order-grid"></div>
+    <div class="order-summary-bar" id="order-summary-bar">
+      <div class="order-summary-bar__title">Your Order So Far</div>
+      <div class="order-summary-bar__items" id="summary-items"></div>
+      <div class="order-summary-bar__total"><span>Total</span><span id="total-price">$0</span></div>
+    </div>
+    <div class="parent-form">
+      <h3 class="parent-form__heading">Your information</h3>
+      <p class="parent-form__sub">Fill in your details and click Place Order to submit.</p>
+      <div class="parent-form__fields">
+        <input type="text" id="parent-name" placeholder="Your name (parent / guardian)" />
+        <input type="text" id="dancer-name" placeholder="Dancer's name" />
+        <input type="tel"   id="parent-phone" placeholder="Phone number" />
+        <input type="email" id="parent-email" placeholder="Email address" />
+      </div>
+      <textarea id="order-notes" placeholder="Any notes? (optional)"></textarea>
+      <p class="parent-form__note" style="margin-top:10px;">
+        After placing your order you'll receive a summary to screenshot or save. Bring payment to the studio by <strong>${cfg.payDue}</strong>.
+      </p>
+      <button class="btn-place-order" onclick="placeOrder()">Place Order →</button>
+    </div>
+  </div>
+</section>
+
+<section class="share">
+  <div class="container">
+    <h2 class="share__heading">Share this page with ${cfg.schoolName} families</h2>
+    <p class="share__sub">Tap the link to copy — paste it in a text, email, or your school Facebook group.</p>
+    <div class="share__link" onclick="copyLink()" id="share-link">Loading…</div>
+    <p class="share__copied" id="copy-msg"></p>
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="container">
+    <p class="footer__text">
+      Charms by <a href="https://www.nutcrackerjewelry.com" target="_blank">Nutcracker Jewelry</a> — Dance Jewelry Designed by Dancers, for Dancers Since 1996. &nbsp;|&nbsp; Incentives Inc., Simpsonville, SC
+    </p>
+  </div>
+</footer>
+
+<div class="modal-overlay" id="modal-overlay">
+  <div class="modal">
+    <div class="modal__icon">✦</div>
+    <h2 class="modal__heading">Order Placed!</h2>
+    <p class="modal__sub" id="modal-sub">Thank you! Here is your order summary.</p>
+    <div class="modal__receipt" id="modal-receipt"></div>
+    <div class="modal__instructions">
+      <strong>Next step:</strong> Bring payment to ${cfg.schoolName} by ${cfg.payDue}. Cash or a check made out to <strong>${cfg.schoolName}</strong>. Your charm will be ready for pickup at the studio within two weeks of the campaign close.
+    </div>
+    <div class="modal__actions">
+      <button class="btn-copy" onclick="copyOrder()">📋 Copy Order</button>
+      <button class="btn-done" onclick="closeModal()">Done</button>
+    </div>
+  </div>
+</div>
+
+<script>
+const SCHOOL_NAME  = '${cfg.schoolName.replace(/'/g, "\\'")}';
+const SCHOOL_CITY  = '${cfg.location.replace(/'/g, "\\'")}';
+const CAMPAIGN_END = new Date('${cfg.endDate}T23:59:59');
+const PAYMENT_DUE  = '${cfg.payDue}';
+const BASE_IMG     = '${cfg.baseImg}';
+
+const SCHOOL_SELECTION = [${selCodes}];
+
+const MASTER_CATALOG = [
+${catalogJS}
+];
+
+const CHARMS = MASTER_CATALOG.filter(c => SCHOOL_SELECTION.includes(c.code));
+const qty = {};
+CHARMS.forEach(c => qty[c.code] = 0);
+
+const grid = document.getElementById('charm-order-grid');
+grid.innerHTML = CHARMS.map(c => {
+  const safeId = c.code.replace(/[^a-zA-Z0-9]/g, '-');
+  const imgHTML = c.img
+    ? \`<img src="\${BASE_IMG}\${c.img}" alt="\${c.name}" loading="lazy" />\`
+    : \`<div style="width:100%;height:100%;display:flex;align-items:center;justify-content:center;font-family:var(--ff-head);font-size:0.75rem;color:#555;text-align:center;padding:8px;">Image<br>Coming Soon</div>\`;
+  return \`<div class="charm-order-card" id="card-\${safeId}">
+    <div class="charm-order-card__img">\${imgHTML}</div>
+    <div class="charm-order-card__body">
+      <div class="charm-order-card__name">\${c.name}</div>
+      <div class="charm-order-card__price">\$\${c.price}</div>
+      <div class="charm-order-card__counter">
+        <button class="counter-btn" onclick="change('\${c.code}',-1)">−</button>
+        <span class="counter-num" id="qty-\${safeId}">0</span>
+        <button class="counter-btn" onclick="change('\${c.code}',+1)">+</button>
+      </div>
+    </div>
+  </div>\`;
+}).join('');
+
+function change(code, delta) {
+  qty[code] = Math.max(0, (qty[code]||0) + delta);
+  const safeId = code.replace(/[^a-zA-Z0-9]/g, '-');
+  document.getElementById('qty-'+safeId).textContent = qty[code];
+  document.getElementById('card-'+safeId).classList.toggle('has-qty', qty[code] > 0);
+  updateSummary();
+}
+
+function updateSummary() {
+  const items = CHARMS.filter(c => qty[c.code] > 0);
+  const bar = document.getElementById('order-summary-bar');
+  if (!items.length) { bar.classList.remove('visible'); return; }
+  bar.classList.add('visible');
+  let total = 0;
+  document.getElementById('summary-items').innerHTML = items.map(c => {
+    const lt = qty[c.code]*c.price; total += lt;
+    return \`<div class="order-summary-bar__item"><span>\${c.name} × \${qty[c.code]}</span><span>\$\${lt}</span></div>\`;
+  }).join('');
+  document.getElementById('total-price').textContent = '\$'+total;
+}
+
+function placeOrder() {
+  const parent = document.getElementById('parent-name').value.trim();
+  const dancer = document.getElementById('dancer-name').value.trim();
+  const phone  = document.getElementById('parent-phone').value.trim();
+  const email  = document.getElementById('parent-email').value.trim();
+  const notes  = document.getElementById('order-notes').value.trim();
+  const items  = CHARMS.filter(c => qty[c.code] > 0);
+  if (!parent) { alert('Please enter your name.'); return; }
+  if (!dancer) { alert("Please enter your dancer's name."); return; }
+  if (!items.length) { alert('Please add at least one charm.'); return; }
+  let total = 0;
+  let html = \`<div class="modal__receipt-row"><span>Parent</span><span>\${parent}</span></div>
+    <div class="modal__receipt-row"><span>Dancer</span><span>\${dancer}</span></div>
+    \${phone ? \`<div class="modal__receipt-row"><span>Phone</span><span>\${phone}</span></div>\` : ''}
+    \${email ? \`<div class="modal__receipt-row"><span>Email</span><span>\${email}</span></div>\` : ''}
+    <div class="modal__receipt-row"><span>School</span><span>\${SCHOOL_NAME}</span></div>
+    <div style="margin:10px 0;border-top:1px solid #f0e8d8;"></div>\`;
+  items.forEach(c => { const lt=qty[c.code]*c.price; total+=lt; html+=\`<div class="modal__receipt-row"><span>\${c.name} × \${qty[c.code]}</span><span>\$\${lt}</span></div>\`; });
+  if (notes) html += \`<div class="modal__receipt-row"><span>Notes</span><span>\${notes}</span></div>\`;
+  html += \`<div class="modal__receipt-total"><span>Total Due to Studio</span><span>\$\${total}</span></div>\`;
+  document.getElementById('modal-receipt').innerHTML = html;
+  document.getElementById('modal-sub').textContent = \`Order for \${dancer} · \${items.length} charm type\${items.length>1?'s':''}\`;
+  document.getElementById('modal-overlay').classList.add('open');
+  window._lastOrder = { parent, dancer, phone, email, items, total, notes };
+}
+
+function closeModal() { document.getElementById('modal-overlay').classList.remove('open'); }
+
+function copyOrder() {
+  const o = window._lastOrder; if(!o) return;
+  let t = \`NUTCRACKER CHARM ORDER\\nSchool: \${SCHOOL_NAME}, \${SCHOOL_CITY}\\nParent: \${o.parent}\\nDancer: \${o.dancer}\\n\`;
+  if(o.phone) t += \`Phone: \${o.phone}\\n\`;
+  if(o.email) t += \`Email: \${o.email}\\n\`;
+  t += '\\n';
+  o.items.forEach(c => { t += \`\${c.name} × \${qty[c.code]} — \$\${qty[c.code]*c.price}\\n\`; });
+  if(o.notes) t += \`\\nNotes: \${o.notes}\\n\`;
+  t += \`\\nTotal Due to Studio: \$\${o.total}\\nBring payment to \${SCHOOL_NAME} by \${PAYMENT_DUE}.\`;
+  navigator.clipboard.writeText(t).then(() => {
+    const btn = document.querySelector('.btn-copy');
+    btn.textContent = '✓ Copied!';
+    setTimeout(() => btn.textContent = '📋 Copy Order', 2500);
+  });
+}
+
+function tick() {
+  const diff = CAMPAIGN_END - new Date();
+  if (diff <= 0) { document.getElementById('countdown-display').innerHTML='<p class="countdown__ended">This fundraiser has ended. Thank you!</p>'; return; }
+  const d=Math.floor(diff/86400000), h=Math.floor((diff%86400000)/3600000), m=Math.floor((diff%3600000)/60000), s=Math.floor((diff%60000)/1000);
+  document.getElementById('cd-days').textContent=String(d).padStart(2,'0');
+  document.getElementById('cd-hours').textContent=String(h).padStart(2,'0');
+  document.getElementById('cd-mins').textContent=String(m).padStart(2,'0');
+  document.getElementById('cd-secs').textContent=String(s).padStart(2,'0');
+}
+tick(); setInterval(tick,1000);
+
+document.getElementById('share-link').textContent = window.location.href;
+function copyLink() {
+  navigator.clipboard.writeText(window.location.href).then(() => {
+    document.getElementById('copy-msg').textContent='✓ Link copied!';
+    setTimeout(()=>document.getElementById('copy-msg').textContent='',3000);
+  });
+}
+<\/script>
+</body>
+</html>`;
+}
+
+// ── Init ──
+buildGrid();
+</script>
+</body>
+</html>
