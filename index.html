@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Ballet Études Nutcracker Fundraiser | Lancaster, MA</title>
-  <meta name="description" content="Support Ballet Études! Order your official Nutcracker charm and help fund our production. Campaign ends November 30, 2026." />
+  <title>Ballet Études Nutcracker Charm Fundraiser | Lancaster, MA</title>
+  <meta name="description" content="Order your dancer's official Nutcracker charm and support Ballet Études. Campaign ends November 30, 2026." />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Lora:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet" />
@@ -41,7 +41,7 @@
     /* ── HEADER ── */
     .header {
       background: var(--dark);
-      padding: 48px 0 40px;
+      padding: 52px 0 44px;
       text-align: center;
       border-bottom: 3px solid var(--gold);
     }
@@ -49,8 +49,8 @@
       font-size: 0.7rem;
       letter-spacing: 0.14em;
       text-transform: uppercase;
-      color: var(--gold);
-      margin-bottom: 20px;
+      color: rgba(201,169,110,0.6);
+      margin-bottom: 22px;
     }
     .header__powered a {
       color: var(--gold);
@@ -59,16 +59,16 @@
     }
     .header__school {
       font-family: var(--ff-head);
-      font-size: clamp(2rem, 5vw, 3.2rem);
+      font-size: clamp(2.2rem, 5vw, 3.4rem);
       font-weight: 700;
       color: #fff;
       line-height: 1.1;
     }
     .header__location {
-      font-size: 0.85rem;
-      letter-spacing: 0.12em;
+      font-size: 0.82rem;
+      letter-spacing: 0.14em;
       text-transform: uppercase;
-      color: #999;
+      color: #888;
       margin-top: 8px;
     }
     .header__tagline {
@@ -76,115 +76,103 @@
       font-style: italic;
       font-size: 1.1rem;
       color: var(--gold);
-      margin-top: 14px;
+      margin-top: 16px;
     }
 
     /* ── COUNTDOWN ── */
-    .countdown-bar {
+    .countdown {
       background: var(--velvet);
-      padding: 28px 0;
+      padding: 32px 0;
       text-align: center;
     }
-    .countdown-bar__label {
+    .countdown__label {
       font-size: 0.72rem;
       letter-spacing: 0.16em;
       text-transform: uppercase;
-      color: rgba(255,255,255,0.7);
-      margin-bottom: 12px;
+      color: rgba(255,255,255,0.65);
+      margin-bottom: 14px;
     }
-    .countdown-units {
+    .countdown__units {
       display: flex;
       justify-content: center;
-      gap: 24px;
+      gap: 20px;
+      flex-wrap: wrap;
     }
-    .countdown-unit {
+    .countdown__unit {
       display: flex;
       flex-direction: column;
       align-items: center;
     }
-    .countdown-unit__num {
+    .countdown__num {
       font-family: var(--ff-head);
-      font-size: 2.6rem;
+      font-size: 2.8rem;
       font-weight: 700;
       color: #fff;
       line-height: 1;
-      min-width: 64px;
+      min-width: 68px;
       text-align: center;
     }
-    .countdown-unit__label {
-      font-size: 0.65rem;
+    .countdown__unit-label {
+      font-size: 0.62rem;
       letter-spacing: 0.12em;
       text-transform: uppercase;
-      color: rgba(255,255,255,0.6);
-      margin-top: 4px;
+      color: rgba(255,255,255,0.55);
+      margin-top: 5px;
     }
-    .countdown-sep {
+    .countdown__sep {
       font-family: var(--ff-head);
-      font-size: 2rem;
-      color: rgba(255,255,255,0.4);
-      line-height: 2.6rem;
+      font-size: 2.2rem;
+      color: rgba(255,255,255,0.3);
+      line-height: 2.8rem;
     }
-    .countdown-ended {
+    .countdown__ended {
       font-family: var(--ff-head);
       font-size: 1.4rem;
       color: #fff;
       font-style: italic;
     }
 
-    /* ── HOW IT WORKS ── */
-    .how {
+    /* ── INTRO ── */
+    .intro {
       padding: 56px 0 40px;
       text-align: center;
     }
-    .how__eyebrow {
+    .intro__eyebrow {
       font-size: 0.72rem;
       letter-spacing: 0.15em;
       text-transform: uppercase;
       color: var(--velvet);
       margin-bottom: 10px;
     }
-    .how__heading {
-      font-family: var(--ff-head);
-      font-size: 1.9rem;
-      font-weight: 700;
-      margin-bottom: 40px;
-    }
-    .how__steps {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-      gap: 32px;
-      text-align: left;
-    }
-    .how__step {
-      background: #fff;
-      border-radius: 8px;
-      padding: 28px 24px;
-      border-top: 3px solid var(--gold);
-    }
-    .how__step-num {
+    .intro__heading {
       font-family: var(--ff-head);
       font-size: 2rem;
       font-weight: 700;
-      color: var(--gold);
-      opacity: 0.5;
-      line-height: 1;
-      margin-bottom: 10px;
+      margin-bottom: 16px;
     }
-    .how__step-title {
-      font-family: var(--ff-head);
-      font-size: 1rem;
-      font-weight: 600;
-      margin-bottom: 6px;
+    .intro__body {
+      max-width: 600px;
+      margin: 0 auto;
+      font-size: 0.95rem;
+      color: #555;
+      line-height: 1.7;
     }
-    .how__step-body {
-      font-size: 0.88rem;
-      color: #666;
-      line-height: 1.5;
+    .intro__note {
+      display: inline-block;
+      margin-top: 20px;
+      background: #fff;
+      border-left: 3px solid var(--gold);
+      padding: 12px 20px;
+      border-radius: 0 6px 6px 0;
+      font-size: 0.85rem;
+      color: #555;
+      text-align: left;
     }
+    .intro__note strong { color: var(--text); }
 
-    /* ── CHARMS SECTION ── */
+    /* ── CHARMS ── */
     .charms {
-      padding: 48px 0;
+      padding: 48px 0 60px;
       background: var(--dark);
     }
     .charms__header {
@@ -202,11 +190,11 @@
       font-family: var(--ff-head);
       font-size: 1.9rem;
       color: #fff;
+      margin-bottom: 8px;
     }
     .charms__sub {
-      font-size: 0.88rem;
-      color: #999;
-      margin-top: 8px;
+      font-size: 0.85rem;
+      color: #888;
     }
     .charms__grid {
       display: grid;
@@ -230,9 +218,6 @@
       aspect-ratio: 1;
       overflow: hidden;
       background: #222;
-      display: flex;
-      align-items: center;
-      justify-content: center;
     }
     .charm-card__img img {
       width: 100%;
@@ -242,9 +227,7 @@
       transition: transform 0.4s;
     }
     .charm-card:hover .charm-card__img img { transform: scale(1.28); }
-    .charm-card__body {
-      padding: 12px;
-    }
+    .charm-card__body { padding: 12px; }
     .charm-card__name {
       font-family: var(--ff-head);
       font-size: 0.82rem;
@@ -258,10 +241,9 @@
       color: var(--gold);
     }
 
-    /* ── ORDER FORM ── */
+    /* ── ORDER SECTION ── */
     .order {
       padding: 64px 0;
-      background: var(--cream);
     }
     .order__inner {
       display: grid;
@@ -272,49 +254,67 @@
     @media (max-width: 720px) {
       .order__inner { grid-template-columns: 1fr; }
     }
-    .order__info-eyebrow {
+    .order__eyebrow {
       font-size: 0.72rem;
       letter-spacing: 0.15em;
       text-transform: uppercase;
       color: var(--velvet);
       margin-bottom: 10px;
     }
-    .order__info-heading {
+    .order__heading {
       font-family: var(--ff-head);
       font-size: 1.8rem;
       font-weight: 700;
       margin-bottom: 16px;
       line-height: 1.2;
     }
-    .order__info-body {
+    .order__body {
       font-size: 0.92rem;
       color: #555;
       margin-bottom: 12px;
       line-height: 1.6;
     }
-    .order__note {
-      background: #fff;
-      border-left: 3px solid var(--gold);
-      padding: 14px 18px;
-      border-radius: 0 6px 6px 0;
-      font-size: 0.85rem;
-      color: #555;
-      margin-top: 20px;
+    .order__steps {
+      margin-top: 24px;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
     }
-    .order__note strong { color: var(--text); }
+    .order__step {
+      display: flex;
+      gap: 14px;
+      align-items: flex-start;
+    }
+    .order__step-num {
+      font-family: var(--ff-head);
+      font-size: 1.4rem;
+      font-weight: 700;
+      color: var(--gold);
+      opacity: 0.6;
+      line-height: 1;
+      flex-shrink: 0;
+      width: 28px;
+    }
+    .order__step-text {
+      font-size: 0.88rem;
+      color: #555;
+      line-height: 1.5;
+    }
+    .order__step-text strong { color: var(--text); }
     .order__form-wrap iframe {
       width: 100%;
       min-height: 700px;
       border: none;
       border-radius: 8px;
+      box-shadow: 0 4px 24px rgba(0,0,0,0.08);
     }
 
-    /* ── SHARE BAR ── */
+    /* ── SHARE ── */
     .share {
       background: var(--dark);
-      padding: 40px 0;
+      padding: 44px 0;
       text-align: center;
-      border-top: 1px solid rgba(201,169,110,0.2);
+      border-top: 1px solid rgba(201,169,110,0.15);
     }
     .share__heading {
       font-family: var(--ff-head);
@@ -324,23 +324,23 @@
     }
     .share__sub {
       font-size: 0.85rem;
-      color: #888;
+      color: #777;
       margin-bottom: 20px;
     }
-    .share__url {
+    .share__link {
       display: inline-block;
       background: #2a2527;
       border: 1px solid rgba(201,169,110,0.3);
       border-radius: 6px;
-      padding: 10px 20px;
+      padding: 11px 22px;
       font-size: 0.88rem;
       color: var(--gold);
-      letter-spacing: 0.03em;
       cursor: pointer;
       transition: border-color 0.2s;
       word-break: break-all;
+      max-width: 90%;
     }
-    .share__url:hover { border-color: var(--gold); }
+    .share__link:hover { border-color: var(--gold); }
     .share__copied {
       font-size: 0.75rem;
       color: #5cb85c;
@@ -358,9 +358,7 @@
       font-size: 0.78rem;
       color: #555;
     }
-    .footer__text a {
-      color: var(--gold);
-    }
+    .footer__text a { color: var(--gold); }
   </style>
 </head>
 <body>
@@ -376,81 +374,76 @@
 </header>
 
 <!-- COUNTDOWN -->
-<div class="countdown-bar">
-  <p class="countdown-bar__label">Fundraiser ends November 30, 2026 — order by</p>
-  <div class="countdown-units" id="countdown-display">
-    <div class="countdown-unit">
-      <div class="countdown-unit__num" id="cd-days">--</div>
-      <div class="countdown-unit__label">Days</div>
+<div class="countdown">
+  <p class="countdown__label">Fundraiser closes November 30, 2026 — order deadline</p>
+  <div class="countdown__units" id="countdown-display">
+    <div class="countdown__unit">
+      <div class="countdown__num" id="cd-days">--</div>
+      <div class="countdown__unit-label">Days</div>
     </div>
-    <div class="countdown-sep">:</div>
-    <div class="countdown-unit">
-      <div class="countdown-unit__num" id="cd-hours">--</div>
-      <div class="countdown-unit__label">Hours</div>
+    <div class="countdown__sep">:</div>
+    <div class="countdown__unit">
+      <div class="countdown__num" id="cd-hours">--</div>
+      <div class="countdown__unit-label">Hours</div>
     </div>
-    <div class="countdown-sep">:</div>
-    <div class="countdown-unit">
-      <div class="countdown-unit__num" id="cd-mins">--</div>
-      <div class="countdown-unit__label">Minutes</div>
+    <div class="countdown__sep">:</div>
+    <div class="countdown__unit">
+      <div class="countdown__num" id="cd-mins">--</div>
+      <div class="countdown__unit-label">Minutes</div>
     </div>
-    <div class="countdown-sep">:</div>
-    <div class="countdown-unit">
-      <div class="countdown-unit__num" id="cd-secs">--</div>
-      <div class="countdown-unit__label">Seconds</div>
+    <div class="countdown__sep">:</div>
+    <div class="countdown__unit">
+      <div class="countdown__num" id="cd-secs">--</div>
+      <div class="countdown__unit-label">Seconds</div>
     </div>
   </div>
 </div>
 
-<!-- HOW IT WORKS -->
-<section class="how">
+<!-- INTRO -->
+<section class="intro">
   <div class="container">
-    <p class="how__eyebrow">How it works</p>
-    <h2 class="how__heading">Three simple steps</h2>
-    <div class="how__steps">
-      <div class="how__step">
-        <div class="how__step-num">01</div>
-        <div class="how__step-title">Choose your charm</div>
-        <p class="how__step-body">Browse the charms below and pick the one that matches your dancer's role in this year's Nutcracker.</p>
-      </div>
-      <div class="how__step">
-        <div class="how__step-num">02</div>
-        <div class="how__step-title">Submit your order</div>
-        <p class="how__step-body">Fill out the order form below with your dancer's name and the charm you'd like. Pay your studio directly by cash or check.</p>
-      </div>
-      <div class="how__step">
-        <div class="how__step-num">03</div>
-        <div class="how__step-title">Pick up at the studio</div>
-        <p class="how__step-body">Charms are delivered directly to Ballet Études and handed out at the studio — usually within two weeks of the campaign close.</p>
-      </div>
+    <p class="intro__eyebrow">Ballet Études Nutcracker Fundraiser</p>
+    <h2 class="intro__heading">A charm for every role your dancer earned.</h2>
+    <p class="intro__body">Each sterling silver charm represents a specific character in this year's Nutcracker. Browse the roles below, place your order, and bring payment directly to the studio.</p>
+    <div class="intro__note">
+      <strong>Payment is made to the studio — not online.</strong> Bring cash or a check made out to Ballet Études. Every dollar goes directly to supporting our production.
     </div>
   </div>
 </section>
 
-<!-- CHARMS AVAILABLE -->
+<!-- CHARMS -->
 <section class="charms">
   <div class="container">
     <div class="charms__header">
-      <p class="charms__eyebrow">Available for this campaign</p>
+      <p class="charms__eyebrow">Sterling silver · Designed by dancers</p>
       <h2 class="charms__heading">Choose your dancer's role</h2>
       <p class="charms__sub">All charms are sterling silver. Prices set by Ballet Études.</p>
     </div>
-    <div class="charms__grid" id="charms-grid">
-      <!-- Charms inserted by JS -->
-    </div>
+    <div class="charms__grid" id="charms-grid"></div>
   </div>
 </section>
 
-<!-- ORDER FORM -->
+<!-- ORDER -->
 <section class="order">
   <div class="container">
     <div class="order__inner">
       <div>
-        <p class="order__info-eyebrow">Place Your Order</p>
-        <h2 class="order__info-heading">Ready to order?</h2>
-        <p class="order__info-body">Fill out the form to the right. One form per dancer is fine — you can list multiple charms in the notes field.</p>
-        <p class="order__info-body">Your order goes directly to Ballet Études. Please bring payment to the studio by <strong>November 25, 2026</strong>.</p>
-        <div class="order__note">
-          <strong>Payment is made to the studio — not online.</strong> Bring cash or a check made out to Ballet Études. This keeps every dollar of the fundraiser profit with your school.
+        <p class="order__eyebrow">Place Your Order</p>
+        <h2 class="order__heading">Ready to order?</h2>
+        <p class="order__body">Fill out the form with your dancer's information and the charm you'd like. It only takes a minute.</p>
+        <div class="order__steps">
+          <div class="order__step">
+            <div class="order__step-num">1</div>
+            <div class="order__step-text"><strong>Fill out the form</strong> with your name, your dancer's name, and the charm you're ordering.</div>
+          </div>
+          <div class="order__step">
+            <div class="order__step-num">2</div>
+            <div class="order__step-text"><strong>Bring payment to the studio</strong> by November 25, 2026. Cash or check made out to Ballet Études.</div>
+          </div>
+          <div class="order__step">
+            <div class="order__step-num">3</div>
+            <div class="order__step-text"><strong>Pick up your charm</strong> at the studio — delivered within two weeks after the campaign closes.</div>
+          </div>
         </div>
       </div>
       <div class="order__form-wrap">
@@ -467,12 +460,12 @@
   </div>
 </section>
 
-<!-- SHARE BAR -->
+<!-- SHARE -->
 <section class="share">
   <div class="container">
     <h2 class="share__heading">Share this page with Ballet Études families</h2>
-    <p class="share__sub">Click the link below to copy it — then paste it in an email, text, or your school's Facebook page.</p>
-    <div class="share__url" onclick="copyLink()" id="share-url">Loading link…</div>
+    <p class="share__sub">Tap the link to copy it — paste it in a text, email, or your school Facebook group.</p>
+    <div class="share__link" onclick="copyLink()" id="share-link">Loading…</div>
     <p class="share__copied" id="copy-msg"></p>
   </div>
 </section>
@@ -481,21 +474,19 @@
 <footer class="footer">
   <div class="container">
     <p class="footer__text">
-      Charms by <a href="https://www.nutcrackerjewelry.com" target="_blank">Nutcracker Jewelry</a> — Designed by dancers, for dancers since 1996. &nbsp;|&nbsp; A brand of Incentives Inc., Simpsonville, SC
+      Charms by <a href="https://www.nutcrackerjewelry.com" target="_blank">Nutcracker Jewelry</a> — Designed by dancers, for dancers since 1996. &nbsp;|&nbsp; Incentives Inc., Simpsonville, SC
     </p>
   </div>
 </footer>
 
 <script>
-// ── Countdown Clock ──
+// ── Countdown ──
 const END_DATE = new Date('2026-11-30T23:59:59');
-
-function updateCountdown() {
-  const now  = new Date();
-  const diff = END_DATE - now;
+function tick() {
+  const diff = END_DATE - new Date();
   if (diff <= 0) {
     document.getElementById('countdown-display').innerHTML =
-      '<p class="countdown-ended">This fundraiser has ended. Thank you!</p>';
+      '<p class="countdown__ended">This fundraiser has ended. Thank you!</p>';
     return;
   }
   const d = Math.floor(diff / 86400000);
@@ -507,28 +498,27 @@ function updateCountdown() {
   document.getElementById('cd-mins').textContent  = String(m).padStart(2,'0');
   document.getElementById('cd-secs').textContent  = String(s).padStart(2,'0');
 }
-updateCountdown();
-setInterval(updateCountdown, 1000);
+tick();
+setInterval(tick, 1000);
 
-// ── Charms for this school's campaign ──
-// (Edit this list to match the charms the school selected and their prices)
+// ── Charm catalog for this school ──
+// Edit name, img, and price for each charm this school is selling
 const CHARMS = [
-  { name: 'Clara',                img: 'NS-C101_Clara.png',                price: '$32' },
-  { name: 'Fritz',                img: 'NS-C102_Fritz.png',                price: '$32' },
-  { name: 'Girl at the Party',    img: 'NS-C106_Girl_At_The_Party.png',    price: '$32' },
-  { name: 'Boy at the Party',     img: 'NS-C107_Boy_At_The_Party.png',     price: '$32' },
-  { name: 'Drosselmeier',         img: 'NS-C108_Drosselmeier.png',         price: '$32' },
-  { name: 'Small Mouse',          img: 'NS-C115_SmallMouse.png',           price: '$32' },
-  { name: 'Mouse King',           img: 'NS-C116_MouseKing.png',            price: '$32' },
-  { name: 'Nutcracker',           img: 'NS-C118_Nutcracker.png',           price: '$32' },
-  { name: 'Toy Soldier',          img: 'NS-C114_ToySoldier.png',           price: '$32' },
-  { name: 'Snowflake',            img: 'NS-C122_Snowflake.png',            price: '$32' },
-  { name: 'Sugar Plum Fairy',     img: 'NS-C125_Sugar_Plum_Fairy.png',    price: '$32' },
-  { name: 'Angel',                img: 'NS-C124_Angel.png',                price: '$32' },
+  { name: 'Clara',             img: 'NS-C101_Clara.png',                price: '$32' },
+  { name: 'Fritz',             img: 'NS-C102_Fritz.png',                price: '$32' },
+  { name: 'Girl at the Party', img: 'NS-C106_Girl_At_The_Party.png',    price: '$32' },
+  { name: 'Boy at the Party',  img: 'NS-C107_Boy_At_The_Party.png',     price: '$32' },
+  { name: 'Drosselmeier',      img: 'NS-C108_Drosselmeier.png',         price: '$32' },
+  { name: 'Small Mouse',       img: 'NS-C115_SmallMouse.png',           price: '$32' },
+  { name: 'Mouse King',        img: 'NS-C116_MouseKing.png',            price: '$32' },
+  { name: 'Nutcracker',        img: 'NS-C118_Nutcracker.png',           price: '$32' },
+  { name: 'Toy Soldier',       img: 'NS-C114_ToySoldier.png',           price: '$32' },
+  { name: 'Snowflake',         img: 'NS-C122_Snowflake.png',            price: '$32' },
+  { name: 'Sugar Plum Fairy',  img: 'NS-C125_Sugar_Plum_Fairy.png',    price: '$32' },
+  { name: 'Angel',             img: 'NS-C124_Angel.png',                price: '$32' },
 ];
 
-const grid = document.getElementById('charms-grid');
-grid.innerHTML = CHARMS.map(c => `
+document.getElementById('charms-grid').innerHTML = CHARMS.map(c => `
   <div class="charm-card">
     <div class="charm-card__img"><img src="${c.img}" alt="${c.name}" loading="lazy" /></div>
     <div class="charm-card__body">
@@ -538,12 +528,10 @@ grid.innerHTML = CHARMS.map(c => `
   </div>`).join('');
 
 // ── Share link ──
-const shareUrl = window.location.href;
-document.getElementById('share-url').textContent = shareUrl;
-
+document.getElementById('share-link').textContent = window.location.href;
 function copyLink() {
-  navigator.clipboard.writeText(shareUrl).then(() => {
-    document.getElementById('copy-msg').textContent = '✓ Link copied to clipboard!';
+  navigator.clipboard.writeText(window.location.href).then(() => {
+    document.getElementById('copy-msg').textContent = '✓ Link copied!';
     setTimeout(() => document.getElementById('copy-msg').textContent = '', 3000);
   });
 }
