@@ -583,31 +583,33 @@
   <div class="container">
     <div class="page-title">
       <h1>Profit Calculator</h1>
-      <p>Estimate fundraiser earnings — automatically adjusts for the campaign month discount.</p>
+      <p>Estimate fundraiser earnings — adjust product type and selling price to model any scenario.</p>
     </div>
 
     <div class="calc-banner">
       <div class="calc-banner__icon">💎</div>
       <div>
         <div class="calc-banner__title">Early Sign-Up = More Profit for Schools</div>
-        <div class="calc-banner__sub">The sooner a school runs their campaign, the bigger the discount off our $23 wholesale price — and the more money they raise.</div>
+        <div class="calc-banner__sub">The sooner a school runs their campaign, the bigger the discount — and the more money they raise. Minimum floor price is $13.80.</div>
       </div>
     </div>
 
-    <!-- Tier table + active-tier stats -->
+    <!-- Tier table + active stats -->
     <div class="calc-grid">
       <div class="card" style="margin-bottom:0">
         <div class="card__heading">Discount Tiers by Campaign Month</div>
         <table class="tier-table" id="tier-table">
-          <thead><tr><th>Campaign Month</th><th>Discount</th><th>Your Cost</th><th>Profit/Charm</th></tr></thead>
+          <thead>
+            <tr><th>Month</th><th>Discount</th><th>Standard Cost</th><th>Slippers/Pointe</th><th>Bracelet/LL</th></tr>
+          </thead>
           <tbody>
-            <tr data-month="8"><td>August</td><td>40% off</td><td>$13.80</td><td>$18.20</td></tr>
-            <tr data-month="9"><td>September</td><td>30% off</td><td>$16.10</td><td>$15.90</td></tr>
-            <tr data-month="10"><td>October</td><td>20% off</td><td>$18.40</td><td>$13.60</td></tr>
-            <tr data-month="11"><td>November</td><td>10% off</td><td>$20.70</td><td>$11.30</td></tr>
+            <tr data-month="8"><td>August</td><td>40% off</td><td>$13.80</td><td>$15.60</td><td>$23.00</td></tr>
+            <tr data-month="9"><td>September</td><td>30% off</td><td>$16.10</td><td>$18.20</td><td>$23.00</td></tr>
+            <tr data-month="10"><td>October</td><td>20% off</td><td>$18.40</td><td>$20.80</td><td>$23.00</td></tr>
+            <tr data-month="11"><td>November</td><td>10% off</td><td>$20.70</td><td>$23.40</td><td>$23.00</td></tr>
           </tbody>
         </table>
-        <p class="calc-note" style="margin-top:12px">Wholesale base price: $23.00 · Retail price: $32.00</p>
+        <p class="calc-note" style="margin-top:12px">Standard wholesale: $23.00 · Ballet Slippers/Pointe: $26.00 · Bracelets/Link Locks: $23.00 (no discount) · Retail floor: $13.80</p>
       </div>
 
       <div>
@@ -620,7 +622,7 @@
           <div class="calc-stat">
             <div class="calc-stat__label">School Pays You</div>
             <div class="calc-stat__value" id="calc-cost">—</div>
-            <div class="calc-stat__sub">per charm</div>
+            <div class="calc-stat__sub" id="calc-cost-type">per charm</div>
           </div>
           <div class="calc-stat">
             <div class="calc-stat__label">School's Profit</div>
@@ -629,6 +631,27 @@
           </div>
         </div>
       </div>
+    </div>
+
+    <!-- Inputs -->
+    <div class="card">
+      <div class="card__heading">Configure Your Scenario</div>
+
+      <div class="calc-input-row">
+        <label>Product type</label>
+        <select id="calc-product-type" onchange="refreshCalculator()" style="padding:8px 12px;border:1px solid var(--cream);border-radius:6px;font-family:inherit;font-size:1rem;background:#fff;min-width:220px">
+          <option value="standard">Standard Charm ($23 base)</option>
+          <option value="special">Ballet Slippers / Pointe ($26 base)</option>
+          <option value="bracelet">Bracelet / Link Lock (no discount)</option>
+        </select>
+      </div>
+
+      <div class="calc-input-row">
+        <label>School's selling price ($)</label>
+        <input type="number" id="calc-sell-price" value="35" min="1" step="1" oninput="recalc()" />
+        <span id="calc-price-warning" style="font-size:0.82rem;color:#c0392b;font-weight:600;display:none">⚠ Below recommended minimum</span>
+      </div>
+      <p class="calc-note" id="calc-rec-note" style="margin-top:4px">Recommended minimum: calculating…</p>
     </div>
 
     <!-- Profit estimator -->
@@ -643,7 +666,7 @@
         <div class="calc-result__label">Estimated total profit for the school</div>
         <div class="calc-result__value" id="calc-total-profit">—</div>
       </div>
-      <p class="calc-note">Based on the campaign month discount and $32.00 retail price. Actual results depend on charms sold.</p>
+      <p class="calc-note">Based on the selected product type, campaign month discount, and your selling price.</p>
     </div>
 
     <!-- Goal calculator -->
@@ -659,6 +682,22 @@
         <div class="calc-result__value" id="calc-goal-units">—</div>
       </div>
       <p class="calc-note">Round up — it's always better to over-sell than fall short!</p>
+    </div>
+
+    <!-- Recommended pricing rails -->
+    <div class="card">
+      <div class="card__heading">Recommended Pricing Rails</div>
+      <p style="font-size:0.88rem;color:#666;margin-bottom:16px">Guidelines to protect your brand and ensure schools make a healthy profit.</p>
+      <table class="tier-table">
+        <thead><tr><th>Product</th><th>Min. School Price</th><th>Recommended SRP</th><th>Retail Price (Direct)</th></tr></thead>
+        <tbody>
+          <tr><td>Standard Charms</td><td>$28.00</td><td>$35.00</td><td>$35.00 (max 20% off)</td></tr>
+          <tr><td>Ballet Slippers / Pointe Shoes</td><td>$30.00</td><td>$38.00</td><td>$38.00 (max 15% off)</td></tr>
+          <tr><td>Bracelets / Link Locks</td><td>$30.00</td><td>$42.00</td><td>$42.00 (no promo)</td></tr>
+          <tr><td>Earrings</td><td>$25.00</td><td>$32.00</td><td>$32.00 (max 15% off)</td></tr>
+        </tbody>
+      </table>
+      <p class="calc-note" style="margin-top:10px">Retail discounts should never bring the price below what school fundraiser parents are paying. Absolute price floor: $13.80.</p>
     </div>
 
   </div>
@@ -872,58 +911,104 @@ function showView(view) {
   if (view === 'calculator') refreshCalculator();
 }
 
-// ── Discount tiers ──
-const TIERS = {
-  8:  { discount: 0.40, cost: 13.80, profit: 18.20, label: 'August'    },
-  9:  { discount: 0.30, cost: 16.10, profit: 15.90, label: 'September' },
-  10: { discount: 0.20, cost: 18.40, profit: 13.60, label: 'October'   },
-  11: { discount: 0.10, cost: 20.70, profit: 11.30, label: 'November'  },
+// ── Discount tiers & product types ──
+const TIER_DISCOUNTS = {
+  8: { label:'August',    pct:0.40 },
+  9: { label:'September', pct:0.30 },
+  10:{ label:'October',   pct:0.20 },
+  11:{ label:'November',  pct:0.10 },
 };
 
+const PRODUCT_TYPES = {
+  standard: { base:23.00, minPrice:28, recPrice:35, label:'Standard Charm',            discounted:true  },
+  special:  { base:26.00, minPrice:30, recPrice:38, label:'Ballet Slippers / Pointe',  discounted:true  },
+  bracelet: { base:23.00, minPrice:30, recPrice:42, label:'Bracelet / Link Lock',       discounted:false },
+};
+
+const FLOOR = 13.80;
+
+function getCalcState() {
+  const startVal   = document.getElementById('campaign-start').value;
+  const month      = startVal ? new Date(startVal + 'T12:00:00').getMonth() + 1 : null;
+  const tierInfo   = TIER_DISCOUNTS[month] || null;
+  const prodType   = document.getElementById('calc-product-type').value;
+  const prod       = PRODUCT_TYPES[prodType];
+  let   cost;
+  if (!prod.discounted || !tierInfo) {
+    cost = prod.base;
+  } else {
+    cost = prod.base * (1 - tierInfo.pct);
+    cost = Math.max(cost, FLOOR);
+  }
+  return { month, tierInfo, prod, cost, prodType };
+}
+
 function refreshCalculator() {
-  const startVal = document.getElementById('campaign-start').value;
-  const month    = startVal ? new Date(startVal + 'T12:00:00').getMonth() + 1 : null;
-  const tier     = TIERS[month] || null;
+  const { month, tierInfo, prod, cost } = getCalcState();
 
   // Highlight active tier row
   document.querySelectorAll('#tier-table tbody tr').forEach(tr => {
-    tr.classList.toggle('active-tier', tier && parseInt(tr.dataset.month) === month);
+    tr.classList.toggle('active-tier', tierInfo && parseInt(tr.dataset.month) === month);
   });
 
-  if (tier) {
-    document.getElementById('calc-month-name').textContent = tier.label;
-    document.getElementById('calc-month-sub').textContent  = tier.discount * 100 + '% discount applied';
-    document.getElementById('calc-cost').textContent       = '$' + tier.cost.toFixed(2);
-    document.getElementById('calc-profit-per').textContent = '$' + tier.profit.toFixed(2);
+  if (tierInfo) {
+    document.getElementById('calc-month-name').textContent = tierInfo.label;
+    document.getElementById('calc-month-sub').textContent  = (tierInfo.pct * 100) + '% discount applied';
   } else {
     document.getElementById('calc-month-name').textContent = '—';
     document.getElementById('calc-month-sub').textContent  = month
-      ? 'No discount available for this month (use Aug–Nov)'
+      ? 'No discount for this month (Aug–Nov only)'
       : 'Enter a campaign start date in School Setup';
-    document.getElementById('calc-cost').textContent       = '—';
-    document.getElementById('calc-profit-per').textContent = '—';
   }
-  recalc(tier);
+
+  document.getElementById('calc-cost').textContent      = '$' + cost.toFixed(2);
+  document.getElementById('calc-cost-type').textContent = prod.label;
+
+  // Update recommended price note
+  document.getElementById('calc-rec-note').textContent =
+    `Recommended minimum: $${prod.minPrice.toFixed(2)} · Suggested retail: $${prod.recPrice.toFixed(2)}`;
+
+  // Set default sell price to recommended if empty / first load
+  const sellInput = document.getElementById('calc-sell-price');
+  if (!sellInput.dataset.touched) sellInput.value = prod.recPrice;
+
+  recalc();
 }
 
-function recalc(tier) {
-  if (!tier) {
-    const startVal = document.getElementById('campaign-start').value;
-    const month    = startVal ? new Date(startVal + 'T12:00:00').getMonth() + 1 : null;
-    tier = TIERS[month] || null;
-  }
-  if (!tier) {
-    document.getElementById('calc-total-profit').textContent = 'Set a campaign date first';
-    document.getElementById('calc-goal-units').textContent   = 'Set a campaign date first';
+function recalc() {
+  const { prod, cost } = getCalcState();
+  const sellPrice   = parseFloat(document.getElementById('calc-sell-price').value) || 0;
+  const profitPer   = sellPrice - cost;
+  const units       = parseInt(document.getElementById('est-units').value) || 0;
+  const goal        = parseFloat(document.getElementById('goal-amount').value) || 0;
+
+  // Warn if below minimum
+  const warning = document.getElementById('calc-price-warning');
+  warning.style.display = sellPrice > 0 && sellPrice < prod.minPrice ? '' : 'none';
+
+  document.getElementById('calc-profit-per').textContent =
+    profitPer >= 0 ? '$' + profitPer.toFixed(2) : '-$' + Math.abs(profitPer).toFixed(2);
+
+  if (profitPer <= 0) {
+    document.getElementById('calc-total-profit').textContent = 'Increase selling price';
+    document.getElementById('calc-goal-units').textContent   = '—';
     return;
   }
-  const units = parseInt(document.getElementById('est-units').value) || 0;
-  const goal  = parseFloat(document.getElementById('goal-amount').value) || 0;
-  const totalProfit = units * tier.profit;
-  const charmsNeeded = Math.ceil(goal / tier.profit);
-  document.getElementById('calc-total-profit').textContent = '$' + totalProfit.toLocaleString('en-US', {minimumFractionDigits:2, maximumFractionDigits:2});
-  document.getElementById('calc-goal-units').textContent   = charmsNeeded.toLocaleString() + ' charms';
+
+  const totalProfit  = units * profitPer;
+  const charmsNeeded = Math.ceil(goal / profitPer);
+  document.getElementById('calc-total-profit').textContent =
+    '$' + totalProfit.toLocaleString('en-US', {minimumFractionDigits:2, maximumFractionDigits:2});
+  document.getElementById('calc-goal-units').textContent = charmsNeeded.toLocaleString() + ' charms';
 }
+
+// Mark sell price as touched when user edits it
+document.addEventListener('DOMContentLoaded', () => {
+  document.getElementById('calc-sell-price').addEventListener('input', function() {
+    this.dataset.touched = '1';
+    recalc();
+  });
+});
 
 // ── Get current config ──
 function getConfig() {
