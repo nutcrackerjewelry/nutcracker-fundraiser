@@ -289,6 +289,31 @@
     }
     .btn-generate:hover { background: #7d0f1f; transform: translateY(-1px); }
 
+    /* ── CALCULATOR VIEW ── */
+    #view-calculator { display: none; }
+    .calc-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin-bottom: 28px; }
+    @media (max-width: 700px) { .calc-grid { grid-template-columns: 1fr; } }
+    .tier-table { width: 100%; border-collapse: collapse; margin-top: 16px; }
+    .tier-table th { background: var(--dark); color: #fff; padding: 10px 14px; font-size: 0.82rem; text-align: left; }
+    .tier-table td { padding: 10px 14px; font-size: 0.88rem; border-bottom: 1px solid var(--cream); }
+    .tier-table tr.active-tier { background: #fff8ee; font-weight: 700; }
+    .tier-table tr.active-tier td:first-child::after { content: '  ← your campaign'; color: var(--gold); font-size: 0.78rem; font-weight: 400; }
+    .calc-stat { background: var(--parchment); border-radius: 10px; padding: 20px 24px; border: 1px solid var(--cream); }
+    .calc-stat__label { font-size: 0.78rem; letter-spacing: 0.07em; text-transform: uppercase; color: #888; margin-bottom: 6px; }
+    .calc-stat__value { font-family: var(--ff-head); font-size: 2rem; font-weight: 700; color: var(--velvet); }
+    .calc-stat__sub { font-size: 0.8rem; color: #777; margin-top: 4px; }
+    .calc-input-row { display: flex; align-items: center; gap: 14px; margin: 18px 0 10px; }
+    .calc-input-row label { font-size: 0.88rem; font-weight: 600; min-width: 200px; }
+    .calc-input-row input { width: 120px; padding: 8px 12px; border: 1px solid var(--cream); border-radius: 6px; font-size: 1rem; font-family: var(--ff-body); background: #fff; }
+    .calc-result { margin-top: 14px; padding: 16px 20px; background: var(--velvet); color: #fff; border-radius: 10px; }
+    .calc-result__label { font-size: 0.8rem; opacity: 0.8; margin-bottom: 4px; }
+    .calc-result__value { font-family: var(--ff-head); font-size: 2.2rem; font-weight: 700; }
+    .calc-note { font-size: 0.82rem; color: #777; margin-top: 8px; }
+    .calc-banner { background: linear-gradient(135deg, var(--velvet), #6B0F1E); color: #fff; border-radius: 12px; padding: 24px 28px; margin-bottom: 28px; display: flex; align-items: center; gap: 20px; }
+    .calc-banner__icon { font-size: 2.4rem; }
+    .calc-banner__title { font-family: var(--ff-head); font-size: 1.3rem; font-weight: 700; margin-bottom: 4px; }
+    .calc-banner__sub { font-size: 0.88rem; opacity: 0.85; }
+
     /* ── PREVIEW VIEW ── */
     #view-preview { display: none; }
     .preview-bar {
@@ -476,6 +501,7 @@
   </div>
   <div class="tab-bar">
     <button class="tab-btn active" onclick="showView('setup')">⚙ School Setup</button>
+    <button class="tab-btn" onclick="showView('calculator')">💰 Profit Calculator</button>
     <button class="tab-btn" onclick="previewStorefront()">👁 Parent Storefront</button>
   </div>
 </header>
@@ -552,6 +578,92 @@
   </div>
 </div>
 
+<!-- CALCULATOR VIEW -->
+<div id="view-calculator">
+  <div class="container">
+    <div class="page-title">
+      <h1>Profit Calculator</h1>
+      <p>Estimate fundraiser earnings — automatically adjusts for the campaign month discount.</p>
+    </div>
+
+    <div class="calc-banner">
+      <div class="calc-banner__icon">💎</div>
+      <div>
+        <div class="calc-banner__title">Early Sign-Up = More Profit for Schools</div>
+        <div class="calc-banner__sub">The sooner a school runs their campaign, the bigger the discount off our $23 wholesale price — and the more money they raise.</div>
+      </div>
+    </div>
+
+    <!-- Tier table + active-tier stats -->
+    <div class="calc-grid">
+      <div class="card" style="margin-bottom:0">
+        <div class="card__heading">Discount Tiers by Campaign Month</div>
+        <table class="tier-table" id="tier-table">
+          <thead><tr><th>Campaign Month</th><th>Discount</th><th>Your Cost</th><th>Profit/Charm</th></tr></thead>
+          <tbody>
+            <tr data-month="8"><td>August</td><td>40% off</td><td>$13.80</td><td>$18.20</td></tr>
+            <tr data-month="9"><td>September</td><td>30% off</td><td>$16.10</td><td>$15.90</td></tr>
+            <tr data-month="10"><td>October</td><td>20% off</td><td>$18.40</td><td>$13.60</td></tr>
+            <tr data-month="11"><td>November</td><td>10% off</td><td>$20.70</td><td>$11.30</td></tr>
+          </tbody>
+        </table>
+        <p class="calc-note" style="margin-top:12px">Wholesale base price: $23.00 · Retail price: $32.00</p>
+      </div>
+
+      <div>
+        <div class="calc-stat" style="margin-bottom:16px">
+          <div class="calc-stat__label">Campaign Month</div>
+          <div class="calc-stat__value" id="calc-month-name">—</div>
+          <div class="calc-stat__sub" id="calc-month-sub">Enter a campaign start date in School Setup</div>
+        </div>
+        <div class="calc-grid" style="margin-bottom:0; gap:14px">
+          <div class="calc-stat">
+            <div class="calc-stat__label">School Pays You</div>
+            <div class="calc-stat__value" id="calc-cost">—</div>
+            <div class="calc-stat__sub">per charm</div>
+          </div>
+          <div class="calc-stat">
+            <div class="calc-stat__label">School's Profit</div>
+            <div class="calc-stat__value" id="calc-profit-per">—</div>
+            <div class="calc-stat__sub">per charm sold</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Profit estimator -->
+    <div class="card">
+      <div class="card__heading">Projected Earnings Estimator</div>
+      <p style="font-size:0.88rem;color:#666;margin-bottom:8px">How many charms does the school expect to sell?</p>
+      <div class="calc-input-row">
+        <label>Estimated charms sold</label>
+        <input type="number" id="est-units" value="50" min="1" oninput="recalc()" />
+      </div>
+      <div class="calc-result">
+        <div class="calc-result__label">Estimated total profit for the school</div>
+        <div class="calc-result__value" id="calc-total-profit">—</div>
+      </div>
+      <p class="calc-note">Based on the campaign month discount and $32.00 retail price. Actual results depend on charms sold.</p>
+    </div>
+
+    <!-- Goal calculator -->
+    <div class="card">
+      <div class="card__heading">Fundraising Goal Calculator</div>
+      <p style="font-size:0.88rem;color:#666;margin-bottom:8px">How much does the school want to raise?</p>
+      <div class="calc-input-row">
+        <label>Fundraising goal ($)</label>
+        <input type="number" id="goal-amount" value="1000" min="1" oninput="recalc()" />
+      </div>
+      <div class="calc-result">
+        <div class="calc-result__label">Charms needed to reach goal</div>
+        <div class="calc-result__value" id="calc-goal-units">—</div>
+      </div>
+      <p class="calc-note">Round up — it's always better to over-sell than fall short!</p>
+    </div>
+
+  </div>
+</div>
+
 <!-- PREVIEW VIEW -->
 <div id="view-preview">
   <div class="preview-bar">
@@ -608,7 +720,7 @@ const MASTER_CATALOG = [
   // Nutcracker Charms
   { code:'NS-C101', name:'Clara / Maria',               img:'NS-C101_Clara.png',                  price:32, group:'ns-charms' },
   { code:'NS-C102', name:'Fritz',                       img:'NS-C102_Fritz.png',                  price:32, group:'ns-charms' },
-  { code:'NS-C103', name:'Lady at Party / Mother',      img:null,                                 price:32, group:'ns-charms' },
+  { code:'NS-C103', name:'Lady at Party / Mother',      img:'NS-C103_Lady at Party.png',          price:32, group:'ns-charms' },
   { code:'NS-C104', name:'Gentleman at Party / Father', img:'NS-C104_Gentleman_At_The_Party.png', price:32, group:'ns-charms' },
   { code:'NS-C105', name:'Nurse / Maid',                img:'NS-C105_Nurse_Maid.png',             price:32, group:'ns-charms' },
   { code:'NS-C106', name:'Girl at the Party',           img:'NS-C106_Girl_At_The_Party.png',      price:32, group:'ns-charms' },
@@ -675,11 +787,12 @@ const MASTER_CATALOG = [
   { code:'DS-E251', name:'Contemp. Attitude Earrings',  img:'DS-E251_Contemporary_Attitude_Tag_Earrings.png',   price:32, group:'ds-earrings' },
   { code:'DS-E254', name:'Modern Attitude Earrings',    img:'DS-E254_Modern_Attitude_Tag_Earrings.png',         price:32, group:'ds-earrings' },
   // Accessories
-  { code:'B301',  name:'Silver 7" Bracelet',   img:null, price:35, group:'accessories' },
+  { code:'B301',  name:'Silver 7" Bracelet',   img:'B301_7_Bracelet.png',  price:35, group:'accessories' },
+  { code:'LL340', name:'Link Locks',            img:'LL340_Link_Locks.png', price:32, group:'accessories' },
   { code:'N310',  name:'Silver 16" Box Chain', img:null, price:15, group:'accessories' },
   { code:'N312',  name:'Silver 16" Rope Chain',img:null, price:14, group:'accessories' },
   { code:'BP320', name:'3-Bragging Pin',        img:null, price:2,  group:'accessories' },
-  { code:'BP322', name:'5-Bragging Pin',        img:null, price:3,  group:'accessories' },
+  { code:'BP322', name:'5-Bragging Pin',        img:'BP322_Brag_Pin.png',   price:3,  group:'accessories' },
 ];
 
 // ── Build charm grid ──
@@ -749,11 +862,67 @@ function updateCount() {
 
 // ── View switching ──
 function showView(view) {
-  document.getElementById('view-setup').style.display   = view === 'setup'   ? '' : 'none';
-  document.getElementById('view-preview').style.display = view === 'preview' ? '' : 'none';
+  document.getElementById('view-setup').style.display       = view === 'setup'       ? '' : 'none';
+  document.getElementById('view-calculator').style.display  = view === 'calculator'  ? '' : 'none';
+  document.getElementById('view-preview').style.display     = view === 'preview'     ? '' : 'none';
+  const views = ['setup', 'calculator', 'preview'];
   document.querySelectorAll('.tab-btn').forEach((b, i) => {
-    b.classList.toggle('active', (i === 0 && view === 'setup') || (i === 1 && view === 'preview'));
+    b.classList.toggle('active', views[i] === view);
   });
+  if (view === 'calculator') refreshCalculator();
+}
+
+// ── Discount tiers ──
+const TIERS = {
+  8:  { discount: 0.40, cost: 13.80, profit: 18.20, label: 'August'    },
+  9:  { discount: 0.30, cost: 16.10, profit: 15.90, label: 'September' },
+  10: { discount: 0.20, cost: 18.40, profit: 13.60, label: 'October'   },
+  11: { discount: 0.10, cost: 20.70, profit: 11.30, label: 'November'  },
+};
+
+function refreshCalculator() {
+  const startVal = document.getElementById('campaign-start').value;
+  const month    = startVal ? new Date(startVal + 'T12:00:00').getMonth() + 1 : null;
+  const tier     = TIERS[month] || null;
+
+  // Highlight active tier row
+  document.querySelectorAll('#tier-table tbody tr').forEach(tr => {
+    tr.classList.toggle('active-tier', tier && parseInt(tr.dataset.month) === month);
+  });
+
+  if (tier) {
+    document.getElementById('calc-month-name').textContent = tier.label;
+    document.getElementById('calc-month-sub').textContent  = tier.discount * 100 + '% discount applied';
+    document.getElementById('calc-cost').textContent       = '$' + tier.cost.toFixed(2);
+    document.getElementById('calc-profit-per').textContent = '$' + tier.profit.toFixed(2);
+  } else {
+    document.getElementById('calc-month-name').textContent = '—';
+    document.getElementById('calc-month-sub').textContent  = month
+      ? 'No discount available for this month (use Aug–Nov)'
+      : 'Enter a campaign start date in School Setup';
+    document.getElementById('calc-cost').textContent       = '—';
+    document.getElementById('calc-profit-per').textContent = '—';
+  }
+  recalc(tier);
+}
+
+function recalc(tier) {
+  if (!tier) {
+    const startVal = document.getElementById('campaign-start').value;
+    const month    = startVal ? new Date(startVal + 'T12:00:00').getMonth() + 1 : null;
+    tier = TIERS[month] || null;
+  }
+  if (!tier) {
+    document.getElementById('calc-total-profit').textContent = 'Set a campaign date first';
+    document.getElementById('calc-goal-units').textContent   = 'Set a campaign date first';
+    return;
+  }
+  const units = parseInt(document.getElementById('est-units').value) || 0;
+  const goal  = parseFloat(document.getElementById('goal-amount').value) || 0;
+  const totalProfit = units * tier.profit;
+  const charmsNeeded = Math.ceil(goal / tier.profit);
+  document.getElementById('calc-total-profit').textContent = '$' + totalProfit.toLocaleString('en-US', {minimumFractionDigits:2, maximumFractionDigits:2});
+  document.getElementById('calc-goal-units').textContent   = charmsNeeded.toLocaleString() + ' charms';
 }
 
 // ── Get current config ──
