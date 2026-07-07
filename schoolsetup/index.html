@@ -901,9 +901,9 @@ function updateCount() {
 
 // ── View switching ──
 function showView(view) {
-  document.getElementById('view-setup').style.display       = view === 'setup'       ? '' : 'none';
-  document.getElementById('view-calculator').style.display  = view === 'calculator'  ? '' : 'none';
-  document.getElementById('view-preview').style.display     = view === 'preview'     ? '' : 'none';
+  document.getElementById('view-setup').style.display       = view === 'setup'       ? 'block' : 'none';
+  document.getElementById('view-calculator').style.display  = view === 'calculator'  ? 'block' : 'none';
+  document.getElementById('view-preview').style.display     = view === 'preview'     ? 'block' : 'none';
   const views = ['setup', 'calculator', 'preview'];
   document.querySelectorAll('.tab-btn').forEach((b, i) => {
     b.classList.toggle('active', views[i] === view);
@@ -1036,6 +1036,10 @@ function getConfig() {
 // ── Preview ──
 function previewStorefront() {
   const cfg = getConfig();
+  if (cfg.selected.length === 0) {
+    alert('Please select at least one charm in the School Setup tab before previewing.');
+    return;
+  }
   document.getElementById('preview-label').textContent = cfg.schoolName + ' · ' + cfg.location;
   const html = buildSchoolHTML(cfg);
   const blob = new Blob([html], { type: 'text/html' });
