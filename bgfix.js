@@ -1,0 +1,1 @@
+document.head.insertAdjacentHTML('beforeend','<style>html,body{background-color:#F0E8D8!important} .home-layout-section .price,.home-layout-section .card-text--price,.featuredProducts .price,.newProducts .price,.popularProducts .price,.productCarousel .price{display:none!important}</style>');
