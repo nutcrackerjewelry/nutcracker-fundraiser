@@ -6,4 +6,12 @@ window.addEventListener('load',function(){
   document.querySelectorAll('.footer-info-heading').forEach(function(h){
     if(h.textContent.trim()==='Categories'){h.closest('.footer-info-col').style.setProperty('display','none','important');}
   });
+  // Upsize small accent text in page builder sections
+  document.querySelectorAll('[data-sub-layout-container] p').forEach(function(p){
+    var cs=window.getComputedStyle(p);
+    if(parseFloat(cs.fontSize)<=14){
+      p.style.setProperty('font-size','18px','important');
+      p.style.setProperty('line-height','1.8','important');
+    }
+  });
 });
