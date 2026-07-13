@@ -42,16 +42,18 @@ window.addEventListener('load', function () {
   // Run immediately
   forceContentStyles();
 
-  // Watch the entire page for inline style changes and immediately re-apply ours
-  var applying = false;
+  // Watch for any DOM or style changes and re-apply immediately
+  function forceIfDifferent(el, prop, val) {
+    if (el.style.getPropertyPriority(prop) !== 'important' || el.style.getPropertyValue(prop) !== val) {
+      el.style.setProperty(prop, val, 'important');
+    }
+  }
   new MutationObserver(function() {
-    if (applying) return;
-    applying = true;
     forceContentStyles();
-    setTimeout(function() { applying = false; }, 100);
   }).observe(document.body, {
     attributes: true,
     attributeFilter: ['style'],
+    childList: true,
     subtree: true
   });
 
