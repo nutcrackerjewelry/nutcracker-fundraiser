@@ -11,23 +11,27 @@ window.addEventListener('load', function () {
 
   // 2. Force styles directly on Page Builder elements (beats BC inline style overrides)
   function forceContentStyles() {
-    document.querySelectorAll('[data-sub-layout-container] h1,[data-layout-id] h1').forEach(function(el) {
+    // Target all headings on page (not inside nav)
+    document.querySelectorAll('h1').forEach(function(el) {
+      if (el.closest('nav') || el.closest('.navPages')) return;
       el.style.setProperty('font-family', '"Playfair Display",Georgia,serif', 'important');
-      el.style.setProperty('font-size', isMobile ? '2.2rem' : '3.5rem', 'important');
-      el.style.setProperty('color', '#C9A96E', 'important');
+      el.style.setProperty('font-size', isMobile ? '2.5rem' : '4.5rem', 'important');
       el.style.setProperty('line-height', '1.05', 'important');
       el.style.setProperty('font-weight', '700', 'important');
     });
-    document.querySelectorAll('[data-sub-layout-container] h2,[data-layout-id] h2').forEach(function(el) {
+    document.querySelectorAll('h2').forEach(function(el) {
+      if (el.closest('nav') || el.closest('.navPages')) return;
       el.style.setProperty('font-family', '"Playfair Display",Georgia,serif', 'important');
-      el.style.setProperty('font-size', isMobile ? '1.15rem' : '2rem', 'important');
+      el.style.setProperty('font-size', isMobile ? '1.4rem' : '2rem', 'important');
       el.style.setProperty('line-height', '1.25', 'important');
     });
-    document.querySelectorAll('[data-sub-layout-container] h3,[data-layout-id] h3').forEach(function(el) {
+    document.querySelectorAll('h3').forEach(function(el) {
+      if (el.closest('nav') || el.closest('.navPages')) return;
       el.style.setProperty('font-family', '"Playfair Display",Georgia,serif', 'important');
-      el.style.setProperty('font-size', isMobile ? '1rem' : '1.6rem', 'important');
+      el.style.setProperty('font-size', isMobile ? '1.1rem' : '1.6rem', 'important');
       el.style.setProperty('line-height', '1.3', 'important');
     });
+    // Page builder paragraphs
     document.querySelectorAll('[data-sub-layout-container] p,[data-layout-id] p,[data-sub-layout-container] li,[data-layout-id] li').forEach(function(el) {
       el.style.setProperty('font-family', '"Lora",Georgia,serif', 'important');
       el.style.setProperty('font-size', isMobile ? '1rem' : '1.05rem', 'important');
