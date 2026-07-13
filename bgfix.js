@@ -9,55 +9,50 @@ window.addEventListener('load', function () {
 
   var isMobile = window.innerWidth <= 768;
 
-  // 2. Force styles directly on Page Builder elements (beats BC inline style overrides)
-  function forceContentStyles() {
-    // Target all headings on page (not inside nav)
-    document.querySelectorAll('h1').forEach(function(el) {
-      if (el.closest('nav') || el.closest('.navPages')) return;
-      el.style.setProperty('font-family', '"Playfair Display",Georgia,serif', 'important');
-      el.style.setProperty('font-size', isMobile ? '2.5rem' : '4.5rem', 'important');
-      el.style.setProperty('line-height', '1.05', 'important');
-      el.style.setProperty('font-weight', '700', 'important');
-    });
-    document.querySelectorAll('h2').forEach(function(el) {
-      if (el.closest('nav') || el.closest('.navPages')) return;
-      el.style.setProperty('font-family', '"Playfair Display",Georgia,serif', 'important');
-      el.style.setProperty('font-size', isMobile ? '1.4rem' : '2rem', 'important');
-      el.style.setProperty('line-height', '1.25', 'important');
-    });
-    document.querySelectorAll('h3').forEach(function(el) {
-      if (el.closest('nav') || el.closest('.navPages')) return;
-      el.style.setProperty('font-family', '"Playfair Display",Georgia,serif', 'important');
-      el.style.setProperty('font-size', isMobile ? '1.1rem' : '1.6rem', 'important');
-      el.style.setProperty('line-height', '1.3', 'important');
-    });
-    // Page builder paragraphs
-    document.querySelectorAll('[data-sub-layout-container] p,[data-layout-id] p,[data-sub-layout-container] li,[data-layout-id] li').forEach(function(el) {
-      el.style.setProperty('font-family', '"Lora",Georgia,serif', 'important');
-      el.style.setProperty('font-size', isMobile ? '1rem' : '1.05rem', 'important');
-      el.style.setProperty('line-height', '1.75', 'important');
-    });
-  }
-
-  // Run immediately
-  forceContentStyles();
-
-  // Watch for any DOM or style changes and re-apply immediately
-  function forceIfDifferent(el, prop, val) {
-    if (el.style.getPropertyPriority(prop) !== 'important' || el.style.getPropertyValue(prop) !== val) {
+  // Only set property if value differs — prevents triggering our own observer
+  function set(el, prop, val) {
+    if (el.style.getPropertyValue(prop) !== val || el.style.getPropertyPriority(prop) !== 'important') {
       el.style.setProperty(prop, val, 'important');
     }
   }
-  new MutationObserver(function() {
-    forceContentStyles();
-  }).observe(document.body, {
+
+  function forceContentStyles() {
+    document.querySelectorAll('h1').forEach(function(el) {
+      if (el.closest('nav') || el.closest('.navPages')) return;
+      set(el, 'font-family', '"Playfair Display",Georgia,serif');
+      set(el, 'font-size', isMobile ? '2.5rem' : '4.5rem');
+      set(el, 'line-height', '1.05');
+      set(el, 'font-weight', '700');
+    });
+    document.querySelectorAll('h2').forEach(function(el) {
+      if (el.closest('nav') || el.closest('.navPages')) return;
+      set(el, 'font-family', '"Playfair Display",Georgia,serif');
+      set(el, 'font-size', isMobile ? '1.4rem' : '2rem');
+      set(el, 'line-height', '1.25');
+    });
+    document.querySelectorAll('h3').forEach(function(el) {
+      if (el.closest('nav') || el.closest('.navPages')) return;
+      set(el, 'font-family', '"Playfair Display",Georgia,serif');
+      set(el, 'font-size', isMobile ? '1.1rem' : '1.6rem');
+      set(el, 'line-height', '1.3');
+    });
+    document.querySelectorAll('[data-sub-layout-container] p,[data-layout-id] p,[data-sub-layout-container] li,[data-layout-id] li').forEach(function(el) {
+      set(el, 'font-family', '"Lora",Georgia,serif');
+      set(el, 'font-size', isMobile ? '1rem' : '1.05rem');
+      set(el, 'line-height', '1.75');
+    });
+  }
+
+  forceContentStyles();
+
+  // Watch for style and DOM changes — only re-applies when values actually differ
+  new MutationObserver(forceContentStyles).observe(document.body, {
     attributes: true,
     attributeFilter: ['style'],
     childList: true,
     subtree: true
   });
 
-  // Also run at intervals to catch anything the observer misses
   [300, 600, 1000, 1500, 2500, 4000].forEach(function(t) {
     setTimeout(forceContentStyles, t);
   });
