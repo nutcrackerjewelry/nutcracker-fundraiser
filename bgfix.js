@@ -1,4 +1,4 @@
-// Nutcracker Jewelry — Script Manager fixes
+// Nutcracker Jewelry — Script Manager fixes v13
 window.addEventListener('load', function () {
 
   // 1. Load Google Fonts
@@ -8,70 +8,52 @@ window.addEventListener('load', function () {
   document.head.appendChild(f);
 
   var isMobile = window.innerWidth <= 768;
+  var heroSize = isMobile ? '2.5rem' : '4.5rem';
 
-  // Widget style rules — add IDs here as you find them
-  var widgets = {
-    '7706d270': { size: isMobile ? '2.5rem' : '4.5rem', font: 'Playfair Display', weight: '700', lh: '1.05' }, // NUTCRACKER JEWELRY
-    'b2099960': { size: '0.75rem', font: 'Lora', lh: '1.6', spacing: '0.18em', transform: 'uppercase' }        // tagline
-  };
-
-  function getRule(el) {
-    var cls = el.className || '';
-    var keys = Object.keys(widgets);
-    for (var i = 0; i < keys.length; i++) {
-      if (cls.indexOf(keys[i]) !== -1) return widgets[keys[i]];
-    }
-    // Default: body text
-    return { size: isMobile ? '1rem' : '1.05rem', font: 'Lora', lh: '1.75' };
+  // 2. Inject a <style> block at the END of <body>
+  //    Coming after BC's widget <style> tags means we win on document order
+  //    when specificity is equal — and our selectors are more specific too.
+  function injectOverrideStyle() {
+    var old = document.getElementById('nj-override');
+    if (old) old.parentNode.removeChild(old);
+    var s = document.createElement('style');
+    s.id = 'nj-override';
+    s.textContent =
+      // NUTCRACKER JEWELRY hero
+      'div[class*="sd-simple-text-7706d270"],' +
+      'div[class*="sd-simple-text-7706d270"] div,' +
+      'div[class*="sd-simple-text-7706d270"] p,' +
+      'div[class*="sd-simple-text-7706d270"] span {' +
+        'font-size: ' + heroSize + ' !important;' +
+        'font-family: "Playfair Display", Georgia, serif !important;' +
+        'font-weight: 700 !important;' +
+        'line-height: 1.05 !important;' +
+      '}' +
+      // Tagline
+      'div[class*="sd-simple-text-b2099960"],' +
+      'div[class*="sd-simple-text-b2099960"] div,' +
+      'div[class*="sd-simple-text-b2099960"] p,' +
+      'div[class*="sd-simple-text-b2099960"] span {' +
+        'font-size: 0.75rem !important;' +
+        'font-family: "Lora", Georgia, serif !important;' +
+        'letter-spacing: 0.18em !important;' +
+        'text-transform: uppercase !important;' +
+        'line-height: 1.6 !important;' +
+      '}';
+    document.body.appendChild(s);
   }
 
-  function applyToWidget(el) {
-    var rule = getRule(el);
-    el.style.setProperty('font-family', '"' + rule.font + '",Georgia,serif', 'important');
-    el.style.setProperty('font-size', rule.size, 'important');
-    el.style.setProperty('line-height', rule.lh, 'important');
-    if (rule.weight) el.style.setProperty('font-weight', rule.weight, 'important');
-    if (rule.spacing) el.style.setProperty('letter-spacing', rule.spacing, 'important');
-    if (rule.transform) el.style.setProperty('text-transform', rule.transform, 'important');
-    // Also force size on all inner elements
-    el.querySelectorAll('div, p, span').forEach(function(child) {
-      child.style.setProperty('font-size', rule.size, 'important');
-      child.style.setProperty('font-family', '"' + rule.font + '",Georgia,serif', 'important');
-      if (rule.weight) child.style.setProperty('font-weight', rule.weight, 'important');
-      if (rule.lh) child.style.setProperty('line-height', rule.lh, 'important');
-    });
-  }
+  injectOverrideStyle();
+  // Re-inject at intervals in case BC re-renders widgets
+  [500, 1500, 3000, 6000].forEach(function(t) { setTimeout(injectOverrideStyle, t); });
 
-  function lockWidget(el) {
-    if (el.dataset.njLocked) return;
-    el.dataset.njLocked = '1';
-    applyToWidget(el);
-    new MutationObserver(function() {
-      applyToWidget(el);
-    }).observe(el, { attributes: true, attributeFilter: ['style'], childList: true, subtree: true });
-  }
-
-  function lockAllWidgets() {
-    document.querySelectorAll('[class*="sd-simple-text"]').forEach(lockWidget);
-  }
-
-  lockAllWidgets();
-
-  // Watch for new widgets injected by BC after load
+  // Watch for new widgets added to DOM and re-inject our style after
   new MutationObserver(function(mutations) {
-    mutations.forEach(function(m) {
-      m.addedNodes.forEach(function(node) {
-        if (node.querySelectorAll) {
-          node.querySelectorAll('[class*="sd-simple-text"]').forEach(lockWidget);
-          if ((node.className || '').indexOf('sd-simple-text') !== -1) lockWidget(node);
-        }
-      });
-    });
+    var added = mutations.some(function(m) { return m.addedNodes.length > 0; });
+    if (added) injectOverrideStyle();
   }).observe(document.body, { childList: true, subtree: true });
 
-  [300, 700, 1500, 3000].forEach(function(t) { setTimeout(lockAllWidgets, t); });
-
-  // 2. Force sidebar nav link color
+  // 3. Force sidebar nav link color
   function fixNavColors() {
     document.querySelectorAll('.navList-item a').forEach(function(a) {
       a.style.setProperty('color', '#9B1528', 'important');
@@ -80,7 +62,7 @@ window.addEventListener('load', function () {
   fixNavColors();
   [500, 1000, 2000].forEach(function(t) { setTimeout(fixNavColors, t); });
 
-  // 3. Hide footer Categories column
+  // 4. Hide footer Categories column
   document.querySelectorAll('.footer-info-heading').forEach(function(h) {
     if (h.textContent.trim() === 'Categories') {
       h.closest('.footer-info-col').style.setProperty('display', 'none', 'important');
