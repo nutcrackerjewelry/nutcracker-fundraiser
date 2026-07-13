@@ -21,8 +21,8 @@ window.addEventListener('load',function(){
   document.querySelectorAll('[data-sub-layout-container] p,[data-sub-layout-container] span,[data-sub-layout-container] li,[data-layout-id] p,[data-layout-id] span').forEach(function(el){
     var cs=window.getComputedStyle(el);
     var size=parseFloat(cs.fontSize);
-    var targetSize=isMobile?'16px':'18px';
-    if(size<=16){
+    var targetSize=isMobile?'16px':'22px';
+    if(size<=22){
       el.style.setProperty('font-size',targetSize,'important');
       el.style.setProperty('line-height','1.8','important');
     }
