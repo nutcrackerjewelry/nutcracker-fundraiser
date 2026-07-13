@@ -33,10 +33,12 @@ window.addEventListener('load', function () {
     if (rule.weight) el.style.setProperty('font-weight', rule.weight, 'important');
     if (rule.spacing) el.style.setProperty('letter-spacing', rule.spacing, 'important');
     if (rule.transform) el.style.setProperty('text-transform', rule.transform, 'important');
-    // Also apply to inner divs/spans
+    // Also force size on all inner elements
     el.querySelectorAll('div, p, span').forEach(function(child) {
-      child.style.setProperty('font-size', 'inherit', 'important');
-      child.style.setProperty('font-family', 'inherit', 'important');
+      child.style.setProperty('font-size', rule.size, 'important');
+      child.style.setProperty('font-family', '"' + rule.font + '",Georgia,serif', 'important');
+      if (rule.weight) child.style.setProperty('font-weight', rule.weight, 'important');
+      if (rule.lh) child.style.setProperty('line-height', rule.lh, 'important');
     });
   }
 
