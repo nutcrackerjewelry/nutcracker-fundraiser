@@ -9,53 +9,69 @@ window.addEventListener('load', function () {
 
   var isMobile = window.innerWidth <= 768;
 
-  // Only set property if value differs — prevents triggering our own observer
-  function set(el, prop, val) {
-    if (el.style.getPropertyValue(prop) !== val || el.style.getPropertyPriority(prop) !== 'important') {
-      el.style.setProperty(prop, val, 'important');
+  // Lock a single heading element — dedicated observer fires instantly on any style change
+  function lockHeading(el) {
+    var tag = el.tagName;
+    var size = tag === 'H1' ? (isMobile ? '2.5rem' : '4.5rem') :
+               tag === 'H2' ? (isMobile ? '1.4rem' : '2rem') :
+                              (isMobile ? '1.1rem' : '1.6rem');
+    var applying = false;
+
+    function apply() {
+      if (applying) return;
+      applying = true;
+      el.style.setProperty('font-family', '"Playfair Display",Georgia,serif', 'important');
+      el.style.setProperty('font-size', size, 'important');
+      el.style.setProperty('line-height', tag === 'H1' ? '1.05' : tag === 'H2' ? '1.25' : '1.3', 'important');
+      if (tag === 'H1') el.style.setProperty('font-weight', '700', 'important');
+      applying = false;
     }
+
+    apply();
+    new MutationObserver(apply).observe(el, { attributes: true, attributeFilter: ['style'] });
   }
 
-  function forceContentStyles() {
-    document.querySelectorAll('h1').forEach(function(el) {
-      if (el.closest('nav') || el.closest('.navPages')) return;
-      set(el, 'font-family', '"Playfair Display",Georgia,serif');
-      set(el, 'font-size', isMobile ? '2.5rem' : '4.5rem');
-      set(el, 'line-height', '1.05');
-      set(el, 'font-weight', '700');
-    });
-    document.querySelectorAll('h2').forEach(function(el) {
-      if (el.closest('nav') || el.closest('.navPages')) return;
-      set(el, 'font-family', '"Playfair Display",Georgia,serif');
-      set(el, 'font-size', isMobile ? '1.4rem' : '2rem');
-      set(el, 'line-height', '1.25');
-    });
-    document.querySelectorAll('h3').forEach(function(el) {
-      if (el.closest('nav') || el.closest('.navPages')) return;
-      set(el, 'font-family', '"Playfair Display",Georgia,serif');
-      set(el, 'font-size', isMobile ? '1.1rem' : '1.6rem');
-      set(el, 'line-height', '1.3');
-    });
-    document.querySelectorAll('[data-sub-layout-container] p,[data-layout-id] p,[data-sub-layout-container] li,[data-layout-id] li').forEach(function(el) {
-      set(el, 'font-family', '"Lora",Georgia,serif');
-      set(el, 'font-size', isMobile ? '1rem' : '1.05rem');
-      set(el, 'line-height', '1.75');
+  // Lock all headings not inside nav
+  function lockAllHeadings() {
+    document.querySelectorAll('h1, h2, h3').forEach(function(el) {
+      if (!el.closest('nav') && !el.closest('.navPages') && !el.dataset.njLocked) {
+        el.dataset.njLocked = '1';
+        lockHeading(el);
+      }
     });
   }
 
-  forceContentStyles();
+  lockAllHeadings();
 
-  // Watch for style and DOM changes — only re-applies when values actually differ
-  new MutationObserver(forceContentStyles).observe(document.body, {
-    attributes: true,
-    attributeFilter: ['style'],
-    childList: true,
-    subtree: true
-  });
+  // Watch for new headings added by BC after page load
+  new MutationObserver(function(mutations) {
+    mutations.forEach(function(m) {
+      m.addedNodes.forEach(function(node) {
+        if (node.querySelectorAll) {
+          node.querySelectorAll('h1,h2,h3').forEach(function(el) {
+            if (!el.closest('nav') && !el.closest('.navPages') && !el.dataset.njLocked) {
+              el.dataset.njLocked = '1';
+              lockHeading(el);
+            }
+          });
+        }
+      });
+    });
+  }).observe(document.body, { childList: true, subtree: true });
 
-  [300, 600, 1000, 1500, 2500, 4000].forEach(function(t) {
-    setTimeout(forceContentStyles, t);
-  });
+  // Also run at intervals in case anything slips through
+  [300, 700, 1500, 3000].forEach(function(t) { setTimeout(lockAllHeadings, t); });
+
+  // 2. Also handle paragraph text sizes in page builder blocks
+  function fixParas() {
+    document.querySelectorAll('[data-sub-layout-container] p,[data-layout-id] p').forEach(function(el) {
+      el.style.setProperty('font-family', '"Lora",Georgia,serif', 'important');
+      el.style.setProperty('font-size', isMobile ? '1rem' : '1.05rem', 'important');
+      el.style.setProperty('line-height', '1.75', 'important');
+    });
+  }
+  fixParas();
+  [500, 1500, 3000].forEach(function(t) { setTimeout(fixParas, t); });
 
   // 3. Force sidebar nav link color
   function fixNavColors() {
