@@ -1,51 +1,72 @@
 // Nutcracker Jewelry — Script Manager fixes
 window.addEventListener('load', function () {
 
-  // 1. Load Google Fonts (Playfair Display + Lora)
+  // 1. Load Google Fonts
   var f = document.createElement('link');
   f.rel = 'stylesheet';
   f.href = 'https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Lora:ital,wght@0,400;0,500;1,400&display=swap';
   document.head.appendChild(f);
 
-  // 2. Inject Page Builder font sizes as a style tag (not inline styles — no flash)
-  var s = document.createElement('style');
-  s.id = 'nj-pb';
-  s.textContent =
-    '[data-sub-layout-container] h1,[data-layout-id] h1{font-family:"Playfair Display",Georgia,serif!important;font-size:3.5rem!important;color:#C9A96E!important;line-height:1.05!important;font-weight:700!important}' +
-    '[data-sub-layout-container] h2,[data-layout-id] h2{font-family:"Playfair Display",Georgia,serif!important;font-size:2rem!important;color:#2C2C2C!important;line-height:1.25!important}' +
-    '[data-sub-layout-container] h3,[data-layout-id] h3{font-family:"Playfair Display",Georgia,serif!important;font-size:1.6rem!important;color:#2C2C2C!important;line-height:1.3!important}' +
-    '[data-sub-layout-container] p,[data-layout-id] p,[data-sub-layout-container] li,[data-layout-id] li{font-size:1.05rem!important;line-height:1.75!important;color:#2C2C2C!important}' +
-    '[data-content-region="home_above_announcments"] p,[data-content-region="home_above_announcments"] span{color:#C9A96E!important;font-style:italic!important;letter-spacing:0.12em!important}' +
-    '@media(max-width:768px){' +
-    '[data-sub-layout-container] h1,[data-layout-id] h1{font-size:2.2rem!important}' +
-    '[data-sub-layout-container] h2,[data-layout-id] h2{font-size:1.15rem!important}' +
-    '[data-sub-layout-container] h3,[data-layout-id] h3{font-size:1rem!important}' +
-    '[data-sub-layout-container] p,[data-layout-id] p{font-size:1rem!important;line-height:1.8!important}' +
-    '}';
-  document.head.appendChild(s);
+  var isMobile = window.innerWidth <= 768;
 
-  // Keep our style tag alive — re-add if removed, move to end if not last
-  function repin() {
-    var el = document.getElementById('nj-pb');
-    if (!el) { document.head.appendChild(s); }
-    else if (el !== document.head.lastElementChild) { document.head.appendChild(el); }
+  // 2. Force styles directly on Page Builder elements (beats BC inline style overrides)
+  function forceContentStyles() {
+    document.querySelectorAll('[data-sub-layout-container] h1,[data-layout-id] h1').forEach(function(el) {
+      el.style.setProperty('font-family', '"Playfair Display",Georgia,serif', 'important');
+      el.style.setProperty('font-size', isMobile ? '2.2rem' : '3.5rem', 'important');
+      el.style.setProperty('color', '#C9A96E', 'important');
+      el.style.setProperty('line-height', '1.05', 'important');
+      el.style.setProperty('font-weight', '700', 'important');
+    });
+    document.querySelectorAll('[data-sub-layout-container] h2,[data-layout-id] h2').forEach(function(el) {
+      el.style.setProperty('font-family', '"Playfair Display",Georgia,serif', 'important');
+      el.style.setProperty('font-size', isMobile ? '1.15rem' : '2rem', 'important');
+      el.style.setProperty('line-height', '1.25', 'important');
+    });
+    document.querySelectorAll('[data-sub-layout-container] h3,[data-layout-id] h3').forEach(function(el) {
+      el.style.setProperty('font-family', '"Playfair Display",Georgia,serif', 'important');
+      el.style.setProperty('font-size', isMobile ? '1rem' : '1.6rem', 'important');
+      el.style.setProperty('line-height', '1.3', 'important');
+    });
+    document.querySelectorAll('[data-sub-layout-container] p,[data-layout-id] p,[data-sub-layout-container] li,[data-layout-id] li').forEach(function(el) {
+      el.style.setProperty('font-family', '"Lora",Georgia,serif', 'important');
+      el.style.setProperty('font-size', isMobile ? '1rem' : '1.05rem', 'important');
+      el.style.setProperty('line-height', '1.75', 'important');
+    });
   }
-  new MutationObserver(repin).observe(document.head, { childList: true });
-  // Run every 200ms for 15 seconds to outlast any delayed BC overrides
-  var ticker = setInterval(repin, 200);
-  setTimeout(function() { clearInterval(ticker); }, 15000);
 
-  // 3. Force sidebar nav link color (BC JS keeps overriding)
+  // Run immediately
+  forceContentStyles();
+
+  // Watch the entire page for inline style changes and immediately re-apply ours
+  var applying = false;
+  new MutationObserver(function() {
+    if (applying) return;
+    applying = true;
+    forceContentStyles();
+    setTimeout(function() { applying = false; }, 100);
+  }).observe(document.body, {
+    attributes: true,
+    attributeFilter: ['style'],
+    subtree: true
+  });
+
+  // Also run at intervals to catch anything the observer misses
+  [300, 600, 1000, 1500, 2500, 4000].forEach(function(t) {
+    setTimeout(forceContentStyles, t);
+  });
+
+  // 3. Force sidebar nav link color
   function fixNavColors() {
-    document.querySelectorAll('.navList-item a').forEach(function (a) {
+    document.querySelectorAll('.navList-item a').forEach(function(a) {
       a.style.setProperty('color', '#9B1528', 'important');
     });
   }
   fixNavColors();
-  [500, 1000, 2000].forEach(function (t) { setTimeout(fixNavColors, t); });
+  [500, 1000, 2000].forEach(function(t) { setTimeout(fixNavColors, t); });
 
   // 4. Hide footer Categories column
-  document.querySelectorAll('.footer-info-heading').forEach(function (h) {
+  document.querySelectorAll('.footer-info-heading').forEach(function(h) {
     if (h.textContent.trim() === 'Categories') {
       h.closest('.footer-info-col').style.setProperty('display', 'none', 'important');
     }
