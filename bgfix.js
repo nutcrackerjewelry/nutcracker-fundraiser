@@ -9,71 +9,67 @@ window.addEventListener('load', function () {
 
   var isMobile = window.innerWidth <= 768;
 
-  // Lock a single heading element — dedicated observer fires instantly on any style change
-  function lockHeading(el) {
-    var tag = el.tagName;
-    var size = tag === 'H1' ? (isMobile ? '2.5rem' : '4.5rem') :
-               tag === 'H2' ? (isMobile ? '1.4rem' : '2rem') :
-                              (isMobile ? '1.1rem' : '1.6rem');
-    var applying = false;
+  // Widget style rules — add IDs here as you find them
+  var widgets = {
+    '7706d270': { size: isMobile ? '2.5rem' : '4.5rem', font: 'Playfair Display', weight: '700', lh: '1.05' }, // NUTCRACKER JEWELRY
+    'b2099960': { size: '0.75rem', font: 'Lora', lh: '1.6', spacing: '0.18em', transform: 'uppercase' }        // tagline
+  };
 
-    function apply() {
-      if (applying) return;
-      applying = true;
-      el.style.setProperty('font-family', '"Playfair Display",Georgia,serif', 'important');
-      el.style.setProperty('font-size', size, 'important');
-      el.style.setProperty('line-height', tag === 'H1' ? '1.05' : tag === 'H2' ? '1.25' : '1.3', 'important');
-      if (tag === 'H1') el.style.setProperty('font-weight', '700', 'important');
-      applying = false;
+  function getRule(el) {
+    var cls = el.className || '';
+    var keys = Object.keys(widgets);
+    for (var i = 0; i < keys.length; i++) {
+      if (cls.indexOf(keys[i]) !== -1) return widgets[keys[i]];
     }
-
-    apply();
-    new MutationObserver(apply).observe(el, { attributes: true, attributeFilter: ['style'] });
+    // Default: body text
+    return { size: isMobile ? '1rem' : '1.05rem', font: 'Lora', lh: '1.75' };
   }
 
-  // Lock all headings not inside nav
-  function lockAllHeadings() {
-    document.querySelectorAll('h1, h2, h3').forEach(function(el) {
-      if (!el.closest('nav') && !el.closest('.navPages') && !el.dataset.njLocked) {
-        el.dataset.njLocked = '1';
-        lockHeading(el);
-      }
+  function applyToWidget(el) {
+    var rule = getRule(el);
+    el.style.setProperty('font-family', '"' + rule.font + '",Georgia,serif', 'important');
+    el.style.setProperty('font-size', rule.size, 'important');
+    el.style.setProperty('line-height', rule.lh, 'important');
+    if (rule.weight) el.style.setProperty('font-weight', rule.weight, 'important');
+    if (rule.spacing) el.style.setProperty('letter-spacing', rule.spacing, 'important');
+    if (rule.transform) el.style.setProperty('text-transform', rule.transform, 'important');
+    // Also apply to inner divs/spans
+    el.querySelectorAll('div, p, span').forEach(function(child) {
+      child.style.setProperty('font-size', 'inherit', 'important');
+      child.style.setProperty('font-family', 'inherit', 'important');
     });
   }
 
-  lockAllHeadings();
+  function lockWidget(el) {
+    if (el.dataset.njLocked) return;
+    el.dataset.njLocked = '1';
+    applyToWidget(el);
+    new MutationObserver(function() {
+      applyToWidget(el);
+    }).observe(el, { attributes: true, attributeFilter: ['style'], childList: true, subtree: true });
+  }
 
-  // Watch for new headings added by BC after page load
+  function lockAllWidgets() {
+    document.querySelectorAll('[class*="sd-simple-text"]').forEach(lockWidget);
+  }
+
+  lockAllWidgets();
+
+  // Watch for new widgets injected by BC after load
   new MutationObserver(function(mutations) {
     mutations.forEach(function(m) {
       m.addedNodes.forEach(function(node) {
         if (node.querySelectorAll) {
-          node.querySelectorAll('h1,h2,h3').forEach(function(el) {
-            if (!el.closest('nav') && !el.closest('.navPages') && !el.dataset.njLocked) {
-              el.dataset.njLocked = '1';
-              lockHeading(el);
-            }
-          });
+          node.querySelectorAll('[class*="sd-simple-text"]').forEach(lockWidget);
+          if ((node.className || '').indexOf('sd-simple-text') !== -1) lockWidget(node);
         }
       });
     });
   }).observe(document.body, { childList: true, subtree: true });
 
-  // Also run at intervals in case anything slips through
-  [300, 700, 1500, 3000].forEach(function(t) { setTimeout(lockAllHeadings, t); });
+  [300, 700, 1500, 3000].forEach(function(t) { setTimeout(lockAllWidgets, t); });
 
-  // 2. Also handle paragraph text sizes in page builder blocks
-  function fixParas() {
-    document.querySelectorAll('[data-sub-layout-container] p,[data-layout-id] p').forEach(function(el) {
-      el.style.setProperty('font-family', '"Lora",Georgia,serif', 'important');
-      el.style.setProperty('font-size', isMobile ? '1rem' : '1.05rem', 'important');
-      el.style.setProperty('line-height', '1.75', 'important');
-    });
-  }
-  fixParas();
-  [500, 1500, 3000].forEach(function(t) { setTimeout(fixParas, t); });
-
-  // 3. Force sidebar nav link color
+  // 2. Force sidebar nav link color
   function fixNavColors() {
     document.querySelectorAll('.navList-item a').forEach(function(a) {
       a.style.setProperty('color', '#9B1528', 'important');
@@ -82,7 +78,7 @@ window.addEventListener('load', function () {
   fixNavColors();
   [500, 1000, 2000].forEach(function(t) { setTimeout(fixNavColors, t); });
 
-  // 4. Hide footer Categories column
+  // 3. Hide footer Categories column
   document.querySelectorAll('.footer-info-heading').forEach(function(h) {
     if (h.textContent.trim() === 'Categories') {
       h.closest('.footer-info-col').style.setProperty('display', 'none', 'important');
