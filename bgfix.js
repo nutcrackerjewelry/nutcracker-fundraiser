@@ -24,13 +24,16 @@ window.addEventListener('load', function () {
     '}';
   document.head.appendChild(s);
 
-  // Keep our style tag at the bottom of head so it always wins
+  // Keep our style tag alive — re-add if removed, move to end if not last
   function repin() {
     var el = document.getElementById('nj-pb');
-    if (el && el !== document.head.lastElementChild) { document.head.appendChild(el); }
+    if (!el) { document.head.appendChild(s); }
+    else if (el !== document.head.lastElementChild) { document.head.appendChild(el); }
   }
   new MutationObserver(repin).observe(document.head, { childList: true });
-  [300, 700, 1500, 3000].forEach(function (t) { setTimeout(repin, t); });
+  // Run every 200ms for 15 seconds to outlast any delayed BC overrides
+  var ticker = setInterval(repin, 200);
+  setTimeout(function() { clearInterval(ticker); }, 15000);
 
   // 3. Force sidebar nav link color (BC JS keeps overriding)
   function fixNavColors() {
