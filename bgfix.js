@@ -1,4 +1,4 @@
-// Nutcracker Jewelry — Script Manager fixes v16
+// Nutcracker Jewelry — Script Manager fixes v17
 window.addEventListener('load', function () {
 
   // 1. Google Fonts
@@ -104,7 +104,16 @@ window.addEventListener('load', function () {
   fixNavColors();
   [500, 1000, 2000].forEach(function(t) { setTimeout(fixNavColors, t); });
 
-  // 5. Hide footer Categories
+  // 5. Darken card images for better text readability
+  function fixCardImages() {
+    document.querySelectorAll('[data-overlay-wrapper] img').forEach(function(img) {
+      img.style.setProperty('filter', 'brightness(0.55)', 'important');
+    });
+  }
+  fixCardImages();
+  [500, 1500, 3000].forEach(function(t) { setTimeout(fixCardImages, t); });
+
+  // 6. Hide footer Categories
   document.querySelectorAll('.footer-info-heading').forEach(function(h) {
     if (h.textContent.trim() === 'Categories') {
       h.closest('.footer-info-col').style.setProperty('display', 'none', 'important');
