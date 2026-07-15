@@ -1,4 +1,4 @@
-// Nutcracker Jewelry — Script Manager fixes v18
+// Nutcracker Jewelry — Script Manager fixes v19
 window.addEventListener('load', function () {
 
   // 1. Google Fonts
@@ -104,22 +104,10 @@ window.addEventListener('load', function () {
   fixNavColors();
   [500, 1000, 2000].forEach(function(t) { setTimeout(fixNavColors, t); });
 
-  // 5. Darken card images using the existing data-overlay div
+  // 5. Darken card images — target img inside sd-image widget divs
   function fixCardImages() {
-    // Make wrapper relative so overlay can cover it
-    document.querySelectorAll('[data-overlay-wrapper]').forEach(function(el) {
-      el.style.setProperty('position', 'relative', 'important');
-    });
-    // Stretch the overlay div and fill with dark colour
-    document.querySelectorAll('[data-overlay]').forEach(function(el) {
-      el.style.setProperty('position', 'absolute', 'important');
-      el.style.setProperty('top', '0', 'important');
-      el.style.setProperty('left', '0', 'important');
-      el.style.setProperty('width', '100%', 'important');
-      el.style.setProperty('height', '100%', 'important');
-      el.style.setProperty('background', 'rgba(0,0,0,0.45)', 'important');
-      el.style.setProperty('z-index', '1', 'important');
-      el.style.setProperty('pointer-events', 'none', 'important');
+    document.querySelectorAll('[id*="sd-image"] img').forEach(function(img) {
+      img.style.setProperty('filter', 'brightness(0.55)', 'important');
     });
   }
   fixCardImages();
