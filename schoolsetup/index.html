@@ -614,10 +614,11 @@
             <tr><th>Month</th><th>Discount</th><th>Standard Cost</th><th>Slippers/Pointe</th><th>Bracelet/LL</th></tr>
           </thead>
           <tbody>
-            <tr data-month="8"><td>August</td><td>40% off</td><td>$13.80</td><td>$15.60</td><td>$23.00</td></tr>
+            <tr data-month="8"><td>August</td><td id="aug-tier-label">40% off</td><td id="aug-std-cost">$13.80</td><td id="aug-spc-cost">$15.60</td><td>$23.00</td></tr>
             <tr data-month="9"><td>September</td><td>30% off</td><td>$16.10</td><td>$18.20</td><td>$23.00</td></tr>
             <tr data-month="10"><td>October</td><td>20% off</td><td>$18.40</td><td>$20.80</td><td>$23.00</td></tr>
             <tr data-month="11"><td>November</td><td>10% off</td><td>$20.70</td><td>$23.40</td><td>$23.00</td></tr>
+            <tr data-month="12"><td>December</td><td>0% off</td><td>$23.00</td><td>$26.00</td><td>$23.00</td></tr>
           </tbody>
         </table>
         <p class="calc-note" style="margin-top:12px">Standard wholesale: $23.00 · Ballet Slippers/Pointe: $26.00 · Bracelets/Link Locks: $23.00 (no discount) · Retail floor: $13.80</p>
@@ -628,6 +629,19 @@
           <div class="calc-stat__label">Campaign Month</div>
           <div class="calc-stat__value" id="calc-month-name">—</div>
           <div class="calc-stat__sub" id="calc-month-sub">Enter a campaign start date in School Setup</div>
+        </div>
+
+        <!-- August Admin Override — only visible when campaign month = August -->
+        <div id="aug-override" style="display:none; margin-bottom:16px; background:#fff8ee; border:1.5px solid var(--gold); border-radius:8px; padding:14px 16px;">
+          <div style="font-size:0.68rem; font-weight:700; letter-spacing:0.12em; text-transform:uppercase; color:var(--velvet); margin-bottom:10px;">⚙ August Discount — Admin Setting</div>
+          <label style="display:flex; align-items:center; gap:8px; margin-bottom:8px; cursor:pointer; font-size:0.88rem;">
+            <input type="radio" name="aug-pct" value="0.40" checked onchange="refreshCalculator()">
+            <span><strong>40% off</strong> — New / First-Time School</span>
+          </label>
+          <label style="display:flex; align-items:center; gap:8px; cursor:pointer; font-size:0.88rem;">
+            <input type="radio" name="aug-pct" value="0.30" onchange="refreshCalculator()">
+            <span><strong>30% off</strong> — Returning School</span>
+          </label>
         </div>
         <div class="calc-grid" style="margin-bottom:0; gap:14px">
           <div class="calc-stat">
@@ -650,10 +664,21 @@
 
       <div class="calc-input-row">
         <label>Product type</label>
-        <select id="calc-product-type" onchange="refreshCalculator()" style="padding:8px 12px;border:1px solid var(--cream);border-radius:6px;font-family:inherit;font-size:1rem;background:#fff;min-width:220px">
-          <option value="standard">Standard Charm ($23 base)</option>
-          <option value="special">Ballet Slippers / Pointe ($26 base)</option>
-          <option value="bracelet">Bracelet / Link Lock (no discount)</option>
+        <select id="calc-product-type" onchange="refreshCalculator()" style="padding:8px 12px;border:1px solid var(--cream);border-radius:6px;font-family:inherit;font-size:1rem;background:#fff;min-width:260px">
+          <optgroup label="── Charms (discount applies)">
+            <option value="standard">Standard Charm — $23 base</option>
+            <option value="special">Slippers / Pointe / Attitude Charm (Lg) — $26 base</option>
+            <option value="attSm">Attitude Charm Small (DS-C251s, DS-C253s) — $15 base</option>
+          </optgroup>
+          <optgroup label="── Earrings (discount applies)">
+            <option value="earStd">Standard Earrings — $46 base</option>
+            <option value="earAtt">Petite / Attitude Earrings — $34 base</option>
+            <option value="earSlip">Slipper / Pointe Earrings — $52 base</option>
+          </optgroup>
+          <optgroup label="── Accessories (no discount)">
+            <option value="bracelet">Bracelet — $35 base</option>
+            <option value="linklock">Link Lock — $4 base</option>
+          </optgroup>
         </select>
       </div>
 
@@ -934,19 +959,30 @@ function showView(view) {
 
 // ── Discount tiers & product types ──
 const TIER_DISCOUNTS = {
-  8: { label:'August',    pct:0.40 },
+  8: { label:'August',    pct:0.40 },   // pct overridden by admin toggle
   9: { label:'September', pct:0.30 },
   10:{ label:'October',   pct:0.20 },
   11:{ label:'November',  pct:0.10 },
+  12:{ label:'December',  pct:0.00 },
 };
 
 const PRODUCT_TYPES = {
-  standard: { base:23.00, minPrice:28, recPrice:35, label:'Standard Charm',            discounted:true  },
-  special:  { base:26.00, minPrice:30, recPrice:38, label:'Ballet Slippers / Pointe',  discounted:true  },
-  bracelet: { base:23.00, minPrice:30, recPrice:42, label:'Bracelet / Link Lock',       discounted:false },
+  standard: { base:23.00, minPrice:28, recPrice:35, label:'Standard Charm',                          discounted:true  },
+  special:  { base:26.00, minPrice:30, recPrice:38, label:'Slippers / Pointe / Attitude Charm (Lg)', discounted:true  },
+  attSm:    { base:15.00, minPrice:18, recPrice:21, label:'Attitude Charm Small (DS-C251s, DS-C253s)',discounted:true  },
+  earStd:   { base:46.00, minPrice:52, recPrice:60, label:'Standard Earrings ($46)',                  discounted:true  },
+  earAtt:   { base:34.00, minPrice:38, recPrice:45, label:'Petite / Attitude Earrings ($34)',         discounted:true  },
+  earSlip:  { base:52.00, minPrice:56, recPrice:60, label:'Slipper / Pointe Earrings ($52)',          discounted:true  },
+  bracelet: { base:35.00, minPrice:38, recPrice:40, label:'Bracelet',                                 discounted:false },
+  linklock: { base:4.00,  minPrice:4,  recPrice:4,  label:'Link Lock',                               discounted:false },
 };
 
 const FLOOR = 13.80;
+
+function getAugPct() {
+  const radio = document.querySelector('input[name="aug-pct"]:checked');
+  return radio ? parseFloat(radio.value) : 0.40;
+}
 
 function getCalcState() {
   const startVal   = document.getElementById('campaign-start').value;
@@ -955,17 +991,31 @@ function getCalcState() {
   const prodType   = document.getElementById('calc-product-type').value;
   const prod       = PRODUCT_TYPES[prodType];
   let   cost;
+  let   effectivePct = tierInfo ? tierInfo.pct : 0;
+  if (month === 8 && tierInfo) effectivePct = getAugPct();  // admin override
   if (!prod.discounted || !tierInfo) {
     cost = prod.base;
   } else {
-    cost = prod.base * (1 - tierInfo.pct);
+    cost = prod.base * (1 - effectivePct);
     cost = Math.max(cost, FLOOR);
   }
-  return { month, tierInfo, prod, cost, prodType };
+  return { month, tierInfo, prod, cost, prodType, effectivePct };
 }
 
 function refreshCalculator() {
-  const { month, tierInfo, prod, cost } = getCalcState();
+  const { month, tierInfo, prod, cost, effectivePct } = getCalcState();
+
+  // Show/hide August admin toggle
+  const augOverride = document.getElementById('aug-override');
+  if (augOverride) augOverride.style.display = (month === 8) ? '' : 'none';
+
+  // Update August row in tier table dynamically
+  if (month === 8 && tierInfo) {
+    const augPct = getAugPct();
+    document.getElementById('aug-tier-label').textContent = (augPct * 100) + '% off';
+    document.getElementById('aug-std-cost').textContent   = '$' + Math.max(23 * (1 - augPct), FLOOR).toFixed(2);
+    document.getElementById('aug-spc-cost').textContent   = '$' + Math.max(26 * (1 - augPct), FLOOR).toFixed(2);
+  }
 
   // Highlight active tier row
   document.querySelectorAll('#tier-table tbody tr').forEach(tr => {
@@ -974,11 +1024,11 @@ function refreshCalculator() {
 
   if (tierInfo) {
     document.getElementById('calc-month-name').textContent = tierInfo.label;
-    document.getElementById('calc-month-sub').textContent  = (tierInfo.pct * 100) + '% discount applied';
+    document.getElementById('calc-month-sub').textContent  = (effectivePct * 100) + '% discount applied';
   } else {
     document.getElementById('calc-month-name').textContent = '—';
     document.getElementById('calc-month-sub').textContent  = month
-      ? 'No discount for this month (Aug–Nov only)'
+      ? 'No discount for this month (Aug–Dec only)'
       : 'Enter a campaign start date in School Setup';
   }
 
