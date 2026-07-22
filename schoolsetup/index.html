@@ -542,6 +542,11 @@
           <label>Coordinator Email <span style="font-size:0.78rem;color:#9B1528;font-weight:600">(required — parents send orders here)</span></label>
           <input type="email" id="coord-email" placeholder="e.g. director@cityballetacademy.com" />
         </div>
+        <div class="field" style="grid-column:1/-1">
+          <label>Payment Instructions <span style="font-size:0.78rem;color:#888;font-weight:400">(optional — shown to parents on the order page)</span></label>
+          <input type="text" id="payment-instructions" placeholder="e.g. Venmo @CityBallet · Cash · Check made out to City Ballet Academy" />
+          <span style="font-size:0.78rem;color:#888;margin-top:4px;display:block">Leave blank to use the default: "Cash or a check made out to [School Name]"</span>
+        </div>
         <div class="field">
           <label>GitHub Folder Path</label>
           <input type="text" id="github-path" placeholder="e.g. cityballetacademy/simpsonville/sc" />
@@ -1097,7 +1102,8 @@ function getConfig() {
     ? new Date(document.getElementById('payment-due').value).toLocaleDateString('en-US', {month:'long', day:'numeric', year:'numeric'})
     : 'TBD';
   const endLabel = new Date(endDate).toLocaleDateString('en-US', {month:'long', day:'numeric', year:'numeric'});
-  const coordEmail = document.getElementById('coord-email').value.trim();
+  const coordEmail          = document.getElementById('coord-email').value.trim();
+  const paymentInstructions = document.getElementById('payment-instructions').value.trim();
   const githubPath = document.getElementById('github-path').value.trim();
   const levels = githubPath ? githubPath.split('/').filter(Boolean).length : 3;
   const baseImg = 'https://nutcrackerjewelry.github.io/nutcracker-fundraiser/';
@@ -1109,7 +1115,7 @@ function getConfig() {
     selected.push({ code, price });
   });
 
-  return { schoolName, location, endDate, endLabel, payDue, coordEmail, githubPath, baseImg, selected };
+  return { schoolName, location, endDate, endLabel, payDue, coordEmail, paymentInstructions, githubPath, baseImg, selected };
 }
 
 // ── Preview ──
@@ -1337,7 +1343,7 @@ function buildSchoolHTML(cfg) {
     <h2 class="intro__heading">A charm for every role your dancer earned.</h2>
     <p class="intro__body">Each sterling silver charm represents a specific character in this year's Nutcracker. Add the charms you'd like below, then bring payment to the studio.</p>
     <div class="intro__note">
-      <strong>Payment is made to ${cfg.schoolName} — not online.</strong> Bring cash or a check made out to ${cfg.schoolName}. Every dollar supports our production.
+      <strong>Payment is made to ${cfg.schoolName} — not online.</strong> ${cfg.paymentInstructions ? cfg.paymentInstructions : `Cash or a check made out to ${cfg.schoolName}`}. Every dollar supports our production.
     </div>
   </div>
 </section>
@@ -1397,7 +1403,7 @@ function buildSchoolHTML(cfg) {
     <p class="modal__sub" id="modal-sub">Thank you! Here is your order summary.</p>
     <div class="modal__receipt" id="modal-receipt"></div>
     <div class="modal__instructions">
-      <strong>Next step:</strong> Click <strong>Send Order to Studio</strong> below — your email app will open with everything already filled in. Just hit Send. Then bring payment to ${cfg.schoolName} by ${cfg.payDue}. Cash or a check made out to <strong>${cfg.schoolName}</strong>.
+      <strong>Next step:</strong> Click <strong>Send Order to Studio</strong> below — your email app will open with everything already filled in. Just hit Send. Then submit payment to ${cfg.schoolName} by ${cfg.payDue}: <strong>${cfg.paymentInstructions ? cfg.paymentInstructions : `Cash or check made out to ${cfg.schoolName}`}</strong>.
     </div>
     <div class="modal__actions">
       <button class="btn-send-order" onclick="sendOrder()" style="flex:2;background:var(--velvet);color:#fff;border:none;font-family:var(--ff-body);font-size:0.95rem;font-weight:700;padding:14px;border-radius:6px;cursor:pointer;letter-spacing:0.04em;">📧 Send Order to Studio</button>
