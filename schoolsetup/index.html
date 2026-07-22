@@ -611,17 +611,17 @@
         <div class="card__heading">What the School Pays You — by Order Month</div>
         <table class="tier-table" id="tier-table">
           <thead>
-            <tr><th>Month</th><th>Discount</th><th>Standard Charms</th><th>Special Charms &amp; Earrings ★</th><th>Bracelet &amp; Link Lock †</th></tr>
+            <tr><th>Month</th><th>Discount</th><th>Standard Charms ★</th><th>Special Charms ★★</th><th>Bracelet †</th></tr>
           </thead>
           <tbody>
-            <tr data-month="8"><td>August</td><td id="aug-tier-label">40% off</td><td id="aug-std-cost">$13.80</td><td id="aug-spc-cost">$15.60</td><td>$23.00</td></tr>
-            <tr data-month="9"><td>September</td><td>30% off</td><td>$16.10</td><td>$18.20</td><td>$23.00</td></tr>
-            <tr data-month="10"><td>October</td><td>20% off</td><td>$18.40</td><td>$20.80</td><td>$23.00</td></tr>
-            <tr data-month="11"><td>November</td><td>10% off</td><td>$20.70</td><td>$23.40</td><td>$23.00</td></tr>
-            <tr data-month="12"><td>December</td><td>0% off</td><td>$23.00</td><td>$26.00</td><td>$23.00</td></tr>
+            <tr data-month="8"><td>August</td><td id="aug-tier-label">40% off</td><td id="aug-std-cost">$13.80</td><td id="aug-spc-cost">$15.60</td><td>$35.00</td></tr>
+            <tr data-month="9"><td>September</td><td>30% off</td><td>$16.10</td><td>$18.20</td><td>$35.00</td></tr>
+            <tr data-month="10"><td>October</td><td>20% off</td><td>$18.40</td><td>$20.80</td><td>$35.00</td></tr>
+            <tr data-month="11"><td>November</td><td>10% off</td><td>$20.70</td><td>$23.40</td><td>$35.00</td></tr>
+            <tr data-month="12"><td>December</td><td>0% off</td><td>$23.00</td><td>$26.00</td><td>$35.00</td></tr>
           </tbody>
         </table>
-        <p class="calc-note" style="margin-top:12px">★ Includes Ballet Slippers, Pointe, Attitude (large), and all earring styles — base price $26 before discount.<br>† Bracelets and Link Locks do not qualify for the additional monthly discount — price is always $23.00.<br>Prices shown are what the school pays you. Standard charm base (December rate): $23.00 · Retail floor: $13.80</p>
+        <p class="calc-note" style="margin-top:12px">★ Standard Charms — base price $23.00 (December rate).<br>★★ Special Charms — Ballet Slippers, Pointe, Attitude (large) — base price $26.00. Earrings use the same discount % applied to their own base price ($34, $46, or $52) — use the calculator below for exact earring costs.<br>† Bracelet: always $35.00 — no additional discount. Link Lock: always $3.00 — no additional discount.<br>Prices shown are what the school pays you.</p>
       </div>
 
       <div>
@@ -677,7 +677,7 @@
           </optgroup>
           <optgroup label="── Accessories (no discount)">
             <option value="bracelet">Bracelet — $35 base</option>
-            <option value="linklock">Link Lock — $4 base</option>
+            <option value="linklock">Link Lock — $3 base</option>
           </optgroup>
         </select>
       </div>
@@ -732,7 +732,8 @@
           <tr><td>Standard Earrings ($46 base)</td><td>$52.00</td><td>$60.00</td><td>$60.00 (max 15% off)</td></tr>
           <tr><td>Petite / Attitude Earrings ($34 base)</td><td>$38.00</td><td>$45.00</td><td>$45.00 (max 15% off)</td></tr>
           <tr><td>Slipper / Pointe Earrings ($52 base)</td><td>$56.00</td><td>$65.00</td><td>$65.00 (max 15% off)</td></tr>
-          <tr><td>Bracelets / Link Locks (no discount)</td><td>$40.00</td><td>$45.00</td><td>$45.00 (no promo)</td></tr>
+          <tr><td>Bracelet ($35 base, no discount)</td><td>$40.00</td><td>$45.00</td><td>$45.00 (no promo)</td></tr>
+          <tr><td>Link Lock ($3 base, no discount)</td><td>$3.00</td><td>$5.00</td><td>$5.00 (no promo)</td></tr>
         </tbody>
       </table>
       <p class="calc-note" style="margin-top:10px">Min. school price must always exceed what the school paid you — minimum prices above are based on the August (best) discount rate. Retail discounts should never bring the price below the school's cost.</p>
@@ -976,7 +977,7 @@ const PRODUCT_TYPES = {
   earAtt:   { base:34.00, minPrice:38, recPrice:45, label:'Petite / Attitude Earrings ($34)',         discounted:true  },
   earSlip:  { base:52.00, minPrice:56, recPrice:60, label:'Slipper / Pointe Earrings ($52)',          discounted:true  },
   bracelet: { base:35.00, minPrice:38, recPrice:40, label:'Bracelet',                                 discounted:false },
-  linklock: { base:4.00,  minPrice:4,  recPrice:4,  label:'Link Lock',                               discounted:false },
+  linklock: { base:3.00,  minPrice:3,  recPrice:5,  label:'Link Lock',                               discounted:false },
 };
 
 const FLOOR = 13.80;
