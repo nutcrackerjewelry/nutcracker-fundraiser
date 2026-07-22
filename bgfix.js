@@ -139,9 +139,9 @@ window.addEventListener('load', function () {
     }
   });
 
-  // 7. Hide Category Menu from header nav
+  // 7. Hide "Category Menu" label only — keep the dropdown links
   var style = document.createElement('style');
-  style.textContent = '.menu-catlinks { display: none !important; }';
+  style.textContent = '.menu-catlinks .mini-header { display: none !important; }';
   document.head.appendChild(style);
 
 });
