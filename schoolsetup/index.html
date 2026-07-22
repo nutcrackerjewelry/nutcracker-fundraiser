@@ -297,7 +297,7 @@
     .tier-table th { background: var(--dark); color: #fff; padding: 10px 14px; font-size: 0.82rem; text-align: left; }
     .tier-table td { padding: 10px 14px; font-size: 0.88rem; border-bottom: 1px solid var(--cream); }
     .tier-table tr.active-tier { background: #fff8ee; font-weight: 700; }
-    .tier-table tr.active-tier td:first-child::after { content: '  ← your campaign'; color: var(--gold); font-size: 0.78rem; font-weight: 400; }
+    .tier-table tr.active-tier td:first-child::after { content: '  ← your order month'; color: var(--gold); font-size: 0.78rem; font-weight: 400; }
     .calc-stat { background: var(--parchment); border-radius: 10px; padding: 20px 24px; border: 1px solid var(--cream); }
     .calc-stat__label { font-size: 0.78rem; letter-spacing: 0.07em; text-transform: uppercase; color: #888; margin-bottom: 6px; }
     .calc-stat__value { font-family: var(--ff-head); font-size: 2rem; font-weight: 700; color: var(--velvet); }
@@ -600,18 +600,18 @@
     <div class="calc-banner">
       <div class="calc-banner__icon">💎</div>
       <div>
-        <div class="calc-banner__title">Early Sign-Up = More Profit for Schools</div>
-        <div class="calc-banner__sub">The sooner a school runs their campaign, the bigger the discount — and the more money they raise. Minimum floor price is $13.80.</div>
+        <div class="calc-banner__title">Early Orders = More Profit for Schools</div>
+        <div class="calc-banner__sub">The additional discount is based on the month the school places their order with Nutcracker Jewelry — not when the fundraiser runs. A school running a September fundraiser that orders in August gets the August discount. Schools running monthly campaigns can use this same link year-round — the discount updates automatically each month.</div>
       </div>
     </div>
 
     <!-- Tier table + active stats -->
     <div class="calc-grid">
       <div class="card" style="margin-bottom:0">
-        <div class="card__heading">Discount Tiers by Campaign Month</div>
+        <div class="card__heading">What the School Pays You — by Order Month</div>
         <table class="tier-table" id="tier-table">
           <thead>
-            <tr><th>Month</th><th>Discount</th><th>Standard Cost</th><th>Slippers/Pointe</th><th>Bracelet/LL</th></tr>
+            <tr><th>Month</th><th>Discount</th><th>Standard Charms</th><th>Special Charms &amp; Earrings ★</th><th>Bracelet &amp; Link Lock †</th></tr>
           </thead>
           <tbody>
             <tr data-month="8"><td>August</td><td id="aug-tier-label">40% off</td><td id="aug-std-cost">$13.80</td><td id="aug-spc-cost">$15.60</td><td>$23.00</td></tr>
@@ -621,12 +621,12 @@
             <tr data-month="12"><td>December</td><td>0% off</td><td>$23.00</td><td>$26.00</td><td>$23.00</td></tr>
           </tbody>
         </table>
-        <p class="calc-note" style="margin-top:12px">Standard wholesale: $23.00 · Ballet Slippers/Pointe: $26.00 · Bracelets/Link Locks: $23.00 (no discount) · Retail floor: $13.80</p>
+        <p class="calc-note" style="margin-top:12px">★ Includes Ballet Slippers, Pointe, Attitude (large), and all earring styles — base price $26 before discount.<br>† Bracelets and Link Locks do not qualify for the additional monthly discount — price is always $23.00.<br>Prices shown are what the school pays you. Standard charm base (December rate): $23.00 · Retail floor: $13.80</p>
       </div>
 
       <div>
         <div class="calc-stat" style="margin-bottom:16px">
-          <div class="calc-stat__label">Campaign Month</div>
+          <div class="calc-stat__label">Order Placement Month</div>
           <div class="calc-stat__value" id="calc-month-name">—</div>
           <div class="calc-stat__sub" id="calc-month-sub">Enter a campaign start date in School Setup</div>
         </div>
