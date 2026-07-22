@@ -1,4 +1,4 @@
-// Nutcracker Jewelry — Script Manager fixes v19
+// Nutcracker Jewelry — Script Manager fixes v21
 window.addEventListener('load', function () {
 
   // 1. Google Fonts
@@ -104,14 +104,33 @@ window.addEventListener('load', function () {
   fixNavColors();
   [500, 1000, 2000].forEach(function(t) { setTimeout(fixNavColors, t); });
 
-  // 5. Darken card images — target img inside sd-image widget divs
-  function fixCardImages() {
-    document.querySelectorAll('[id*="sd-image"] img').forEach(function(img) {
-      img.style.setProperty('filter', 'brightness(0.55)', 'important');
-    });
+  // 5. Darken card images — apply when found, and watch for lazy-loaded ones
+  function darkenImg(img) {
+    if (img.dataset.njDarkened) return;
+    img.dataset.njDarkened = '1';
+    img.style.setProperty('filter', 'brightness(0.55)', 'important');
   }
+
+  function fixCardImages() {
+    document.querySelectorAll('[id*="sd-image"] img').forEach(darkenImg);
+  }
+
   fixCardImages();
-  [500, 1500, 3000].forEach(function(t) { setTimeout(fixCardImages, t); });
+  [500, 1500, 3000, 6000].forEach(function(t) { setTimeout(fixCardImages, t); });
+
+  // Watch for images added when user scrolls (lazy loading)
+  new MutationObserver(function(mutations) {
+    mutations.forEach(function(m) {
+      m.addedNodes.forEach(function(node) {
+        if (node.tagName === 'IMG' && node.closest && node.closest('[id*="sd-image"]')) {
+          darkenImg(node);
+        }
+        if (node.querySelectorAll) {
+          node.querySelectorAll('[id*="sd-image"] img').forEach(darkenImg);
+        }
+      });
+    });
+  }).observe(document.body, { childList: true, subtree: true });
 
   // 6. Hide footer Categories
   document.querySelectorAll('.footer-info-heading').forEach(function(h) {
@@ -119,5 +138,10 @@ window.addEventListener('load', function () {
       h.closest('.footer-info-col').style.setProperty('display', 'none', 'important');
     }
   });
+
+  // 7. Hide Category Menu from header nav
+  var style = document.createElement('style');
+  style.textContent = '.menu-catlinks { display: none !important; }';
+  document.head.appendChild(style);
 
 });
