@@ -1,4 +1,4 @@
-// Nutcracker Jewelry — Script Manager fixes v22
+// Nutcracker Jewelry — Script Manager fixes v23
 window.addEventListener('load', function () {
 
   // 1. Google Fonts
@@ -154,16 +154,18 @@ window.addEventListener('load', function () {
     }
   }
 
-  // 10. Hide "Meet the Cast" sidebar block on non-Nutcracker pages
-  var isNutcrackerPage = window.location.href.includes('nutcracker-jewelry');
-  if (!isNutcrackerPage) {
-    document.querySelectorAll('.sidebarBlock').forEach(function(block) {
-      var heading = block.querySelector('.sidebarBlock-heading');
-      if (heading && heading.textContent.trim() === 'Meet the Cast') {
-        block.style.setProperty('display', 'none', 'important');
-      }
-    });
-  }
+  // 10. Hide "Meet the Cast" on non-Nutcracker pages, hide "Shop by Price" everywhere
+  document.querySelectorAll('.sidebarBlock').forEach(function(block) {
+    var heading = block.querySelector('.sidebarBlock-heading');
+    if (!heading) return;
+    var text = heading.textContent.trim();
+    if (text === 'Shop by Price' || text === 'Shop By Price') {
+      block.style.setProperty('display', 'none', 'important');
+    }
+    if (text === 'Meet the Cast' && !window.location.href.includes('nutcracker-jewelry')) {
+      block.style.setProperty('display', 'none', 'important');
+    }
+  });
   var style = document.createElement('style');
   style.textContent = [
     '.menu-catlinks .mini-header { display: none !important; }',
