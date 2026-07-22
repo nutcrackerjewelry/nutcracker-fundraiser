@@ -141,7 +141,20 @@ window.addEventListener('load', function () {
 
   // 7. Hide "Category Menu" label only — keep the dropdown links
   // 8. Move hamburger to left of logo
-  // 9. Hide "Meet the Cast" sidebar block on non-Nutcracker pages
+  // 9. Fix Wholesale Login banner — remove side padding that cuts off background
+  var wholesaleLink = [...document.querySelectorAll('a')].find(function(a) {
+    return a.textContent.trim().toUpperCase() === 'WHOLESALE LOGIN';
+  });
+  if (wholesaleLink) {
+    var wholesaleParent = wholesaleLink.parentElement;
+    if (wholesaleParent) {
+      wholesaleParent.style.setProperty('padding-left', '0', 'important');
+      wholesaleParent.style.setProperty('padding-right', '0', 'important');
+      wholesaleParent.style.setProperty('width', '100%', 'important');
+    }
+  }
+
+  // 10. Hide "Meet the Cast" sidebar block on non-Nutcracker pages
   var isNutcrackerPage = window.location.href.includes('nutcracker-jewelry');
   if (!isNutcrackerPage) {
     document.querySelectorAll('.sidebarBlock').forEach(function(block) {
