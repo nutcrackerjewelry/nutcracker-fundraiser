@@ -1,4 +1,4 @@
-// Nutcracker Jewelry — Script Manager fixes v21
+// Nutcracker Jewelry — Script Manager fixes v22
 window.addEventListener('load', function () {
 
   // 1. Google Fonts
@@ -146,11 +146,11 @@ window.addEventListener('load', function () {
     return a.textContent.trim().toUpperCase() === 'WHOLESALE LOGIN';
   });
   if (wholesaleLink) {
-    var wholesaleParent = wholesaleLink.parentElement;
-    if (wholesaleParent) {
-      wholesaleParent.style.setProperty('padding-left', '0', 'important');
-      wholesaleParent.style.setProperty('padding-right', '0', 'important');
-      wholesaleParent.style.setProperty('width', '100%', 'important');
+    // padding is on the great-grandparent — walk up 3 levels
+    var ggp = wholesaleLink.parentElement && wholesaleLink.parentElement.parentElement && wholesaleLink.parentElement.parentElement.parentElement;
+    if (ggp) {
+      ggp.style.setProperty('padding-left', '0', 'important');
+      ggp.style.setProperty('padding-right', '0', 'important');
     }
   }
 
