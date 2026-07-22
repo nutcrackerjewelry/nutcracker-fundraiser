@@ -140,8 +140,12 @@ window.addEventListener('load', function () {
   });
 
   // 7. Hide "Category Menu" label only — keep the dropdown links
+  // 8. Move hamburger to left of logo
   var style = document.createElement('style');
-  style.textContent = '.menu-catlinks .mini-header { display: none !important; }';
+  style.textContent = [
+    '.menu-catlinks .mini-header { display: none !important; }',
+    '.header .menu-holder { order: -1 !important; }',
+  ].join('\n');
   document.head.appendChild(style);
 
 });
