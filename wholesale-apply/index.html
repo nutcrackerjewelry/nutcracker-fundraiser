@@ -337,7 +337,7 @@
         </div>
         <div class="field">
           <label>Website</label>
-          <input type="url" name="Website" placeholder="https://yourschool.com">
+          <input type="url" name="Website" placeholder="https://yourschool.com" id="website-field" onblur="fixUrl(this)">
         </div>
       </div>
       <div class="field-row">
@@ -467,5 +467,13 @@
   <p>© Nutcracker Jewelry (Incentives Inc.) · Simpsonville, SC · <a href="https://www.nutcrackerjewelry.com/contact-us/">Contact Us</a> · <a href="https://www.nutcrackerjewelry.com">nutcrackerjewelry.com</a></p>
 </div>
 
+<script>
+function fixUrl(input) {
+  var val = input.value.trim();
+  if (val && !/^https?:\/\//i.test(val)) {
+    input.value = 'https://' + val;
+  }
+}
+</script>
 </body>
 </html>
