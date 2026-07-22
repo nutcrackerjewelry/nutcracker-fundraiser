@@ -141,6 +141,16 @@ window.addEventListener('load', function () {
 
   // 7. Hide "Category Menu" label only — keep the dropdown links
   // 8. Move hamburger to left of logo
+  // 9. Hide "Meet the Cast" sidebar block on non-Nutcracker pages
+  var isNutcrackerPage = window.location.href.includes('nutcracker-jewelry');
+  if (!isNutcrackerPage) {
+    document.querySelectorAll('.sidebarBlock').forEach(function(block) {
+      var heading = block.querySelector('.sidebarBlock-heading');
+      if (heading && heading.textContent.trim() === 'Meet the Cast') {
+        block.style.setProperty('display', 'none', 'important');
+      }
+    });
+  }
   var style = document.createElement('style');
   style.textContent = [
     '.menu-catlinks .mini-header { display: none !important; }',
