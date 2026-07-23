@@ -542,14 +542,19 @@
           <label>Coordinator Email <span style="font-size:0.78rem;color:#9B1528;font-weight:600">(required — parents send orders here)</span></label>
           <input type="email" id="coord-email" placeholder="e.g. director@cityballetacademy.com" />
         </div>
+        <div class="field">
+          <label>Backup Coordinator Email <span style="font-size:0.78rem;color:#888;font-weight:400">(optional — CC'd on every order)</span></label>
+          <input type="email" id="coord-email-2" placeholder="e.g. volunteer@cityballetacademy.com" />
+        </div>
         <div class="field" style="grid-column:1/-1">
           <label>Payment Instructions <span style="font-size:0.78rem;color:#888;font-weight:400">(optional — shown to parents on the order page)</span></label>
           <input type="text" id="payment-instructions" placeholder="e.g. Venmo @CityBallet · Cash · Check made out to City Ballet Academy" />
           <span style="font-size:0.78rem;color:#888;margin-top:4px;display:block">Leave blank to use the default: "Cash or a check made out to [School Name]"</span>
         </div>
         <div class="field">
-          <label>GitHub Folder Path</label>
+          <label>School Page URL Path <span style="font-size:0.78rem;color:#888;font-weight:400">(used to build the school's link &amp; QR code)</span></label>
           <input type="text" id="github-path" placeholder="e.g. cityballetacademy/simpsonville/sc" />
+          <span style="font-size:0.78rem;color:#888;margin-top:4px;display:block">This becomes the folder path on the fundraiser site. Use lowercase letters, no spaces.</span>
         </div>
       </div>
     </div>
@@ -602,150 +607,128 @@
 <div id="view-calculator">
   <div class="container">
     <div class="page-title">
-      <h1>Profit Calculator</h1>
-      <p>Estimate fundraiser earnings — adjust product type and selling price to model any scenario.</p>
+      <h1>School Earnings Calculator</h1>
+      <p>Order earlier = bigger discount = more money for your school. Here's how it works.</p>
     </div>
 
-    <div class="calc-banner">
-      <div class="calc-banner__icon">💎</div>
-      <div>
-        <div class="calc-banner__title">Early Orders = More Profit for Schools</div>
-        <div class="calc-banner__sub">The additional discount is based on the month the school places their order with Nutcracker Jewelry — not when the fundraiser runs. A school running a September fundraiser that orders in August gets the August discount. Schools running monthly campaigns can use this same link year-round — the discount updates automatically each month.</div>
+    <!-- How It Works — 3 steps -->
+    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-bottom:24px">
+      <div class="card" style="text-align:center;padding:20px 16px;background:var(--dark);margin-bottom:0">
+        <div style="font-size:1.8rem;margin-bottom:8px">📦</div>
+        <div style="font-weight:700;color:var(--gold);font-size:0.95rem;margin-bottom:8px">1. School Orders from Us</div>
+        <div style="font-size:0.83rem;color:#ccc;line-height:1.55">Order wholesale after collecting parent orders. The earlier in the season you order, the larger your discount — up to 40% off in August.</div>
+      </div>
+      <div class="card" style="text-align:center;padding:20px 16px;background:var(--dark);margin-bottom:0">
+        <div style="font-size:1.8rem;margin-bottom:8px">🎭</div>
+        <div style="font-weight:700;color:var(--gold);font-size:0.95rem;margin-bottom:8px">2. Parents Buy from the School</div>
+        <div style="font-size:0.83rem;color:#ccc;line-height:1.55">Run the order form during your Nutcracker season. Parents pay the school directly. We ship jewelry to the school; you hand it out at the boutique.</div>
+      </div>
+      <div class="card" style="text-align:center;padding:20px 16px;background:var(--dark);margin-bottom:0">
+        <div style="font-size:1.8rem;margin-bottom:8px">💰</div>
+        <div style="font-weight:700;color:var(--gold);font-size:0.95rem;margin-bottom:8px">3. School Keeps the Difference</div>
+        <div style="font-size:0.83rem;color:#ccc;line-height:1.55">Selling price minus wholesale cost goes straight to your school. No commissions, no splits, no hidden fees.</div>
       </div>
     </div>
 
-    <!-- Tier table + active stats -->
-    <div class="calc-grid">
-      <div class="card" style="margin-bottom:0">
-        <div class="card__heading">What the School Pays You — by Order Month</div>
-        <table class="tier-table" id="tier-table">
-          <thead>
-            <tr><th>Month</th><th>Discount</th><th>Standard Charms ★</th><th>Special Charms ★★</th><th>Bracelet †</th></tr>
-          </thead>
-          <tbody>
-            <tr data-month="8"><td>August</td><td id="aug-tier-label">40% off</td><td id="aug-std-cost">$13.80</td><td id="aug-spc-cost">$15.60</td><td>$35.00</td></tr>
-            <tr data-month="9"><td>September</td><td>30% off</td><td>$16.10</td><td>$18.20</td><td>$35.00</td></tr>
-            <tr data-month="10"><td>October</td><td>20% off</td><td>$18.40</td><td>$20.80</td><td>$35.00</td></tr>
-            <tr data-month="11"><td>November</td><td>10% off</td><td>$20.70</td><td>$23.40</td><td>$35.00</td></tr>
-            <tr data-month="12"><td>December</td><td>0% off</td><td>$23.00</td><td>$26.00</td><td>$35.00</td></tr>
-          </tbody>
-        </table>
-        <p class="calc-note" style="margin-top:12px">★ Standard Charms — base price $23.00 (December rate).<br>★★ Special Charms — Ballet Slippers, Pointe, Attitude (large) — base price $26.00. Earrings use the same discount % applied to their own base price ($34, $46, or $52) — use the calculator below for exact earring costs.<br>† Bracelet: always $35.00 — no additional discount. Link Lock: always $3.00 — no additional discount.<br>Prices shown are what the school pays you.</p>
-      </div>
-
-      <div>
-        <div class="calc-stat" style="margin-bottom:16px">
-          <div class="calc-stat__label">Order Placement Month</div>
-          <div class="calc-stat__value" id="calc-month-name">—</div>
-          <div class="calc-stat__sub" id="calc-month-sub">Enter a campaign start date in School Setup</div>
-        </div>
-
-        <!-- August Admin Override — only visible when campaign month = August -->
-        <div id="aug-override" style="display:none; margin-bottom:16px; background:#fff8ee; border:1.5px solid var(--gold); border-radius:8px; padding:14px 16px;">
-          <div style="font-size:0.68rem; font-weight:700; letter-spacing:0.12em; text-transform:uppercase; color:var(--velvet); margin-bottom:10px;">⚙ August Discount — Admin Setting</div>
-          <label style="display:flex; align-items:center; gap:8px; margin-bottom:8px; cursor:pointer; font-size:0.88rem;">
-            <input type="radio" name="aug-pct" value="0.40" checked onchange="refreshCalculator()">
-            <span><strong>40% off</strong> — New / First-Time School</span>
-          </label>
-          <label style="display:flex; align-items:center; gap:8px; cursor:pointer; font-size:0.88rem;">
-            <input type="radio" name="aug-pct" value="0.30" onchange="refreshCalculator()">
-            <span><strong>30% off</strong> — Returning School</span>
-          </label>
-        </div>
-        <div class="calc-grid" style="margin-bottom:0; gap:14px">
-          <div class="calc-stat">
-            <div class="calc-stat__label">School Pays You</div>
-            <div class="calc-stat__value" id="calc-cost">—</div>
-            <div class="calc-stat__sub" id="calc-cost-type">per charm</div>
-          </div>
-          <div class="calc-stat">
-            <div class="calc-stat__label">School's Profit</div>
-            <div class="calc-stat__value" id="calc-profit-per">—</div>
-            <div class="calc-stat__sub">per charm sold</div>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- Inputs -->
+    <!-- Wholesale cost by month table -->
     <div class="card">
-      <div class="card__heading">Configure Your Scenario</div>
-
-      <div class="calc-input-row">
-        <label>Product type</label>
-        <select id="calc-product-type" onchange="refreshCalculator()" style="padding:8px 12px;border:1px solid var(--cream);border-radius:6px;font-family:inherit;font-size:1rem;background:#fff;min-width:260px">
-          <optgroup label="── Charms (discount applies)">
-            <option value="standard">Standard Charm — $23 base</option>
-            <option value="special">Slippers / Pointe / Attitude Charm (Lg) — $26 base</option>
-            <option value="attSm">Attitude Charm Small (DS-C251s, DS-C253s) — $15 base</option>
-          </optgroup>
-          <optgroup label="── Earrings (discount applies)">
-            <option value="earStd">Standard Earrings — $46 base</option>
-            <option value="earAtt">Petite / Attitude Earrings — $34 base</option>
-            <option value="earSlip">Slipper / Pointe Earrings — $52 base</option>
-          </optgroup>
-          <optgroup label="── Accessories (no discount)">
-            <option value="bracelet">Bracelet — $35 base</option>
-            <option value="linklock">Link Lock — $3 base</option>
-          </optgroup>
-        </select>
-      </div>
-
-      <div class="calc-input-row">
-        <label>School's selling price ($)</label>
-        <input type="number" id="calc-sell-price" value="35" min="1" step="1" oninput="recalc()" />
-        <span id="calc-price-warning" style="font-size:0.82rem;color:#9B1528;font-weight:600;display:none">⚠ Below recommended minimum</span>
-      </div>
-      <p class="calc-note" id="calc-rec-note" style="margin-top:4px">Recommended minimum: calculating…</p>
-    </div>
-
-    <!-- Profit estimator -->
-    <div class="card">
-      <div class="card__heading">Projected Earnings Estimator</div>
-      <p style="font-size:0.88rem;color:#666;margin-bottom:8px">How many charms does the school expect to sell?</p>
-      <div class="calc-input-row">
-        <label>Estimated charms sold</label>
-        <input type="number" id="est-units" value="50" min="1" oninput="recalc()" />
-      </div>
-      <div class="calc-result">
-        <div class="calc-result__label">Estimated total profit for the school</div>
-        <div class="calc-result__value" id="calc-total-profit">—</div>
-      </div>
-      <p class="calc-note">Based on the selected product type, campaign month discount, and your selling price.</p>
-    </div>
-
-    <!-- Goal calculator -->
-    <div class="card">
-      <div class="card__heading">Fundraising Goal Calculator</div>
-      <p style="font-size:0.88rem;color:#666;margin-bottom:8px">How much does the school want to raise?</p>
-      <div class="calc-input-row">
-        <label>Fundraising goal ($)</label>
-        <input type="number" id="goal-amount" value="1000" min="1" oninput="recalc()" />
-      </div>
-      <div class="calc-result">
-        <div class="calc-result__label">Charms needed to reach goal</div>
-        <div class="calc-result__value" id="calc-goal-units">—</div>
-      </div>
-      <p class="calc-note">Round up — it's always better to over-sell than fall short!</p>
-    </div>
-
-    <!-- Recommended pricing rails -->
-    <div class="card">
-      <div class="card__heading">Recommended Pricing Rails</div>
-      <p style="font-size:0.88rem;color:#666;margin-bottom:16px">Guidelines to protect your brand and ensure schools make a healthy profit.</p>
-      <table class="tier-table">
-        <thead><tr><th>Product</th><th>Min. School Price</th><th>Recommended SRP</th><th>Retail Price (Direct)</th></tr></thead>
+      <div class="card__heading">Your Cost by Order Month</div>
+      <p style="font-size:0.88rem;color:#666;margin-bottom:12px">The discount is based on the month <em>you place your order</em> — not your show date or fundraiser dates.</p>
+      <table class="tier-table" id="tier-table">
+        <thead>
+          <tr><th>Order Month</th><th>Additional Discount</th><th>Your Cost — Standard Charm ★</th><th>Your Cost — Special Charm ★★</th><th>Bracelet</th></tr>
+        </thead>
         <tbody>
-          <tr><td>Standard Charms</td><td>$28.00</td><td>$35.00</td><td>$35.00 (max 20% off)</td></tr>
-          <tr><td>Special Charms (Slippers, Pointe, Attitude Lg)</td><td>$30.00</td><td>$38.00</td><td>$38.00 (max 15% off)</td></tr>
-          <tr><td>Standard Earrings ($46 base)</td><td>$52.00</td><td>$60.00</td><td>$60.00 (max 15% off)</td></tr>
-          <tr><td>Petite / Attitude Earrings ($34 base)</td><td>$38.00</td><td>$45.00</td><td>$45.00 (max 15% off)</td></tr>
-          <tr><td>Slipper / Pointe Earrings ($52 base)</td><td>$56.00</td><td>$65.00</td><td>$65.00 (max 15% off)</td></tr>
-          <tr><td>Bracelet ($35 base, no discount)</td><td>$40.00</td><td>$45.00</td><td>$45.00 (no promo)</td></tr>
-          <tr><td>Link Lock ($3 base, no discount)</td><td>$3.00</td><td>$5.00</td><td>$5.00 (no promo)</td></tr>
+          <tr data-month="8"><td>August</td><td id="aug-tier-label">40% off</td><td id="aug-std-cost">$13.80</td><td id="aug-spc-cost">$15.60</td><td>$35.00</td></tr>
+          <tr data-month="9"><td>September</td><td>30% off</td><td>$16.10</td><td>$18.20</td><td>$35.00</td></tr>
+          <tr data-month="10"><td>October</td><td>20% off</td><td>$18.40</td><td>$20.80</td><td>$35.00</td></tr>
+          <tr data-month="11"><td>November</td><td>10% off</td><td>$20.70</td><td>$23.40</td><td>$35.00</td></tr>
+          <tr data-month="12"><td>December</td><td>Base price</td><td>$23.00</td><td>$26.00</td><td>$35.00</td></tr>
         </tbody>
       </table>
-      <p class="calc-note" style="margin-top:10px">Min. school price must always exceed what the school paid you — minimum prices above are based on the August (best) discount rate. Retail discounts should never bring the price below the school's cost.</p>
+      <p class="calc-note" style="margin-top:10px">★ Standard Charms base price $23.00 · ★★ Special Charms (Ballet Slippers, Pointe Shoes, Attitude Large) base price $26.00. Earrings share the same discount % on their own base price ($34, $46, or $52). Bracelet ($35) and Link Locks ($3) are fixed wholesale — no additional discount.</p>
+    </div>
+
+    <!-- August Admin Override -->
+    <div id="aug-override" style="display:none; background:#fff8ee; border:1.5px solid var(--gold); border-radius:8px; padding:14px 16px; margin-bottom:16px">
+      <div style="font-size:0.68rem; font-weight:700; letter-spacing:0.12em; text-transform:uppercase; color:var(--velvet); margin-bottom:10px;">⚙ August Discount — Admin Setting</div>
+      <label style="display:flex; align-items:center; gap:8px; margin-bottom:8px; cursor:pointer; font-size:0.88rem;">
+        <input type="radio" name="aug-pct" value="0.40" checked onchange="refreshCalculator()">
+        <span><strong>40% off</strong> — New / First-Time School</span>
+      </label>
+      <label style="display:flex; align-items:center; gap:8px; cursor:pointer; font-size:0.88rem;">
+        <input type="radio" name="aug-pct" value="0.30" onchange="refreshCalculator()">
+        <span><strong>30% off</strong> — Returning School</span>
+      </label>
+    </div>
+
+    <!-- All-in-one quick calculator -->
+    <div class="card">
+      <div class="card__heading">Quick Earnings Calculator</div>
+
+      <!-- Inputs row -->
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(175px,1fr));gap:16px;margin-bottom:20px">
+        <div>
+          <label style="display:block;font-size:0.82rem;font-weight:600;color:#444;margin-bottom:6px">Product type</label>
+          <select id="calc-product-type" onchange="refreshCalculator()" style="width:100%;padding:8px 10px;border:1px solid var(--cream);border-radius:6px;font-family:inherit;font-size:0.88rem;background:#fff">
+            <optgroup label="── Charms (discount applies)">
+              <option value="standard">Standard Charm — $23 base</option>
+              <option value="special">Slippers / Pointe / Attitude Charm (Lg) — $26 base</option>
+              <option value="attSm">Attitude Charm Small — $15 base</option>
+            </optgroup>
+            <optgroup label="── Earrings (discount applies)">
+              <option value="earStd">Standard Earrings — $46 base</option>
+              <option value="earAtt">Petite / Attitude Earrings — $34 base</option>
+              <option value="earSlip">Slipper / Pointe Earrings — $52 base</option>
+            </optgroup>
+            <optgroup label="── Accessories (no discount)">
+              <option value="bracelet">Bracelet — $35 fixed</option>
+              <option value="linklock">Link Lock — $3 fixed</option>
+            </optgroup>
+          </select>
+        </div>
+        <div>
+          <label style="display:block;font-size:0.82rem;font-weight:600;color:#444;margin-bottom:6px">Order month <span id="calc-month-name" style="color:var(--velvet)"></span></label>
+          <div style="padding:9px 10px;border:1px solid var(--cream);border-radius:6px;background:var(--light);font-size:0.88rem;color:#666">Set in School Setup tab</div>
+        </div>
+        <div>
+          <label style="display:block;font-size:0.82rem;font-weight:600;color:#444;margin-bottom:6px">School's selling price ($)</label>
+          <input type="number" id="calc-sell-price" value="35" min="1" step="1" oninput="recalc()" style="width:100%;padding:8px 10px;border:1px solid var(--cream);border-radius:6px;font-family:inherit;font-size:0.88rem;box-sizing:border-box" />
+          <span id="calc-price-warning" style="font-size:0.78rem;color:var(--velvet);font-weight:600;display:none">⚠ Below recommended minimum</span>
+        </div>
+        <div>
+          <label style="display:block;font-size:0.82rem;font-weight:600;color:#444;margin-bottom:6px">Estimated items sold</label>
+          <input type="number" id="est-units" value="50" min="1" oninput="recalc()" style="width:100%;padding:8px 10px;border:1px solid var(--cream);border-radius:6px;font-family:inherit;font-size:0.88rem;box-sizing:border-box" />
+        </div>
+      </div>
+
+      <!-- Results block -->
+      <div style="display:grid;grid-template-columns:repeat(3,1fr);background:var(--dark);border-radius:10px;overflow:hidden;margin-bottom:14px">
+        <div style="padding:18px 16px;text-align:center">
+          <div style="font-size:0.68rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--gold);margin-bottom:8px">Your Cost Per Item</div>
+          <div style="font-size:1.9rem;font-weight:700;color:#fff" id="calc-cost">—</div>
+          <div style="font-size:0.75rem;color:#999;margin-top:4px" id="calc-cost-type">per item</div>
+        </div>
+        <div style="padding:18px 16px;text-align:center;border-left:1px solid #333;border-right:1px solid #333">
+          <div style="font-size:0.68rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--gold);margin-bottom:8px">School Earns Per Item</div>
+          <div style="font-size:1.9rem;font-weight:700;color:#fff" id="calc-profit-per">—</div>
+          <div style="font-size:0.75rem;color:#999;margin-top:4px" id="calc-month-sub">—</div>
+        </div>
+        <div style="padding:18px 16px;text-align:center">
+          <div style="font-size:0.68rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--gold);margin-bottom:8px">Total Fundraiser Earnings</div>
+          <div style="font-size:1.9rem;font-weight:700;color:#fff" id="calc-total-profit">—</div>
+          <div style="font-size:0.75rem;color:#999;margin-top:4px">for estimated items sold</div>
+        </div>
+      </div>
+
+      <p class="calc-note" id="calc-rec-note">Recommended minimum: calculating…</p>
+
+      <!-- Goal reversal -->
+      <div style="margin-top:16px;padding-top:14px;border-top:1px solid var(--cream);display:flex;align-items:center;gap:14px;flex-wrap:wrap">
+        <label style="font-size:0.85rem;font-weight:600;color:#444;white-space:nowrap">Fundraising goal ($)</label>
+        <input type="number" id="goal-amount" value="1000" min="1" oninput="recalc()" style="padding:7px 10px;border:1px solid var(--cream);border-radius:6px;font-family:inherit;font-size:0.9rem;width:120px" />
+        <span style="font-size:0.9rem;color:#555">→ Items needed to reach goal: <strong id="calc-goal-units" style="color:var(--velvet);font-size:1.05rem">—</strong></span>
+      </div>
     </div>
 
   </div>
@@ -764,18 +747,18 @@
 <div class="modal-overlay" id="modal-generate">
   <div class="modal">
     <div class="modal__heading">✦ Your Page is Ready!</div>
-    <p class="modal__sub">Copy the code below and paste it into GitHub to publish your school's fundraiser page.</p>
+    <p class="modal__sub">Copy the code below and publish it to the fundraiser site. The school's live link and QR code will appear below.</p>
 
     <div class="modal__steps">
-      <h3>How to publish on GitHub:</h3>
+      <h3>How to publish:</h3>
       <ol>
-        <li>Go to <strong>github.com/nutcrackerjewelry/nutcracker-fundraiser</strong></li>
-        <li>Click <strong>Add file → Create new file</strong></li>
-        <li>In the filename box, type this path exactly:<br/>
+        <li>Log in to <strong>HostGator cPanel → File Manager</strong></li>
+        <li>Open <strong>public_html/fundraiser/</strong> and create this folder path:<br/>
           <div class="modal__path" id="github-path-display">—</div>
         </li>
-        <li>Click inside the big text editor and press <strong>⌘V</strong> to paste</li>
-        <li>Click <strong>Commit changes</strong> — done!</li>
+        <li>Inside that folder, create a new file named <strong>index.html</strong></li>
+        <li>Open it, click inside, and press <strong>⌘V</strong> to paste the code</li>
+        <li>Save — the page is live at the link shown below!</li>
       </ol>
     </div>
 
@@ -786,6 +769,13 @@
       <img id="qr-img" src="" alt="QR Code" />
       <div class="qr-url" id="qr-url-display"></div>
       <a class="btn-download-qr" id="qr-download" href="" download="NutcrackerJewelry_QR.png" target="_blank">⬇ Download QR Code</a>
+    </div>
+
+    <!-- Email summary -->
+    <div id="modal-email-summary" style="background:#f5f0e8;border:1.5px solid #C9A96E;border-radius:8px;padding:12px 16px;margin-bottom:16px;font-size:0.88rem;color:#1E1A1D;display:none">
+      <strong>Order emails will go to:</strong><br/>
+      <span id="modal-email-primary"></span><br/>
+      <span id="modal-email-cc" style="display:none">CC: <span id="modal-email-cc-val"></span></span>
     </div>
 
     <div class="modal__code-area">
@@ -801,7 +791,7 @@
 // ══════════════════════════════════════════════
 // MASTER CATALOG
 // ══════════════════════════════════════════════
-const IMG_BASE = 'https://nutcrackerjewelry.github.io/nutcracker-fundraiser/';
+const IMG_BASE = 'https://nutcrackerjewelry.com/fundraiser/';
 
 const MASTER_CATALOG = [
   // Nutcracker Charms — default $35, exceptions noted
@@ -1102,7 +1092,8 @@ function getConfig() {
     ? new Date(document.getElementById('payment-due').value).toLocaleDateString('en-US', {month:'long', day:'numeric', year:'numeric'})
     : 'TBD';
   const endLabel = new Date(endDate).toLocaleDateString('en-US', {month:'long', day:'numeric', year:'numeric'});
-  const coordEmail          = document.getElementById('coord-email').value.trim();
+  const coordEmail         = document.getElementById('coord-email').value.trim();
+  const coordEmail2        = document.getElementById('coord-email-2').value.trim();
   const paymentInstructions = document.getElementById('payment-instructions').value.trim();
   const githubPath = document.getElementById('github-path').value.trim();
   const levels = githubPath ? githubPath.split('/').filter(Boolean).length : 3;
@@ -1115,7 +1106,7 @@ function getConfig() {
     selected.push({ code, price });
   });
 
-  return { schoolName, location, endDate, endLabel, payDue, coordEmail, paymentInstructions, githubPath, baseImg, selected };
+  return { schoolName, location, endDate, endLabel, payDue, coordEmail, coordEmail2, paymentInstructions, githubPath, baseImg, selected };
 }
 
 // ── Preview ──
@@ -1148,7 +1139,7 @@ function generateCode() {
 
   // Build QR code
   if (cfg.githubPath) {
-    const liveURL = 'https://nutcrackerjewelry.github.io/nutcracker-fundraiser/' + cfg.githubPath.replace(/\/$/, '');
+    const liveURL = 'https://nutcrackerjewelry.com/fundraiser/' + cfg.githubPath.replace(/\/$/, '');
     const qrAPI   = 'https://api.qrserver.com/v1/create-qr-code/?size=300x300&margin=10&data=' + encodeURIComponent(liveURL);
     document.getElementById('qr-img').src = qrAPI;
     document.getElementById('qr-url-display').textContent = liveURL;
@@ -1159,6 +1150,23 @@ function generateCode() {
     document.getElementById('qr-section').style.display = 'none';
   }
 
+  // Show email confirmation
+  const emailSummary = document.getElementById('modal-email-summary');
+  if (cfg.coordEmail) {
+    document.getElementById('modal-email-primary').textContent = cfg.coordEmail;
+    const ccEl  = document.getElementById('modal-email-cc');
+    const ccVal = document.getElementById('modal-email-cc-val');
+    if (cfg.coordEmail2) {
+      ccVal.textContent = cfg.coordEmail2;
+      ccEl.style.display = '';
+    } else {
+      ccEl.style.display = 'none';
+    }
+    emailSummary.style.display = '';
+  } else {
+    emailSummary.style.display = 'none';
+  }
+
   document.getElementById('modal-generate').classList.add('open');
 }
 
@@ -1166,7 +1174,7 @@ function copyGeneratedCode() {
   const ta = document.getElementById('generated-code');
   ta.select();
   navigator.clipboard.writeText(ta.value).then(() => {
-    document.getElementById('copy-confirm').textContent = '✓ Copied! Now paste it into GitHub.';
+    document.getElementById('copy-confirm').textContent = '✓ Copied! Now paste it into index.html in File Manager.';
     setTimeout(() => document.getElementById('copy-confirm').textContent = '', 4000);
   });
 }
@@ -1419,6 +1427,7 @@ const SCHOOL_CITY  = '${cfg.location.replace(/'/g, "\\'")}';
 const CAMPAIGN_END = new Date('${cfg.endDate}T23:59:59');
 const PAYMENT_DUE  = '${cfg.payDue}';
 const COORD_EMAIL  = '${cfg.coordEmail.replace(/'/g, "\\'")}';
+const COORD_EMAIL2 = '${cfg.coordEmail2.replace(/'/g, "\\'")}';
 const BASE_IMG     = '${cfg.baseImg}';
 
 const SCHOOL_SELECTION = [${selCodes}];
@@ -1516,7 +1525,8 @@ function sendOrder() {
   const subject = encodeURIComponent(\`Charm Order — \${o.dancer} — \${SCHOOL_NAME}\`);
   const body    = encodeURIComponent(buildOrderText(o));
   const to      = COORD_EMAIL || '';
-  window.location.href = \`mailto:\${to}?subject=\${subject}&body=\${body}\`;
+  const cc      = COORD_EMAIL2 ? \`&cc=\${encodeURIComponent(COORD_EMAIL2)}\` : '';
+  window.location.href = \`mailto:\${to}?subject=\${subject}\${cc}&body=\${body}\`;
 }
 
 function copyOrder() {
